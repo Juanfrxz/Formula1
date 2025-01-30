@@ -8,22 +8,53 @@
   <!-- Icono -->
   <link rel="icon" type="image/svg+xml" href="public/f1.svg" />
   <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
+    defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"
+    defer></script>
   <!-- JavaScript -->
   <script type="module" src="app.js" defer></script>
+  <script type="module" src="src/background.js" defer></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="source/css/stylesIndex.css">
   <title>Formula 1</title>
 </head>
 
 <body>
-  <div class="container">
-    <cars-component></cars-component>
-    <circuits-component></circuits-component>
-    <drivers-component></drivers-component>
-    <qualifying-component></qualifying-component>
-    <teams-component></teams-component>
+  <audio id="backgroundAudio" src="source/audio/audio-background.m4a" autoplay loop></audio>
+
+  <video autoplay muted loop>
+    <source src="source/video/videoplayback-background.mp4" type="video/mp4" class="class-video-background" />
+    Tu navegador no soporta videos.
+  </video>
+  <div class="menu" id="menu">
+    <ul class="menu-list">
+      <li><a href="#races">Carreras</a></li>
+      <li><a href="#drivers">Pilotos</a></li>
+      <li><a href="#vehicles">Vehículos</a></li>
+      <li><a href="#tracks">Pistas</a></li>
+      <li><a href="#teams">Equipos</a></li>
+    </ul>
   </div>
+  <!-- Contenedor del control de audio -->
+  <div class="audio-control">
+    <!-- Botón de pausa/reanudar audio -->
+    <button id="audioToggle" class="audio-btn">🔇</button>
+
+    <!-- Control de volumen -->
+    <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+  </div>
+  
+  <cars-component></cars-component>
+  <circuits-component></circuits-component>
+  <drivers-component></drivers-component>
+  <qualifying-component></qualifying-component>
+  <teams-component></teams-component>
+  
 </body>
 
 </html>

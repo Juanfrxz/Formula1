@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: none;
+  font-family: Arial, sans-serif;
+}
+
+.menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px 40px;
+  border-radius: 12px;
+  text-align: center;
+  opacity: 0;
+  /* Oculta el menú al inicio */
+  visibility: hidden;
+  /* Evita que ocupe espacio al estar oculto */
+  transition: opacity 1s ease;
+  /* Transición suave al mostrar */
+}
+
+.menu.show {
+  opacity: 1;
+  visibility: visible;
+  /* Muestra el menú */
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-list a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 1s cubic-bezier(1, 1, 1, 1);
+  /* Transición más suave */
+}
+
+/* Efectos Únicos de Hover */
+.menu-list li:nth-child(1) a:hover {
+  background: linear-gradient(90deg, #ee0979, #ff6a00);
+  color: #000;
+  transform: scale(1.1);
+}
+
+.menu-list li:nth-child(2) a:hover {
+  background: linear-gradient(90deg, #ee0979, #ff6a00);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.menu-list li:nth-child(3) a:hover {
+  background: linear-gradient(90deg, #ee0979, #ff6a00);
+  color: #000;
+  transform: scale(1.1);
+}
+
+.menu-list li:nth-child(4) a:hover {
+  background: linear-gradient(90deg, #ee0979, #ff6a00);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.menu-list li:nth-child(5) a:hover {
+  background: linear-gradient(90deg, #ee0979, #ff6a00);
+  color: #000;
+  transform: scale(1.1);
+}
+
+.audio-control {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audio-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.audio-btn:hover {
+  color: #ddd;
+}
+
+#volumeControl {
+  width: 100px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: red;
+  height: 5px;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Personalizar el thumb (punto deslizante) */
+#volumeControl::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#volumeControl::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
