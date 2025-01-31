@@ -10,78 +10,32 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.menu {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.6);
-  padding: 20px 40px;
-  border-radius: 12px;
-  text-align: center;
-  opacity: 0;
-  /* Oculta el menú al inicio */
-  visibility: hidden;
-  /* Evita que ocupe espacio al estar oculto */
-  transition: opacity 1s ease;
-  /* Transición suave al mostrar */
+.navbar {
+  background-color: rgb(218, 3, 3);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 10px 0;
 }
 
-.menu.show {
-  opacity: 1;
-  visibility: visible;
-  /* Muestra el menú */
-}
-
-.menu-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.navbar-nav {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  justify-content: end;
+  width: 100%;
+  gap: 2rem;
 }
 
-.menu-list a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 24px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: all 1s cubic-bezier(1, 1, 1, 1);
-  /* Transición más suave */
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: bold;
+  padding: 10px 15px;
 }
 
-/* Efectos Únicos de Hover */
-.menu-list li:nth-child(1) a:hover {
-  background: linear-gradient(90deg, #ee0979, #ff6a00);
-  color: #000;
-  transform: scale(1.1);
+.navbar-nav .nav-link:hover {
+  text-decoration: underline;
 }
 
-.menu-list li:nth-child(2) a:hover {
-  background: linear-gradient(90deg, #ee0979, #ff6a00);
-  color: #fff;
-  transform: scale(1.1);
-}
-
-.menu-list li:nth-child(3) a:hover {
-  background: linear-gradient(90deg, #ee0979, #ff6a00);
-  color: #000;
-  transform: scale(1.1);
-}
-
-.menu-list li:nth-child(4) a:hover {
-  background: linear-gradient(90deg, #ee0979, #ff6a00);
-  color: #fff;
-  transform: scale(1.1);
-}
-
-.menu-list li:nth-child(5) a:hover {
-  background: linear-gradient(90deg, #ee0979, #ff6a00);
-  color: #000;
-  transform: scale(1.1);
-}
 
 .audio-control {
   position: fixed;
