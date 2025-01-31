@@ -6,3 +6,4 @@
 import './components/teams/createteamComponent.js'
 import './components/teams/editteamComponent.js'
 import './components/teams/deleteteamComponent.js'
+import './components/drivers/createdriverComponent.js'

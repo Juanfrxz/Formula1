@@ -25,38 +25,48 @@
 </head>
 
 <body>
-<!-- <audio id="backgroundAudio" src="source/audio/audio-background.m4a" autoplay loop></audio>
+<audio id="backgroundAudio" src="source/audio/audio-background.m4a" autoplay loop></audio>
 
   <video autoplay muted loop>
     <source src="source/video/videoplayback-background.mp4" type="video/mp4" class="class-video-background" />
     Tu navegador no soporta videos.
   </video>
-  <div class="menu" id="menu">
-    <ul class="menu-list">
-      <li><a href="#races">Carreras</a></li>
-      <li><a href="#drivers">Pilotos</a></li>
-      <li><a href="#vehicles">Vehículos</a></li>
-      <li><a href="#tracks">Pistas</a></li>
-      <li><a href="#teams">Equipos</a></li>
-    </ul>
-  </div> -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="source/img/f1_logo.png" alt="F1 Logo" height="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#">Teams</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Drivers</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Cars</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Circuits</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Pole Position</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
   <!-- Contenedor del control de audio -->
-  <!-- <div class="audio-control"> -->
+  <div class="audio-control">
     <!-- Botón de pausa/reanudar audio -->
-    <!-- <button id="audioToggle" class="audio-btn">🔇</button> -->
+    <button id="audioToggle" class="audio-btn">🔇</button>
 
     <!-- Control de volumen -->
-    <!-- <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
-  </div> -->
+    <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+  </div>
 
   <cars-component></cars-component>
   <circuits-component></circuits-component>
   <drivers-component></drivers-component>
   <qualifying-component></qualifying-component>
   <teams-component></teams-component>
-  <create-team-component></create-team-component>
+  <!-- <create-team-component></create-team-component>
   <edit-team-component></edit-team-component>
-  <delete-team-component></delete-team-component>
+  <delete-team-component></delete-team-component> -->
   
 </body>
 
