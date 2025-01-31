@@ -1,47 +1,159 @@
 {
   "pilotos": [
-    { "id": 1, "nombre": "Max Verstappen", "equipo": "Red Bull Racing", "rol": "Líder" },
-    { "id": 2, "nombre": "Sergio Pérez", "equipo": "Red Bull Racing", "rol": "Escudero" },
-    { "id": 3, "nombre": "Lewis Hamilton", "equipo": "Mercedes-AMG Petronas", "rol": "Líder" },
-    { "id": 4, "nombre": "George Russell", "equipo": "Mercedes-AMG Petronas", "rol": "Escudero" },
-    { "id": 5, "nombre": "Charles Leclerc", "equipo": "Ferrari", "rol": "Líder" },
-    { "id": 6, "nombre": "Carlos Sainz", "equipo": "Ferrari", "rol": "Escudero" },
-    { "id": 7, "nombre": "Lando Norris", "equipo": "McLaren", "rol": "Líder" },
-    { "id": 8, "nombre": "Oscar Piastri", "equipo": "McLaren", "rol": "Escudero" },
-    { "id": 9, "nombre": "Fernando Alonso", "equipo": "Aston Martin", "rol": "Líder" },
-    { "id": 10, "nombre": "Lance Stroll", "equipo": "Aston Martin", "rol": "Escudero" },
-    { "id": 11, "nombre": "Esteban Ocon", "equipo": "Alpine", "rol": "Líder" },
-    { "id": 12, "nombre": "Pierre Gasly", "equipo": "Alpine", "rol": "Escudero" },
-    { "id": 13, "nombre": "Valtteri Bottas", "equipo": "Alfa Romeo", "rol": "Líder" },
-    { "id": 14, "nombre": "Zhou Guanyu", "equipo": "Alfa Romeo", "rol": "Escudero" },
-    { "id": 15, "nombre": "Kevin Magnussen", "equipo": "Haas", "rol": "Líder" },
-    { "id": 16, "nombre": "Nico Hülkenberg", "equipo": "Haas", "rol": "Escudero" },
-    { "id": 17, "nombre": "Yuki Tsunoda", "equipo": "AlphaTauri", "rol": "Líder" },
-    { "id": 18, "nombre": "Daniel Ricciardo", "equipo": "AlphaTauri", "rol": "Escudero" },
-    { "id": 19, "nombre": "Alexander Albon", "equipo": "Williams", "rol": "Líder" },
-    { "id": 20, "nombre": "Logan Sargeant", "equipo": "Williams", "rol": "Escudero" }
+    {
+      "id": "1",
+      "nombre": "Max Verstappen",
+      "equipo": "Red Bull Racing",
+      "rol": "Líder"
+    },
+    {
+      "id": "2",
+      "nombre": "Sergio Pérez",
+      "equipo": "Red Bull Racing",
+      "rol": "Escudero"
+    },
+    {
+      "id": "3",
+      "nombre": "Lewis Hamilton",
+      "equipo": "Mercedes-AMG Petronas",
+      "rol": "Líder"
+    },
+    {
+      "id": "4",
+      "nombre": "George Russell",
+      "equipo": "Mercedes-AMG Petronas",
+      "rol": "Escudero"
+    },
+    {
+      "id": "5",
+      "nombre": "Charles Leclerc",
+      "equipo": "Ferrari",
+      "rol": "Líder"
+    },
+    {
+      "id": "6",
+      "nombre": "Carlos Sainz",
+      "equipo": "Ferrari",
+      "rol": "Escudero"
+    },
+    {
+      "id": "7",
+      "nombre": "Lando Norris",
+      "equipo": "McLaren",
+      "rol": "Líder"
+    },
+    {
+      "id": "8",
+      "nombre": "Oscar Piastri",
+      "equipo": "McLaren",
+      "rol": "Escudero"
+    },
+    {
+      "id": "9",
+      "nombre": "Fernando Alonso",
+      "equipo": "Aston Martin",
+      "rol": "Líder"
+    },
+    {
+      "id": "10",
+      "nombre": "Lance Stroll",
+      "equipo": "Aston Martin",
+      "rol": "Escudero"
+    },
+    {
+      "id": "11",
+      "nombre": "Esteban Ocon",
+      "equipo": "Alpine",
+      "rol": "Líder"
+    },
+    {
+      "id": "12",
+      "nombre": "Pierre Gasly",
+      "equipo": "Alpine",
+      "rol": "Escudero"
+    },
+    {
+      "id": "13",
+      "nombre": "Valtteri Bottas",
+      "equipo": "Alfa Romeo",
+      "rol": "Líder"
+    },
+    {
+      "id": "14",
+      "nombre": "Zhou Guanyu",
+      "equipo": "Alfa Romeo",
+      "rol": "Escudero"
+    },
+    {
+      "id": "15",
+      "nombre": "Kevin Magnussen",
+      "equipo": "Haas",
+      "rol": "Líder"
+    },
+    {
+      "id": "16",
+      "nombre": "Nico Hülkenberg",
+      "equipo": "Haas",
+      "rol": "Escudero"
+    },
+    {
+      "id": "17",
+      "nombre": "Yuki Tsunoda",
+      "equipo": "AlphaTauri",
+      "rol": "Líder"
+    },
+    {
+      "id": "18",
+      "nombre": "Daniel Ricciardo",
+      "equipo": "AlphaTauri",
+      "rol": "Escudero"
+    },
+    {
+      "id": "19",
+      "nombre": "Alexander Albon",
+      "equipo": "Williams",
+      "rol": "Líder"
+    },
+    {
+      "id": "20",
+      "nombre": "Logan Sargeant",
+      "equipo": "Williams",
+      "rol": "Escudero"
+    }
   ],
   "equipos": [
     {
       "nombre": "Red Bull Racing",
       "pais": "Austria",
       "motor": "Honda",
-      "pilotos": [1, 2],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Red_Bull_Racing_Logo.svg"
+      "pilotos": [
+        1,
+        2
+      ],
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Red_Bull_Racing_Logo.svg",
+      "id": "0451"
     },
     {
       "nombre": "Mercedes-AMG Petronas",
       "pais": "Alemania",
       "motor": "Mercedes",
-      "pilotos": [3, 4],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes_AMG_Petronas_F1_Team_logo.svg"
+      "pilotos": [
+        3,
+        4
+      ],
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes_AMG_Petronas_F1_Team_logo.svg",
+      "id": "1ff4"
     },
     {
       "nombre": "Ferrari",
       "pais": "Italia",
       "motor": "Ferrari",
-      "pilotos": [5, 6],
-      "imagen": "https://upload.wikimedia.org/wikipedia/en/d/d4/Scuderia_Ferrari_Logo.svg"
+      "pilotos": [
+        5,
+        6
+      ],
+      "imagen": "https://upload.wikimedia.org/wikipedia/en/d/d4/Scuderia_Ferrari_Logo.svg",
+      "id": "0b28"
     }
   ],
   "circuitos": [
@@ -57,11 +169,21 @@
         "año": 2019
       },
       "ganadores": [
-        { "temporada": 2021, "piloto": 1 },
-        { "temporada": 2022, "piloto": 2 },
-        { "temporada": 2023, "piloto": 1 }
+        {
+          "temporada": 2021,
+          "piloto": 1
+        },
+        {
+          "temporada": 2022,
+          "piloto": 2
+        },
+        {
+          "temporada": 2023,
+          "piloto": 1
+        }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Monte_Carlo_Formula_1_track_map.svg"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Monte_Carlo_Formula_1_track_map.svg",
+      "id": "bd91"
     },
     {
       "nombre": "Silverstone",
@@ -75,16 +197,26 @@
         "año": 2020
       },
       "ganadores": [
-        { "temporada": 2021, "piloto": 3 },
-        { "temporada": 2022, "piloto": 5 },
-        { "temporada": 2023, "piloto": 1 }
+        {
+          "temporada": 2021,
+          "piloto": 3
+        },
+        {
+          "temporada": 2022,
+          "piloto": 5
+        },
+        {
+          "temporada": 2023,
+          "piloto": 1
+        }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Silverstone_Circuit_2020_layout.png"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Silverstone_Circuit_2020_layout.png",
+      "id": "2c5d"
     },
     {
       "nombre": "Circuito de Spa-Francorchamps",
       "pais": "Bélgica",
-      "longitud_km": 7.00,
+      "longitud_km": 7,
       "vueltas": 44,
       "descripcion": "Famoso por la curva Eau Rouge y la larga recta de Kemmel, un circuito donde la potencia del motor es clave.",
       "record_vuelta": {
@@ -93,11 +225,21 @@
         "año": 2018
       },
       "ganadores": [
-        { "temporada": 2021, "piloto": 1 },
-        { "temporada": 2022, "piloto": 1 },
-        { "temporada": 2023, "piloto": 1 }
+        {
+          "temporada": 2021,
+          "piloto": 1
+        },
+        {
+          "temporada": 2022,
+          "piloto": 1
+        },
+        {
+          "temporada": 2023,
+          "piloto": 1
+        }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Circuit_Spa_2018.png"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Circuit_Spa_2018.png",
+      "id": "0097"
     },
     {
       "nombre": "Circuito de Monza",
@@ -111,11 +253,21 @@
         "año": 2004
       },
       "ganadores": [
-        { "temporada": 2021, "piloto": 2 },
-        { "temporada": 2022, "piloto": 1 },
-        { "temporada": 2023, "piloto": 1 }
+        {
+          "temporada": 2021,
+          "piloto": 2
+        },
+        {
+          "temporada": 2022,
+          "piloto": 1
+        },
+        {
+          "temporada": 2023,
+          "piloto": 1
+        }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Monza_track_map.svg"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Monza_track_map.svg",
+      "id": "9ef4"
     },
     {
       "nombre": "Interlagos",
@@ -129,11 +281,21 @@
         "año": 2018
       },
       "ganadores": [
-        { "temporada": 2021, "piloto": 3 },
-        { "temporada": 2022, "piloto": 1 },
-        { "temporada": 2023, "piloto": 1 }
+        {
+          "temporada": 2021,
+          "piloto": 3
+        },
+        {
+          "temporada": 2022,
+          "piloto": 1
+        },
+        {
+          "temporada": 2023,
+          "piloto": 1
+        }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/2/23/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28Interlagos%29.svg"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/2/23/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28Interlagos%29.svg",
+      "id": "1253"
     },
     {
       "nombre": "Circuito de Yas Marina",
@@ -147,11 +309,21 @@
         "año": 2019
       },
       "ganadores": [
-        { "temporada": 2021, "piloto": 1 },
-        { "temporada": 2022, "piloto": 1 },
-        { "temporada": 2023, "piloto": 3 }
+        {
+          "temporada": 2021,
+          "piloto": 1
+        },
+        {
+          "temporada": 2022,
+          "piloto": 1
+        },
+        {
+          "temporada": 2023,
+          "piloto": 3
+        }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Yas_Marina_Circuit_2021_layout.svg"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Yas_Marina_Circuit_2021_layout.svg",
+      "id": "bedc"
     },
     {
       "nombre": "Circuito de Suzuka",
@@ -165,11 +337,21 @@
         "año": 2019
       },
       "ganadores": [
-        { "temporada": 2021, "piloto": 1 },
-        { "temporada": 2022, "piloto": 1 },
-        { "temporada": 2023, "piloto": 1 }
+        {
+          "temporada": 2021,
+          "piloto": 1
+        },
+        {
+          "temporada": 2022,
+          "piloto": 1
+        },
+        {
+          "temporada": 2023,
+          "piloto": 1
+        }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Suzuka_circuit_map--2005.svg"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Suzuka_circuit_map--2005.svg",
+      "id": "4efb"
     }
   ],
   "vehiculos": [
@@ -179,7 +361,10 @@
       "motor": "Honda",
       "velocidad_maxima_kmh": 360,
       "aceleracion_0_100": 2.5,
-      "pilotos": [1, 2],
+      "pilotos": [
+        1,
+        2
+      ],
       "rendimiento": {
         "conduccion_normal": {
           "velocidad_promedio_kmh": 320,
@@ -199,7 +384,7 @@
           "consumo_combustible": {
             "seco": 2.4,
             "lluvioso": 2.6,
-            "extremo": 3.0
+            "extremo": 3
           },
           "desgaste_neumaticos": {
             "seco": 2.2,
@@ -215,13 +400,14 @@
             "extremo": 2.1
           },
           "desgaste_neumaticos": {
-            "seco": 1.0,
+            "seco": 1,
             "lluvioso": 0.5,
             "extremo": 1.8
           }
         }
       },
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/89/Max_Verstappen_2023_Austria_FP2_%28cropped%29.jpg"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/89/Max_Verstappen_2023_Austria_FP2_%28cropped%29.jpg",
+      "id": "e3e2"
     },
     {
       "equipo": "Mercedes-AMG Petronas",
@@ -229,12 +415,15 @@
       "motor": "Mercedes",
       "velocidad_maxima_kmh": 355,
       "aceleracion_0_100": 2.6,
-      "pilotos": [3, 4],
+      "pilotos": [
+        3,
+        4
+      ],
       "rendimiento": {
         "conduccion_normal": {
           "velocidad_promedio_kmh": 315,
           "consumo_combustible": {
-            "seco": 2.0,
+            "seco": 2,
             "lluvioso": 2.2,
             "extremo": 2.5
           },
@@ -271,7 +460,8 @@
           }
         }
       },
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/87/Lewis_Hamilton_2022_Imola.jpg"
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/87/Lewis_Hamilton_2022_Imola.jpg",
+      "id": "0621"
     }
   ]
 }
