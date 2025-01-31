@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://json-server-api-f1-production.up.railway.app';
 
 // Equipos y Pilotos
 export const getEquipos = async () => {
