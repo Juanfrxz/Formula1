@@ -1,4 +1,4 @@
-import { getEquipos, updateEquipo } from '../api/fetchApi.js';
+import { getEquipos, updateEquipo } from '../../api/fetchApi.js';
 
 class EditTeamComponent extends HTMLElement {
     constructor() {

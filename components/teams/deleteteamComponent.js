@@ -1,4 +1,4 @@
-import { getEquipos, deleteEquipo } from '../api/fetchApi.js';
+import { getEquipos, deleteEquipo } from '../../api/fetchApi.js';
 
 class DeleteTeamComponent extends HTMLElement {
     constructor() {

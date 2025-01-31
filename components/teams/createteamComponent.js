@@ -1,4 +1,4 @@
-import { addEquipo } from '../api/fetchApi.js';
+import { addEquipo } from '../../api/fetchApi.js';
 
 class CreateTeamComponent extends HTMLElement {
     constructor() {
