@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoBackground = document.querySelector("video");
   const navbarBrand = document.querySelector(".navbar-brand img");
   const backgroundAudio = document.getElementById("backgroundAudio"); // Seleccionamos el audio de fondo
+  const audioControl = document.querySelector(".audio-control"); // Seleccionamos la barra de música
 
   // Asegura que el componente no se muestre inicialmente
   carsComponent.style.display = "none";
@@ -27,6 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (videoBackground) {
       videoBackground.style.display = "none";
     }
+
+    // Ocultar la barra de música
+    if (audioControl) {
+      audioControl.style.display = "none";
+    }
   });
 
   // Evento para mostrar el video al hacer clic en el logo
@@ -46,5 +52,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (backgroundAudio.paused) {
       backgroundAudio.play();
     }
+
+    // Mostrar la barra de música al regresar a la página principal
+    if (audioControl) {
+      audioControl.style.display = "flex";
+    }
+  });
+
+  // Ocultar la barra de música al hacer clic en cualquiera de los enlaces del navbar
+  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      if (audioControl) {
+        audioControl.style.display = "none";
+      }
+    });
   });
 });
