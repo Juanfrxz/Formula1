@@ -15,34 +15,60 @@ class PilotosComponent extends HTMLElement {
             <style>
                 :host {
                     display: block;
-                    width: 100vw;
-                    height: 100vh;
                 }
                 .container {
                     width: 100%;
-                    height: 100%;
+                    padding: 1rem;
+                }
+                /* Contenedor para header (título, busqueda y botones) */
+                .header {
+                    margin-bottom: 1rem;
+                }
+                /* Contenedor de tarjetas usando Flex */
+                .card-container {
                     display: flex;
-                    flex-direction: column;
-                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 1rem;
                     justify-content: center;
+                }
+                .card {
+                    width: 300px; /* ancho fijo */
+                    height: 350px; /* alto fijo */
+                    overflow: hidden;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                 }
                 .card img {
                     width: 100%;
-                    height: auto;
-                    border-radius: 8px;
+                    height: 200px;
+                    object-fit: cover; /* evita distorsión */
+                }
+                .card-body {
+                    padding: 0.5rem;
+                }
+                /* Nuevo contenedor para limitar la altura y activar scroll */
+                .list-container {
+                    max-height: 70vh;
+                    overflow-y: auto;
                 }
             </style>
-            <div class="container mt-3">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <h2>Pilotos Registrados</h2>
-                    <input type="text" id="search" class="form-control w-50" placeholder="Buscar piloto...">
+            <div class="container">
+                <div class="header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2>Pilotos Registrados</h2>
+                        <input type="text" id="search" class="form-control w-50" placeholder="Buscar piloto...">
+                    </div>
+                    <div class="mt-3">
+                        <button class="btn btn-primary" id="btnCreateDriver">Create</button>
+                        <button class="btn btn-warning" id="btnModifyDriver">Modify</button>
+                        <button class="btn btn-danger" id="btnDeleteDriver">Delete</button>
+                    </div>
                 </div>
-                <div class="mt-3 d-flex gap-2">
-                    <button class="btn btn-primary" id="btnCreateDriver">Create</button>
-                    <button class="btn btn-warning" id="btnModifyDriver">Modify</button>
-                    <button class="btn btn-danger" id="btnDeleteDriver">Delete</button>
+                <!-- Envolvemos el contenedor de tarjetas en un contenedor scrollable -->
+                <div class="list-container">
+                    <div id="pilotos-container" class="card-container mt-3"></div>
                 </div>
-                <div id="pilotos-container" class="mt-3 row row-cols-3 g-3"></div>
             </div>
         `;
     }
@@ -77,7 +103,7 @@ class PilotosComponent extends HTMLElement {
         const container = this.shadowRoot.querySelector('#pilotos-container');
         container.innerHTML = '';
         
-        this.filteredPilotos.slice(0, 6).forEach(piloto => {
+        this.filteredPilotos.forEach(piloto => {
             const card = document.createElement('div');
             card.className = 'col';
             card.innerHTML = `

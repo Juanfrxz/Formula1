@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Ocultar otros componentes
-    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, drivers-component")
+    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, pilotos-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Cars
