@@ -1,4 +1,4 @@
-import { getEquipos, updateEquipo, addPiloto } from '../../api/fetchApi.js';
+import { getEquipos, updateEquipo, addPiloto, getPilotos } from '../../api/fetchApi.js';
 
 class RacerCreateComponent extends HTMLElement {
     constructor() {
@@ -24,6 +24,7 @@ class RacerCreateComponent extends HTMLElement {
                     </select>
                 </div>
                 <button id="create-racer" class="btn btn-primary">Crear Piloto</button>
+                <div id="confirmation-message" class="mt-3 text-success" style="display: none;"></div>
             </div>
         `;
     }
@@ -48,19 +49,22 @@ class RacerCreateComponent extends HTMLElement {
         const name = this.shadowRoot.querySelector('#name').value;
         const teamId = this.shadowRoot.querySelector('#team').value;
         const role = this.shadowRoot.querySelector('#role').value;
+        const confirmationMessage = this.shadowRoot.querySelector('#confirmation-message');
 
-        const response = await fetch(`${API_URL}/pilotos`);
-        const pilots = await response.json();
+        const pilots = await getPilotos();
         const lastId = pilots.length > 0 ? pilots[pilots.length - 1].id : 0;
         const newId = (parseInt(lastId) + 1).toString();
 
         const newPilot = { id: newId, nombre: name, equipo: teamId, rol: role };
         await addPiloto(newPilot);
 
-        const teamResponse = await fetch(`${API_URL}/equipos/${teamId}`);
-        const team = await teamResponse.json();
+        const teams = await getEquipos();
+        const team = teams.find(team => team.id === teamId);
         team.pilotos = team.pilotos ? [...team.pilotos, newId] : [newId];
         await updateEquipo(teamId, { pilotos: team.pilotos });
+
+        confirmationMessage.textContent = `Piloto ${name} agregado correctamente al equipo.`;
+        confirmationMessage.style.display = 'block';
     }
 }
 
