@@ -10,7 +10,27 @@ class CreateCarComponent extends HTMLElement {
         this.equipos = await getEquipos();
         this.pilotos = await getPilotos();
         this.render();
+        this.setupAccordion();
         this.setupEvents();
+    }
+
+    setupAccordion() {
+        const accordionButtons = this.shadowRoot.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetSelector = button.getAttribute('data-bs-target');
+                const targetPanel = this.shadowRoot.querySelector(targetSelector);
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                button.setAttribute('aria-expanded', String(!isExpanded));
+
+                if (targetPanel.classList.contains('show')) {
+                    targetPanel.classList.remove('show');
+                } else {
+                    targetPanel.classList.add('show');
+                }
+            });
+        });
     }
 
     setupEvents() {
@@ -78,15 +98,29 @@ class CreateCarComponent extends HTMLElement {
 
     render() {
         this.shadowRoot.innerHTML = /* html */ `
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <style>
+                /* Importamos Bootstrap */
+                @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+
+                /* Estilos básicos para el acordeón */
+                .accordion-collapse {
+                    display: none;
+                }
+                .accordion-collapse.show {
+                    display: block;
+                }
+            </style>
             <div class="container">
                 <h2>Registrar Nuevo Vehículo</h2>
                 <form id="carForm">
                     <div class="accordion" id="carAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#generalInfo">
+                                <button class="accordion-button" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        data-bs-target="#generalInfo" 
+                                        aria-expanded="true">
                                     Información General
                                 </button>
                             </h2>
@@ -111,7 +145,11 @@ class CreateCarComponent extends HTMLElement {
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#performanceInfo">
+                                <button class="accordion-button collapsed" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        data-bs-target="#performanceInfo" 
+                                        aria-expanded="false">
                                     Rendimiento
                                 </button>
                             </h2>
@@ -132,7 +170,7 @@ class CreateCarComponent extends HTMLElement {
     }
 
     renderPerformanceInputs(prefix, label) {
-        return `
+        return /*html*/`
             <h4>${label}</h4>
             <label>Velocidad Promedio (km/h):</label>
             <input type="number" id="${prefix}_velocidad" class="form-control" required>

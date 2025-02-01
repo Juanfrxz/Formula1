@@ -29,7 +29,7 @@ const initScene = () => {
 
     // Cargar modelo
     const loader = new GLTFLoader();
-    loader.load('../public/untitled.glb', function (gltf) {
+    loader.load('../public/redbull-3d.glb', function (gltf) {
         console.log("Modelo cargado:", gltf);
         model = gltf.scene;
         scene.add(model);

@@ -58,7 +58,7 @@ class CarsComponent extends HTMLElement {
 
         // Actualizar contenido del modal
         modalTitle.textContent = car.modelo;
-        modalBody.innerHTML = `
+        modalBody.innerHTML = /*html*/`
             <p><strong>Equipo:</strong> ${car.equipo}</p>
             <p><strong>Motor:</strong> ${car.motor}</p>
             <p><strong>Velocidad Máxima:</strong> ${car.velocidad_maxima_kmh} km/h</p>

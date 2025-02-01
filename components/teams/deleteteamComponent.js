@@ -23,7 +23,7 @@ class DeleteTeamComponent extends HTMLElement {
 
         // Agregar el modal al DOM principal (fuera del shadowRoot)
         if (!document.querySelector("#confirmModal")) {
-            document.body.insertAdjacentHTML("beforeend", `
+            document.body.insertAdjacentHTML("beforeend",/*html*/ `
                 <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
