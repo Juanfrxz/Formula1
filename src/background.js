@@ -1,12 +1,7 @@
-// Espera 3 segundos (3000 ms) antes de mostrar el menú
-setTimeout(() => {
-    const menu = document.getElementById('menu');
-    menu.classList.add('show'); // Agrega la clase para mostrar el menú
-  }, 1500);
-  
-  const audio = document.getElementById("backgroundAudio");
+const audio = document.getElementById("backgroundAudio");
     const button = document.getElementById("audioToggle");
     const volumeControl = document.getElementById("volumeControl");
+    audio.volume = 0.05; // Volumen inicial
 
     // Botón de Play/Pause
     button.addEventListener("click", () => {

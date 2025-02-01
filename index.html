@@ -43,7 +43,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="#">Teams</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Drivers</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Cars</a></li>
+                <li class="nav-item"><a id="btnCars" class="nav-link" href="#">Cars</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Circuits</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Pole Position</a></li>
             </ul>
@@ -60,14 +60,31 @@
   </div>
 
   <cars-component></cars-component>
-  <circuits-component></circuits-component>
+  <!-- <circuits-component></circuits-component>
   <drivers-component></drivers-component>
   <qualifying-component></qualifying-component>
-  <teams-component></teams-component>
+  <teams-component></teams-component> -->
   <!-- <create-team-component></create-team-component>
   <edit-team-component></edit-team-component>
   <delete-team-component></delete-team-component> -->
+  <create-car-component></create-car-component>
+  <edit-car-component></edit-car-component>
+  <delete-car-component></delete-car-component>
   
+<!-- Modal GLOBAL -->
+<div class="modal fade" id="carModal" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="carModalLabel"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="carModalBody"></div>
+      </div>
+  </div>
+</div>
+
+
 </body>
 
 </html>
