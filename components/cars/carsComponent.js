@@ -123,10 +123,13 @@ class CarsComponent extends HTMLElement {
     render() {
         this.shadowRoot.innerHTML = /*html*/ `
             <style>
-                .container { padding: 20px; }
+                .container { padding: 20px; 
+                margin-top: 350px;
+                }
                 .card { margin: 10px; width: 18rem; }
                 .card img { height: 150px; object-fit: cover; }
             </style>
+
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
             <div class="container">
