@@ -1,5 +1,8 @@
 import './components/cars/carsComponent.js';
-// import './components/circuitsComponent.js';
+import './components/circuits/circuitsComponent.js';
+import './components/circuits/createcircuitComponent.js'
+import './components/circuits/editcircuitComponent.js'
+import './components/circuits/deletecircuitComponent.js'
 import './components/drivers/driversComponent.js';
 // import './components/qualifyingComponent.js';
 import './components/teams/teamsComponent.js';
