@@ -2,7 +2,7 @@ import './components/cars/carsComponent.js';
 // import './components/circuitsComponent.js';
 import './components/drivers/driversComponent.js';
 // import './components/qualifyingComponent.js';
-// import './components/teams/teamsComponent.js';
+import './components/teams/teamsComponent.js';
 // import './components/teams/createteamComponent.js'
 // import './components/teams/editteamComponent.js'
 // import './components/teams/deleteteamComponent.js'

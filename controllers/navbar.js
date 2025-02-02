@@ -5,15 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbarBrand = document.querySelector(".navbar-brand img");
   const btnDrivers = document.getElementById("btnDrivers");
   const driversComponent = document.querySelector("pilotos-component");
+  const btnTeams = document.getElementById("btnTeams");
+  const teamsComponent = document.querySelector("teams-component");
   const CreateCar = document.querySelector("create-car-component");
   const backgroundAudio = document.getElementById("backgroundAudio"); // Audio de fondo
   const audioControl = document.querySelector(".audio-control"); // Barra de música
+
 
   // Asegura que el componente no se muestre inicialmente
   carsComponent.style.display = "none";
   driversComponent.style.display = "none";
   CreateCar.style.display = "none";
-
+  teamsComponent.style.display = "none";
 
   btnCars.addEventListener("click", (e) => {
     e.preventDefault();
@@ -24,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Ocultar otros componentes
-    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, pilotos-component")
+    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Cars
@@ -55,11 +58,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Ocultar otros componentes
-    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, cars-component")
+    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, cars-component, teams-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Pilotos
     driversComponent.style.display = "block";
+
+
+    // Ocultar el video de fondo si está presente
+    if (videoBackground) {
+      videoBackground.style.display = "none";
+    }
+
+    // Ocultar la barra de música
+    if (audioControl) {
+      audioControl.style.display = "none";
+    }
+
+    // Permitir scroll y desplazar la vista hacia el componente de Cars
+    document.body.style.overflow = "auto";
+    carsComponent.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  btnTeams.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Pausar la música al ingresar a "Teams"
+
+    if (!backgroundAudio.paused) {
+      backgroundAudio.pause();
+    }
+
+    // Ocultar otros componentes
+    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, cars-component, pilotos-component")
+      .forEach(el => el.style.display = "none");
+
+    // Mostrar el componente de Pilotos
+    teamsComponent.style.display = "block";
+
 
 
     // Ocultar el video de fondo si está presente
@@ -82,8 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     // Ocultar otros componentes
-    document.querySelectorAll("cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component")
+    document.querySelectorAll("cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component")
       .forEach(el => el.style.display = "none");
+
 
     // Mostrar el video de fondo
     if (videoBackground) {
