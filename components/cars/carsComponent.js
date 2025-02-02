@@ -54,7 +54,6 @@ class CarsComponent extends HTMLElement {
     }
 
     showCarDetails(car) {
-        // Buscar el modal en el documento global
         const modalTitle = document.getElementById('carModalLabel');
         const modalBody = document.getElementById('carModalBody');
         const modalElement = document.getElementById('carModal');
@@ -64,13 +63,20 @@ class CarsComponent extends HTMLElement {
             return;
         }
 
-        // Actualizar contenido del modal, incluyendo un canvas para el modelo 3D
+        // Extraer la URL del modelo 3D si viene como un string con el iframe completo
+        let model3dUrl = car.model3d;
+        if (car.model3d.includes('src="')) {
+            const srcMatch = car.model3d.match(/src="([^"]+)"/);
+            if (srcMatch && srcMatch[1]) {
+                model3dUrl = srcMatch[1];
+            }
+        }
+
         modalTitle.textContent = car.modelo;
         modalBody.innerHTML = /*html*/`
             <p><strong>Equipo:</strong> ${car.equipo}</p>
             <p><strong>Motor:</strong> ${car.motor}</p>
             <p><strong>Velocidad Máxima:</strong> ${car.velocidad_maxima_kmh} km/h</p>
-
             <p><strong>Aceleración 0-100 km/h:</strong> ${car.aceleracion_0_100} s</p>
             <h5>Rendimiento</h5>
             <ul>
@@ -79,19 +85,17 @@ class CarsComponent extends HTMLElement {
                 <li><strong>Ahorro de Combustible:</strong> Velocidad Promedio: ${car.rendimiento.ahorro_combustible.velocidad_promedio_kmh} km/h</li>
             </ul>
             <div class="mt-3">
-              <canvas id="car3dCanvas" width="460" height="440" style="border: 1px solid #ccc;"></canvas>
+                <iframe 
+                    src="${model3dUrl}"
+                    style="width: 100%; height: 400px; border: none;"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
             </div>
         `;
 
-        // Mostrar el modal de Bootstrap
         const modal = new bootstrap.Modal(modalElement);
         modal.show();
-
-        // Inicializar el modelo 3D en el canvas
-        const canvas3d = modalBody.querySelector('#car3dCanvas');
-        if (canvas3d) {
-            this.initThreeDModel(canvas3d);
-        }
     }
 
     initThreeDModel(canvas) {
