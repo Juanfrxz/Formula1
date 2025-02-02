@@ -59,7 +59,26 @@ class TeamsComponent extends HTMLElement {
                 }
                 .list-container {
                     max-height: 70vh;
-                    overflow-y: auto;
+                    overflow-y: auto; 
+                    overflow-x: hidden; /* Oculta la barra horizontal */
+                    
+                    /* Estilo para Firefox */
+                    scrollbar-width: thin;
+                    scrollbar-color: #ccc transparent;
+                }
+                /* Estilos para navegadores Webkit (Chrome, Safari, Opera) */
+                .list-container::-webkit-scrollbar {
+                    width: 8px; /* Ancho de la barra vertical */
+                }
+                .list-container::-webkit-scrollbar-track {
+                    background: transparent; /* Fondo transparente en la pista */
+                }
+                .list-container::-webkit-scrollbar-thumb {
+                    background-color: #ccc; /* Color más claro del pulgar */
+                    border-radius: 15px;  /* Bordes redondeados */
+                }
+                .list-container::-webkit-scrollbar-thumb:hover {
+                    background-color: #bbb;
                 }
             </style>
             <div class="container">
@@ -88,6 +107,20 @@ class TeamsComponent extends HTMLElement {
         this.shadowRoot.querySelector('#btnModifyTeam').addEventListener('click', () => this.showEditTeamPopup());
         this.shadowRoot.querySelector('#btnDeleteTeam').addEventListener('click', () => this.showDeleteTeamPopup());
         this.updateTeams();
+
+        // Escuchar el evento general "teamChanged" para actualizar el listado de equipos
+        document.addEventListener("teamChanged", (e) => {
+            const { action, team } = e.detail;
+            if (action === "create") {
+                this.teams.push(team);
+            } else if (action === "delete") {
+                this.teams = this.teams.filter(t => t.id !== team.id);
+            } else if (action === "update") {
+                this.teams = this.teams.map(t => (t.id === team.id ? team : t));
+            }
+            this.filteredTeams = [...this.teams];
+            this.updateTeams();
+        });
     }
 
     async fetchEquipos() {

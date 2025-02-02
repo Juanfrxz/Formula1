@@ -20,7 +20,7 @@ class PilotosComponent extends HTMLElement {
                     width: 100%;
                     padding: 1rem;
                 }
-                /* Contenedor para header (título, busqueda y botones) */
+                /* Contenedor para header (título, búsqueda y botones) */
                 .header {
                     margin-bottom: 1rem;
                 }
@@ -37,7 +37,13 @@ class PilotosComponent extends HTMLElement {
                     overflow: hidden;
                     border: 1px solid #ccc;
                     border-radius: 8px;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    box-shadow: 0 2px 4px rgba(174, 2, 2, 0.1); /* Sombra sutil similar a teamsComponent */
+                    transition: box-shadow 0.3s, border-color 0.3s; /* Agregamos transición */
+                }
+                /* Efecto hover y sombra al estilo teamsComponent */
+                .card:hover {
+                    box-shadow: 0 0 15px rgba(174, 2, 2, 0.6);
+                    border-color: #AE0202;
                 }
                 .card img {
                     width: 100%;
@@ -47,10 +53,29 @@ class PilotosComponent extends HTMLElement {
                 .card-body {
                     padding: 0.5rem;
                 }
-                /* Nuevo contenedor para limitar la altura y activar scroll */
+                /* Contenedor scrollable con scrollbars personalizados */
                 .list-container {
                     max-height: 70vh;
                     overflow-y: auto;
+                    overflow-x: hidden; /* Oculta la barra horizontal */
+                    
+                    /* Estilo para Firefox */
+                    scrollbar-width: thin;
+                    scrollbar-color: #ccc transparent;
+                }
+                /* Estilos para navegadores Webkit (Chrome, Safari, Opera) */
+                .list-container::-webkit-scrollbar {
+                    width: 8px; /* Ancho de la barra vertical */
+                }
+                .list-container::-webkit-scrollbar-track {
+                    background: transparent; /* Fondo transparente en la pista */
+                }
+                .list-container::-webkit-scrollbar-thumb {
+                    background-color: #ccc; /* Color más claro del pulgar */
+                    border-radius: 8px;  /* Bordes redondeados */
+                }
+                .list-container::-webkit-scrollbar-thumb:hover {
+                    background-color: #bbb;
                 }
             </style>
             <div class="container">
@@ -80,6 +105,19 @@ class PilotosComponent extends HTMLElement {
         this.shadowRoot.querySelector('#btnModifyDriver').addEventListener('click', () => this.showEditDriverPopup());
         this.shadowRoot.querySelector('#btnDeleteDriver').addEventListener('click', () => this.showDeleteDriverPopup());
         this.updatePilotos();
+
+        document.addEventListener("pilotoChanged", (e) => {
+            const { action, pilot } = e.detail;
+            if (action === "create") {
+                this.pilotos.push(pilot);
+            } else if (action === "delete") {
+                this.pilotos = this.pilotos.filter(p => p.id !== pilot.id);
+            } else if (action === "update") {
+                this.pilotos = this.pilotos.map(p => (p.id === pilot.id ? pilot : p));
+            }
+            this.filteredPilotos = [...this.pilotos];
+            this.updatePilotos();
+        });
     }
 
     async fetchPilotos() {
@@ -107,7 +145,7 @@ class PilotosComponent extends HTMLElement {
             const card = document.createElement('div');
             card.className = 'col';
             card.innerHTML = `
-                <div class="card p-3 text-center shadow-sm" style="cursor: pointer;">
+                <div class="card p-3 text-center" style="cursor: pointer;">
                     <img src="${piloto.foto}" alt="Foto de ${piloto.nombre}" class="img-fluid">
                     <h5 class="card-title">${piloto.nombre}</h5>
                     <p class="card-text d-none">Equipo: ${piloto.equipo}</p>

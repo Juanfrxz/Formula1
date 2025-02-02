@@ -36,8 +36,8 @@ class EditTeamComponent extends HTMLElement {
                 </div>
             </form>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
         `;
     }
 
@@ -71,6 +71,15 @@ class EditTeamComponent extends HTMLElement {
 
         await updateEquipo(this.selectedEquipo.id, updatedEquipo);
         this.showConfirmationMessage();
+
+        // Despachar evento general indicando que se actualizó un equipo
+        this.dispatchEvent(new CustomEvent("teamChanged", {
+            bubbles: true,
+            detail: {
+                action: "update",
+                team: { id: this.selectedEquipo.id, ...updatedEquipo }
+            }
+        }));
     }
 
     updateDropdown() {

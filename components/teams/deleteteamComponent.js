@@ -72,6 +72,16 @@ class DeleteTeamComponent extends HTMLElement {
     async handleDelete() {
         if (!this.selectedEquipo) return;
         await deleteEquipo(this.selectedEquipo);
+        
+        // Despachar evento general indicando que se eliminó un equipo
+        this.dispatchEvent(new CustomEvent("teamChanged", {
+            bubbles: true,
+            detail: {
+                action: "delete",
+                team: { id: this.selectedEquipo }
+            }
+        }));
+        
         this.showConfirmationMessage();
         await this.fetchEquipos();
 

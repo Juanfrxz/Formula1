@@ -68,6 +68,15 @@ class CreateTeamComponent extends HTMLElement {
         await addEquipo(nuevoEquipo);
         this.showConfirmationMessage();
         this.shadowRoot.querySelector('#team-form').reset();
+
+        // Despachar evento general indicando que se creó un equipo
+        this.dispatchEvent(new CustomEvent("teamChanged", {
+            bubbles: true,
+            detail: {
+                action: "create",
+                team: nuevoEquipo
+            }
+        }));
     }
 
     showConfirmationMessage() {

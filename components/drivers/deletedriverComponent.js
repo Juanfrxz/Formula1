@@ -43,6 +43,10 @@ class RacerDeleteComponent extends HTMLElement {
         const pilot = pilots.find(p => p.id === pilotId);
         if (!pilot) return;
         
+        // Mostrar modal de confirmación estilo tarjeta
+        const confirmed = await this.showConfirmationModal(`¿Estás seguro de que deseas eliminar al piloto ${pilot.nombre}?`);
+        if (!confirmed) return;
+        
         const teams = await getEquipos();
         const team = teams.find(t => t.id === pilot.equipo);
         
@@ -55,13 +59,83 @@ class RacerDeleteComponent extends HTMLElement {
         // Eliminar el piloto
         await deletePiloto(pilotId);
         
-        // Confirmación visual
+        // Mostrar mensaje de confirmación visual (opcional)
         const confirmationMessage = this.shadowRoot.querySelector('#confirmation-message');
         confirmationMessage.textContent = `Piloto ${pilot.nombre} eliminado correctamente.`;
         confirmationMessage.style.display = 'block';
         
-        // Recargar la lista de pilotos
+        // Recargar la lista de pilotos (para el <select> interno)
         await this.loadPilots();
+        
+        // Emitir evento general indicando que se eliminó un piloto
+        this.dispatchEvent(new CustomEvent("pilotoChanged", {
+            bubbles: true,
+            detail: {
+                action: "delete",
+                pilot: { id: pilotId, nombre: pilot.nombre }
+            }
+        }));
+    }
+
+    // Método que crea y muestra un modal de confirmación utilizando Bootstrap,
+    // y retorna una promesa que se resuelve con true si el usuario confirma, false si cancela.
+    showConfirmationModal(message) {
+        return new Promise((resolve) => {
+            // Crear el contenido HTML del modal
+            const modalTemplate = `
+                <div class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirmación</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>${message}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="cancelButton">Cancelar</button>
+                                <button type="button" class="btn btn-primary" id="confirmButton">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Convertir el template a un nodo DOM
+            const modalWrapper = document.createElement('div');
+            modalWrapper.innerHTML = modalTemplate;
+            const modalElement = modalWrapper.firstElementChild;
+
+            // Agregar el modal al body del documento
+            document.body.appendChild(modalElement);
+
+            // Instanciar el modal de Bootstrap
+            const bsModal = new bootstrap.Modal(modalElement, {
+                backdrop: 'static', // Evita que se cierre al hacer click fuera
+                keyboard: false     // Evita que se cierre con la tecla ESC
+            });
+            bsModal.show();
+
+            // Manejar clic en "Confirmar"
+            modalElement.querySelector('#confirmButton').addEventListener('click', () => {
+                resolve(true);
+                bsModal.hide();
+            });
+
+            // Manejar clic en "Cancelar" y el cierre con el botón de la X
+            const cancelHandler = () => {
+                resolve(false);
+                bsModal.hide();
+            };
+            modalElement.querySelector('#cancelButton').addEventListener('click', cancelHandler);
+            modalElement.querySelector('.btn-close').addEventListener('click', cancelHandler);
+
+            // Una vez que el modal se oculta, removerlo del DOM
+            modalElement.addEventListener('hidden.bs.modal', () => {
+                modalElement.remove();
+            });
+        });
     }
 }
 

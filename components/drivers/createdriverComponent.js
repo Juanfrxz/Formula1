@@ -70,6 +70,15 @@ class RacerCreateComponent extends HTMLElement {
 
         confirmationMessage.textContent = `Piloto ${name} agregado correctamente al equipo.`;
         confirmationMessage.style.display = 'block';
+
+        // Emitir evento general indicando que se creó un piloto
+        this.dispatchEvent(new CustomEvent("pilotoChanged", {
+            bubbles: true,
+            detail: {
+                action: "create",
+                pilot: newPilot
+            }
+        }));
     }
 }
 

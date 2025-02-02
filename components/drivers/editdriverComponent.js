@@ -92,31 +92,34 @@ class RacerEditComponent extends HTMLElement {
         const name = this.shadowRoot.querySelector('#name').selectedOptions[0].text;
         const newTeamId = this.shadowRoot.querySelector('#team').value;
         const role = this.shadowRoot.querySelector('#role').value;
-        const foto = this.shadowRoot.querySelector('#foto').value; // Obtenemos la URL de la imagen
+        const foto = this.shadowRoot.querySelector('#foto').value;
         const confirmationMessage = this.shadowRoot.querySelector('#confirmation-message');
         
         // Actualizamos el piloto incluyendo la foto
         await updatePiloto(pilotId, { nombre: name, equipo: newTeamId, rol: role, foto: foto });
         
-        // Obtenemos la lista actualizada de pilotos y equipos
+        // Obtenemos la lista actualizada de pilotos y equipos y actualizamos los equipos
         const pilots = await getPilotos();
         const teams = await getEquipos();
-        
-        // Creamos un mapa de equipos con los pilotos correctamente asignados
-        const updatedTeams = teams.map(team => {
-            return {
-                ...team,
-                pilotos: pilots.filter(pilot => pilot.equipo === team.id).map(pilot => pilot.id)
-            };
-        });
-        
-        // Aplicamos la actualización a cada equipo
+        const updatedTeams = teams.map(team => ({
+            ...team,
+            pilotos: pilots.filter(pilot => pilot.equipo === team.id).map(pilot => pilot.id)
+        }));
         for (const team of updatedTeams) {
             await updateEquipo(team.id, { pilotos: team.pilotos });
         }
 
         confirmationMessage.textContent = `Piloto ${name} actualizado correctamente.`;
         confirmationMessage.style.display = 'block';
+        
+        // Emitir evento general indicando que se actualizó un piloto
+        this.dispatchEvent(new CustomEvent("pilotoChanged", {
+            bubbles: true,
+            detail: {
+                action: "update",
+                pilot: { id: pilotId, nombre: name, equipo: newTeamId, rol: role, foto: foto }
+            }
+        }));
     }
 }
 
