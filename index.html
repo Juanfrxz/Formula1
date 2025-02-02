@@ -47,9 +47,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#">Teams</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Drivers</a></li>
-                <li class="nav-item"><a id="btnCars" class="nav-link" href="#">Cars</a></li>
+                <li class="nav-item"><a id="btnTeams" class="nav-link" href="#">Teams</a></li>
+                <li class="nav-item"><a id="btnDrivers" class="nav-link" href="#">Drivers</a></li>
+                <li class="nav-item dropdown">
+                  <a id="btnCarsDropdown" class="nav-link dropdown-toggle" href="#">
+                    Cars
+                  </a>
+                  <ul class="dropdown-menu" id="carsDropdownMenu">
+                    <!-- Los items se insertarán dinámicamente -->
+                  </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="#">Circuits</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Pole Position</a></li>
             </ul>
@@ -66,10 +73,11 @@
   </div>
 
   <cars-component></cars-component>
+  <pilotos-component></pilotos-component>
+  <teams-component></teams-component>
   <!-- <circuits-component></circuits-component>
   <drivers-component></drivers-component>
-  <qualifying-component></qualifying-component>
-  <teams-component></teams-component> -->
+  <qualifying-component></qualifying-component>-->
   <!-- <create-team-component></create-team-component>
   <edit-team-component></edit-team-component>
   <delete-team-component></delete-team-component> -->
