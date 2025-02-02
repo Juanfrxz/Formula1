@@ -10,6 +10,7 @@ class CreateCarComponent extends HTMLElement {
         this.equipos = await getEquipos();
         this.pilotos = await getPilotos();
         this.render();
+        this.style.display = "none";
         this.setupAccordion();
         this.setupEvents();
     }
@@ -37,6 +38,12 @@ class CreateCarComponent extends HTMLElement {
         const form = this.shadowRoot.getElementById('carForm');
         const cancelBtn = this.shadowRoot.getElementById('cancelCreateCar');
 
+        const equipoSelect = this.shadowRoot.getElementById("equipo");
+        this.updatePilotosForTeam(equipoSelect.value);
+        equipoSelect.addEventListener("change", () => {
+            this.updatePilotosForTeam(equipoSelect.value);
+        });
+
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
             const newCar = this.getFormData();
@@ -50,6 +57,14 @@ class CreateCarComponent extends HTMLElement {
             this.style.display = "none";
             document.querySelector("cars-component").style.display = "block";
         });
+    }
+
+    updatePilotosForTeam(teamName) {
+        const pilotosSelect = this.shadowRoot.getElementById("pilotos");
+        const filteredPilotos = this.pilotos.filter(piloto => piloto.equipo === teamName);
+        pilotosSelect.innerHTML = filteredPilotos
+            .map(p => `<option value="${p.id}">${p.nombre}</option>`)
+            .join('');
     }
 
     getFormData() {
@@ -129,7 +144,7 @@ class CreateCarComponent extends HTMLElement {
                                     <label>Equipo:</label>
                                     <select id="equipo" class="form-control">${this.equipos.map(eq => `<option value="${eq.nombre}">${eq.nombre}</option>`).join('')}</select>
                                     <label>Pilotos:</label>
-                                    <select id="pilotos" class="form-control" multiple>${this.pilotos.map(p => `<option value="${p.id}">${p.nombre}</option>`).join('')}</select>
+                                    <select id="pilotos" class="form-control" multiple></select>
                                     <label>Modelo:</label>
                                     <input type="text" id="modelo" class="form-control" required>
                                     <label>Motor:</label>
@@ -148,15 +163,45 @@ class CreateCarComponent extends HTMLElement {
                                 <button class="accordion-button collapsed" 
                                         type="button" 
                                         data-bs-toggle="collapse" 
-                                        data-bs-target="#performanceInfo" 
+                                        data-bs-target="#performance_normal" 
                                         aria-expanded="false">
-                                    Rendimiento
+                                    Rendimiento: Conducción normal
                                 </button>
                             </h2>
-                            <div id="performanceInfo" class="accordion-collapse collapse">
+                            <div id="performance_normal" class="accordion-collapse collapse">
                                 <div class="accordion-body">
                                     ${this.renderPerformanceInputs("normal", "Conducción Normal")}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        data-bs-target="#performance_agresiva" 
+                                        aria-expanded="false">
+                                    Rendimiento: Conducción agresiva
+                                </button>
+                            </h2>
+                            <div id="performance_agresiva" class="accordion-collapse collapse">
+                                <div class="accordion-body">
                                     ${this.renderPerformanceInputs("agresiva", "Conducción Agresiva")}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        data-bs-target="#performance_ahorro" 
+                                        aria-expanded="false">
+                                    Rendimiento: Ahorro de combustible
+                                </button>
+                            </h2>
+                            <div id="performance_ahorro" class="accordion-collapse collapse">
+                                <div class="accordion-body">
                                     ${this.renderPerformanceInputs("ahorro", "Ahorro de Combustible")}
                                 </div>
                             </div>

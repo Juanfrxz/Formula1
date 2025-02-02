@@ -104,6 +104,32 @@ class CarsComponent extends HTMLElement {
                 }
             });
         }
+
+        const editCarBtn = this.shadowRoot.getElementById('edit-car');
+        if (editCarBtn) {
+            editCarBtn.addEventListener('click', () => {
+                this.style.display = "none";
+                const editCarComponent = document.querySelector("edit-car-component");
+                if (editCarComponent) {
+                    editCarComponent.style.display = "block";
+                } else {
+                    console.error("❌ No se encontró el componente edit-car-component");
+                }
+            });
+        }
+
+        const deleteCarBtn = this.shadowRoot.getElementById('delete-car');
+        if (deleteCarBtn) {
+            deleteCarBtn.addEventListener('click', () => {
+                this.style.display = "none";
+                const deleteCarComponent = document.querySelector("delete-car-component");
+                if (deleteCarComponent) {
+                    deleteCarComponent.style.display = "block";
+                } else {
+                    console.error("❌ No se encontró el componente delete-car-component");
+                }
+            });
+        }
     }
 
     setupSearchEvent() {
