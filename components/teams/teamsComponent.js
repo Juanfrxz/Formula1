@@ -23,20 +23,12 @@ class TeamsComponent extends HTMLElement {
                 .header {
                     margin-bottom: 1rem;
                 }
-                /* Uso de CSS Grid para mostrar 3 tarjetas por fila y centrar el contenido */
-                .card-container {
-                    display: grid;
-                    grid-template-columns: repeat(3, 350px);
-                    gap: 1rem;
-                    justify-content: center;
-                }
-                /* Estilos de la tarjeta con contenido centrado y sombra personalizada */
+                /* Se elimina la definición anterior del grid y se usa Bootstrap,
+                   además se definen algunos estilos base para las tarjetas */
                 .card {
-                    width: 100%;
-                    height: 350px;
                     border: 1px solid #ccc;
                     border-radius: 8px;
-                    box-shadow: 0 2px 4px rgba(174, 2, 2, 0.1); /* Sombra sutil con tinte rojo */
+                    box-shadow: 0 2px 4px rgba(174, 2, 2, 0.1);
                     overflow: hidden;
                     transition: box-shadow 0.3s, border-color 0.3s;
                     display: flex;
@@ -44,14 +36,19 @@ class TeamsComponent extends HTMLElement {
                     justify-content: center;
                     align-items: center;
                     text-align: center;
+                    cursor: pointer;
+                    /* Tamaño fijo requerido */
+                    width: 412px;
+                    height: 272px;
                 }
                 .card:hover {
-                    box-shadow: 0 0 15px rgba(174, 2, 2, 0.6); /* Sombra más intensa al hacer hover */
+                    box-shadow: 0 0 15px rgba(174, 2, 2, 0.6);
                     border-color: #AE0202;
                 }
                 .card img {
                     width: 100%;
-                    height: 200px;
+                    height: auto;
+                    max-height: 60%;
                     object-fit: cover;
                 }
                 .card-body {
@@ -60,25 +57,30 @@ class TeamsComponent extends HTMLElement {
                 .list-container {
                     max-height: 70vh;
                     overflow-y: auto; 
-                    overflow-x: hidden; /* Oculta la barra horizontal */
-                    
-                    /* Estilo para Firefox */
+                    overflow-x: hidden;
+                    /* Estilos para la barra de scroll en Firefox */
                     scrollbar-width: thin;
-                    scrollbar-color: #ccc transparent;
+                    scrollbar-color: rgb(218, 3, 3) #2a2a2a;
                 }
-                /* Estilos para navegadores Webkit (Chrome, Safari, Opera) */
                 .list-container::-webkit-scrollbar {
-                    width: 8px; /* Ancho de la barra vertical */
+                    width: 8px;
                 }
                 .list-container::-webkit-scrollbar-track {
-                    background: transparent; /* Fondo transparente en la pista */
+                    background: transparent;
                 }
                 .list-container::-webkit-scrollbar-thumb {
-                    background-color: #ccc; /* Color más claro del pulgar */
-                    border-radius: 15px;  /* Bordes redondeados */
+                    background-color: #ccc;
+                    border-radius: 15px;
                 }
                 .list-container::-webkit-scrollbar-thumb:hover {
                     background-color: #bbb;
+                }
+                /* Nuevo estilo para que las tarjetas realicen wrap */
+                #teams-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                    justify-content: center;
                 }
             </style>
             <div class="container">
@@ -94,7 +96,8 @@ class TeamsComponent extends HTMLElement {
                     </div>
                 </div>
                 <div class="list-container">
-                    <div id="teams-container" class="card-container mt-3"></div>
+                    <!-- Se elimina la clase "row" y se usa el contenedor flex definido en el CSS -->
+                    <div id="teams-container" class="mt-3"></div>
                 </div>
             </div>
         `;
@@ -146,11 +149,12 @@ class TeamsComponent extends HTMLElement {
         
         this.filteredTeams.forEach(team => {
             const card = document.createElement('div');
-            card.className = 'col';
+            card.className = 'card';
             card.innerHTML = `
-                <div class="card p-3" style="cursor: pointer;">
-                    <h5 class="card-title" style="margin-bottom: 1rem;">${team.nombre}</h5>
-                    <img src="${team.imagen}" alt="Imagen de ${team.nombre}" class="img-fluid">
+                <h5 class="card-title my-3">${team.nombre}</h5>
+                <img src="${team.imagen}" alt="Imagen de ${team.nombre}">
+                <div class="card-body">
+                    <!-- Información adicional del equipo si es necesario -->
                 </div>
             `;
             container.appendChild(card);

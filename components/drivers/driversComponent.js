@@ -27,9 +27,11 @@ class PilotosComponent extends HTMLElement {
                 /* Contenedor de tarjetas usando Flex */
                 .card-container {
                     display: flex;
+                    flex-start:center;
                     flex-wrap: wrap;
                     gap: 1rem;
                     justify-content: center;
+                    align-items: center;
                 }
                 .card {
                     width: 300px; /* ancho fijo */
@@ -54,6 +56,10 @@ class PilotosComponent extends HTMLElement {
                 .card-body {
                     padding: 0.5rem;
                 }
+
+                .col {
+                    flex: 0 0 0%;
+                }
                 /* Contenedor scrollable con scrollbars personalizados */
                 .list-container {
                     max-height: 70vh;
@@ -62,7 +68,7 @@ class PilotosComponent extends HTMLElement {
                     
                     /* Estilo para Firefox */
                     scrollbar-width: thin;
-                    scrollbar-color: #ccc transparent;
+                    scrollbar-color: rgb(218, 3, 3) #2a2a2a;
                 }
                 /* Estilos para navegadores Webkit (Chrome, Safari, Opera) */
                 .list-container::-webkit-scrollbar {
@@ -298,7 +304,7 @@ class PilotosComponent extends HTMLElement {
         // Cerrar el popup al hacer clic fuera de la carta
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
-                document.body.removeChild(overlay);el 
+                document.body.removeChild(overlay);
             }
         });
     }
