@@ -49,6 +49,7 @@ class PilotosComponent extends HTMLElement {
                     width: 100%;
                     height: 200px;
                     object-fit: cover; /* evita distorsión */
+                    border-radius: 8px; /* redondea las esquinas */
                 }
                 .card-body {
                     padding: 0.5rem;
@@ -146,15 +147,14 @@ class PilotosComponent extends HTMLElement {
             card.className = 'col';
             card.innerHTML = `
                 <div class="card p-3 text-center" style="cursor: pointer;">
-                    <img src="${piloto.foto}" alt="Foto de ${piloto.nombre}" class="img-fluid">
-                    <h5 class="card-title">${piloto.nombre}</h5>
-                    <p class="card-text d-none">Equipo: ${piloto.equipo}</p>
+                    <img src="${piloto.foto}" alt="Foto de ${piloto.nombre}" class="img-fluid" style="height:260px; object-fit: cover;">
+                    <h5 class="card-title" style="margin-top:1rem;">${piloto.nombre}</h5>
                 </div>
             `;
             
-            const cardText = card.querySelector('.card-text');
-            card.addEventListener('mouseover', () => cardText.classList.remove('d-none'));
-            card.addEventListener('mouseout', () => cardText.classList.add('d-none'));
+            card.addEventListener('click', () => {
+                this.showDriverDetails(piloto);
+            });
             
             container.appendChild(card);
         });
@@ -243,6 +243,62 @@ class PilotosComponent extends HTMLElement {
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
                 document.body.removeChild(overlay);
+            }
+        });
+    }
+
+    async showDriverDetails(driver) {
+        // Crear overlay para el popup
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        overlay.style.display = 'flex';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.style.zIndex = '1000';
+
+        // Crear la carta con estilos personalizados
+        const card = document.createElement('div');
+        card.style.background = '#fff';
+        card.style.padding = '20px';
+        card.style.borderRadius = '8px';
+        card.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+        card.style.maxWidth = '400px';
+        card.style.width = '90%';
+        card.style.minHeight = '500px';  // Altura mínima aumentada
+        card.style.textAlign = 'center';
+
+        // Obtener el nombre del equipo usando la función getEquipos
+        let teamName = '';
+        try {
+            const equipos = await getEquipos();
+            const equipoFound = equipos.find(equipo => equipo.id === driver.equipo);
+            teamName = equipoFound ? equipoFound.nombre : 'Equipo no encontrado';
+        } catch (error) {
+            console.error("Error fetching equipos:", error);
+            teamName = 'Error obteniendo equipo';
+        }
+
+        // Incluir el contenido en la carta
+        card.innerHTML = `
+            <h2 style="text-align: center;">${driver.nombre}</h2>
+            <img src="${driver.foto}" alt="Foto de ${driver.nombre}" style="width:100%; max-height:350px; object-fit:cover; border-radius:8px; margin: 10px 0;">
+            <p><strong>Equipo:</strong> ${teamName}</p>
+            <p><strong>Rol:</strong> ${driver.rol ? driver.rol : 'Rol no especificado'}</p>
+            <p><strong>Estadísticas:</strong> Próximamente</p>
+        `;
+
+        overlay.appendChild(card);
+        document.body.appendChild(overlay);
+
+        // Cerrar el popup al hacer clic fuera de la carta
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);el 
             }
         });
     }

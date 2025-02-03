@@ -60,7 +60,7 @@ class RacerCreateComponent extends HTMLElement {
         const lastId = pilots.length > 0 ? pilots[pilots.length - 1].id : 0;
         const newId = (parseInt(lastId) + 1).toString();
 
-        const newPilot = { id: newId, nombre: name, equipo: teamId, rol: role, foto: foto };
+        const newPilot = { id: newId, nombre: name, equipo: teamId, rol: role, foto: foto, stats:[] };
         await addPiloto(newPilot);
 
         const teams = await getEquipos();
