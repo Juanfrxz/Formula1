@@ -260,7 +260,7 @@ class CarsComponent extends HTMLElement {
                 modalContainer.classList.add('modal', 'fade');
                 modalContainer.tabIndex = -1;
                 modalContainer.setAttribute('aria-hidden', 'true');
-                modalContainer.innerHTML = `
+                modalContainer.innerHTML = /*html*/`
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -306,31 +306,51 @@ class CarsComponent extends HTMLElement {
     render() {
         this.shadowRoot.innerHTML = /*html*/ `
             <style>
-                 .container { padding: 20px; margin-top: 90%; }
-                .card { 
-                    margin: 10px; 
-                    position: relative; 
-                    overflow: hidden; 
-                    transition: box-shadow 0.3s;
+                .container { 
+                    padding: 20px; 
+                    margin-top: 90%; 
                 }
-                .card img { width: 100%; height: auto; }
-                .card:hover::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: -100%;
-                    width: 200%;
-                    height: 100%;
-                    background: linear-gradient(120deg, transparent, var(--shine-color, #fff), transparent);
-                    transform: skewX(-20deg);
-                    animation: shine 0.75s forwards;
-                }
-                @keyframes shine {
-                    0% { left: -100%; }
-                    100% { left: 100%; }
-                }
+            .card { 
+                margin: 10px; 
+                position: relative; 
+                overflow: hidden; 
+                transition: box-shadow 0.3s;
+                background-color: #2a2a2a;
+            }
+            .card img { width: 100%; height: auto; }
+            .card:hover::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 200%;
+                height: 100%;
+                background: linear-gradient(120deg, transparent, var(--shine-color, rgb(218, 3, 3)), transparent);
+                transform: skewX(-20deg);
+                animation: shine 0.75s forwards;
+            }
+            @keyframes shine {
+                0% { left: -100%; }
+                100% { left: 100%; }
+            }
+            /* Estilos personalizados para el botón "Ver Detalles" */
+            .buttonDetail {
+                background-color: rgb(218, 3, 3) !important;
+                color: white !important;
+                border: 1px solid transparent !important;
+            }
+            .buttonDetail:hover {
+                background-color: #2a2a2a !important;
+                color: rgb(218, 3, 3) !important;
+                border: 1px solid rgb(218, 3, 3) !important;
+            }
+            .container h2 {
+                color: white !important;
+            }
             </style>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
             <div class="container">
                 <h2>Gestión de Vehículos</h2>

@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: none;
+  background: #2a2a2a;
   font-family: Arial, sans-serif;
 }
 
@@ -35,8 +35,8 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-  text-decoration: none;
   background-color: rgb(27, 26, 26);
+  text-decoration: none;
 }
 
 /* Mostrar el menú dropdown al pasar el mouse por encima */
