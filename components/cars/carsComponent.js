@@ -306,9 +306,29 @@ class CarsComponent extends HTMLElement {
     render() {
         this.shadowRoot.innerHTML = /*html*/ `
             <style>
-                .container { padding: 20px; margin-top: 90%; }
-                .card { margin: 10px; }
-                .card img { width: 100%; height: auto; } /* Se muestra la imagen completa */
+                 .container { padding: 20px; margin-top: 90%; }
+                .card { 
+                    margin: 10px; 
+                    position: relative; 
+                    overflow: hidden; 
+                    transition: box-shadow 0.3s;
+                }
+                .card img { width: 100%; height: auto; }
+                .card:hover::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 200%;
+                    height: 100%;
+                    background: linear-gradient(120deg, transparent, var(--shine-color, #fff), transparent);
+                    transform: skewX(-20deg);
+                    animation: shine 0.75s forwards;
+                }
+                @keyframes shine {
+                    0% { left: -100%; }
+                    100% { left: 100%; }
+                }
             </style>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
