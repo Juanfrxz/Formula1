@@ -16,12 +16,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   const audioControl = document.querySelector(".audio-control"); // Barra de música
   const dropdownMenu = document.getElementById("carsDropdownMenu");
 
-  // Asegura que los componentes no se muestren inicialmente
-  carsComponent.style.display = "none";
-  driversComponent.style.display = "none";
-  CreateCar.style.display = "none";
-  teamsComponent.style.display = "none";
-  if (circuitsComponent) circuitsComponent.style.display = "none";
+  // Define los selectores de los elementos que se inician ocultos.
+  const initialHiddenSelectors = `
+    cars-component, 
+    pilotos-component, 
+    create-car-component, 
+    teams-component, 
+    circuits-component, 
+    edit-car-component, 
+    delete-car-component
+  `;
+  
+  // Selecciona y oculta cada uno de ellos
+  document.querySelectorAll(initialHiddenSelectors).forEach(el => {
+    el.style.display = "none";
+  });
 
   try {
     const cars = await getVehiculos();

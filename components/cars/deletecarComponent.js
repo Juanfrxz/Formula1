@@ -8,9 +8,8 @@ class DeleteCarComponent extends HTMLElement {
 
   async connectedCallback() {
     this.render();
-    // Ocultar el componente inicialmente hasta que se requiera mostrar
-    this.style.display = "none";
-    // Cargar las opciones del select con los vehículos registrados
+    // Comentamos la línea de ocultación para que se muestre en el modal
+    // this.style.display = "none";
     await this.loadVehicleOptions();
     this.setupEvents();
   }
@@ -20,9 +19,13 @@ class DeleteCarComponent extends HTMLElement {
       this.vehicles = await getVehiculos();
       const vehicleSelect = this.shadowRoot.getElementById("vehicleSelect");
       if (vehicleSelect) {
-        vehicleSelect.innerHTML = `<option value="">Seleccione un vehículo</option>` +
+        vehicleSelect.innerHTML =
+          `<option value="">Seleccione un vehículo</option>` +
           this.vehicles
-            .map(vehicle => `<option value="${vehicle.id}">${vehicle.modelo} - ${vehicle.equipo}</option>`)
+            .map(
+              vehicle =>
+                `<option value="${vehicle.id}">${vehicle.modelo} - ${vehicle.equipo}</option>`
+            )
             .join("");
       }
     } catch (error) {
@@ -41,13 +44,11 @@ class DeleteCarComponent extends HTMLElement {
         alert("Por favor, seleccione un vehículo para eliminar.");
         return;
       }
-      // Popup de confirmación antes de eliminar
       if (confirm("¿Está seguro de eliminar el vehículo seleccionado?")) {
         try {
           await deleteVehiculo(selectedId);
           alert("Vehículo eliminado con éxito.");
-          // Opcional: Volver a cargar la lista de vehículos refrescando el select
-          await this.loadVehicleOptions();          
+          await this.loadVehicleOptions();
         } catch (error) {
           console.error("Error al eliminar el vehículo:", error);
           alert("Error al eliminar el vehículo.");
@@ -56,12 +57,7 @@ class DeleteCarComponent extends HTMLElement {
     });
 
     cancelBtn.addEventListener("click", () => {
-      // Ocultamos el componente de eliminación y mostramos el listado principal
-      this.style.display = "none";
-      const carsComponent = document.querySelector("cars-component");
-      if (carsComponent) {
-        carsComponent.style.display = "block";
-      }
+      // Puedes agregar lógica para cerrar el modal dinámico si es necesario
     });
   }
 

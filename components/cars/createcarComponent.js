@@ -10,7 +10,6 @@ class CreateCarComponent extends HTMLElement {
         this.equipos = await getEquipos();
         this.pilotos = await getPilotos();
         this.render();
-        this.style.display = "none";
         this.setupAccordion();
         this.setupEvents();
     }

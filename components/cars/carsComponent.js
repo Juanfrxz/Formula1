@@ -1,5 +1,9 @@
+import './createcarComponent.js';
+import './editcarComponent.js';
+import './deletecarComponent.js';
 import { getVehiculos } from '../../api/fetchApi.js';
 // import * as THREE from 'three';
+
 
 class CarsComponent extends HTMLElement {
     constructor() {
@@ -176,40 +180,111 @@ class CarsComponent extends HTMLElement {
             });
         }
 
+        // Mostrar <create-car-component> en un modal dinámico
         const createCarBtn = this.shadowRoot.getElementById('create-car');
         if (createCarBtn) {
             createCarBtn.addEventListener('click', () => {
-                this.style.display = "none";
-                const createCarComponent = document.querySelector("create-car-component");
-                if (createCarComponent) {
-                    createCarComponent.style.display = "block";
-                }
+                const modalContainer = document.createElement('div');
+                modalContainer.classList.add('modal', 'fade');
+                modalContainer.tabIndex = -1;
+                modalContainer.setAttribute('aria-hidden', 'true');
+                modalContainer.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Registrar Nuevo Vehículo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Se insertará el custom element <create-car-component> -->
+                            </div>
+                        </div>
+                    </div>`;
+                document.body.appendChild(modalContainer);
+
+                const modalBody = modalContainer.querySelector('.modal-body');
+                const createCarComponent = document.createElement('create-car-component');
+                modalBody.innerHTML = "";
+                modalBody.appendChild(createCarComponent);
+
+                const modalInstance = new bootstrap.Modal(modalContainer, { backdrop: 'static' });
+                modalInstance.show();
+
+                modalContainer.addEventListener('hidden.bs.modal', () => {
+                    modalContainer.remove();
+                });
             });
         }
 
+        // Mostrar <edit-car-component> en un modal dinámico
         const editCarBtn = this.shadowRoot.getElementById('edit-car');
         if (editCarBtn) {
             editCarBtn.addEventListener('click', () => {
-                this.style.display = "none";
-                const editCarComponent = document.querySelector("edit-car-component");
-                if (editCarComponent) {
-                    editCarComponent.style.display = "block";
-                } else {
-                    console.error("❌ No se encontró el componente edit-car-component");
-                }
+                const modalContainer = document.createElement('div');
+                modalContainer.classList.add('modal', 'fade');
+                modalContainer.tabIndex = -1;
+                modalContainer.setAttribute('aria-hidden', 'true');
+                modalContainer.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Editar Vehículo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Se insertará el custom element <edit-car-component> -->
+                            </div>
+                        </div>
+                    </div>`;
+                document.body.appendChild(modalContainer);
+
+                const modalBody = modalContainer.querySelector('.modal-body');
+                const editCarComponent = document.createElement('edit-car-component');
+                modalBody.innerHTML = "";
+                modalBody.appendChild(editCarComponent);
+
+                const modalInstance = new bootstrap.Modal(modalContainer, { backdrop: 'static' });
+                modalInstance.show();
+
+                modalContainer.addEventListener('hidden.bs.modal', () => {
+                    modalContainer.remove();
+                });
             });
         }
 
+        // Mostrar <delete-car-component> en un modal dinámico
         const deleteCarBtn = this.shadowRoot.getElementById('delete-car');
         if (deleteCarBtn) {
             deleteCarBtn.addEventListener('click', () => {
-                this.style.display = "none";
-                const deleteCarComponent = document.querySelector("delete-car-component");
-                if (deleteCarComponent) {
-                    deleteCarComponent.style.display = "block";
-                } else {
-                    console.error("❌ No se encontró el componente delete-car-component");
-                }
+                const modalContainer = document.createElement('div');
+                modalContainer.classList.add('modal', 'fade');
+                modalContainer.tabIndex = -1;
+                modalContainer.setAttribute('aria-hidden', 'true');
+                modalContainer.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Eliminar Vehículo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Se insertará el custom element <delete-car-component> -->
+                            </div>
+                        </div>
+                    </div>`;
+                document.body.appendChild(modalContainer);
+
+                const modalBody = modalContainer.querySelector('.modal-body');
+                const deleteCarComponent = document.createElement('delete-car-component');
+                modalBody.innerHTML = "";
+                modalBody.appendChild(deleteCarComponent);
+
+                const modalInstance = new bootstrap.Modal(modalContainer, { backdrop: 'static' });
+                modalInstance.show();
+
+                modalContainer.addEventListener('hidden.bs.modal', () => {
+                    modalContainer.remove();
+                });
             });
         }
     }

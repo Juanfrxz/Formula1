@@ -12,9 +12,9 @@ class EditCarComponent extends HTMLElement {
     this.pilotos = await getPilotos();
     // Renderizamos el componente
     this.render();
-    // Ocultar el componente inicialmente
-    this.style.display = "none";
-    // Configuramos acordiones y eventos
+    // Comentamos la siguiente línea para que el componente se muestre (ahora se usará en modal)
+    // this.style.display = "none";
+    // Configuramos acordeones y eventos
     this.setupAccordion();
     this.setupEvents();
     // Cargar el listado de vehículos en el select
@@ -24,7 +24,6 @@ class EditCarComponent extends HTMLElement {
     const carIdAttr = this.getAttribute("carid");
     if (carIdAttr) {
       await this.loadVehicleData(carIdAttr);
-      // Actualizamos el select para que muestre el vehículo cargado
       const vehicleSelect = this.shadowRoot.getElementById("vehicleSelect");
       if (vehicleSelect) {
         vehicleSelect.value = carIdAttr;
@@ -37,11 +36,14 @@ class EditCarComponent extends HTMLElement {
       this.vehicles = await getVehiculos();
       const vehicleSelect = this.shadowRoot.getElementById("vehicleSelect");
       if (vehicleSelect) {
-        vehicleSelect.innerHTML = `<option value="">Seleccione un vehículo</option>` +
+        vehicleSelect.innerHTML =
+          `<option value="">Seleccione un vehículo</option>` +
           this.vehicles
-            .map(vehicle => `<option value="${vehicle.id}">${vehicle.modelo} - ${vehicle.equipo}</option>`)
+            .map(
+              vehicle =>
+                `<option value="${vehicle.id}">${vehicle.modelo} - ${vehicle.equipo}</option>`
+            )
             .join("");
-        // Al detectar un cambio, se carga la data del vehículo seleccionado
         vehicleSelect.addEventListener("change", async (e) => {
           const selectedId = e.target.value;
           if (selectedId) {
@@ -89,7 +91,6 @@ class EditCarComponent extends HTMLElement {
     const form = this.shadowRoot.getElementById('carForm');
     const cancelBtn = this.shadowRoot.getElementById('cancelEditCar');
 
-    // Actualizar la lista de pilotos según el equipo seleccionado
     const equipoSelect = this.shadowRoot.getElementById("equipo");
     this.updatePilotosForTeam(equipoSelect.value);
     equipoSelect.addEventListener("change", () => {
@@ -101,19 +102,16 @@ class EditCarComponent extends HTMLElement {
       const updatedCar = this.getFormData();
       await updateVehiculo(this.carData.id, updatedCar);
       alert("Vehículo actualizado con éxito");
-      this.style.display = "none";
-      document.querySelector("cars-component").style.display = "block";
+      // Aquí el modal se cerrará desde el componente que lo invoque
     });
 
     cancelBtn.addEventListener("click", () => {
-      this.style.display = "none";
-      document.querySelector("cars-component").style.display = "block";
+      // Aquí puedes agregar lógica para cerrar el modal dinámico si lo requieres
     });
   }
 
   updatePilotosForTeam(teamName) {
     const pilotosSelect = this.shadowRoot.getElementById("pilotos");
-    // Filtramos los pilotos cuya propiedad "equipo" coincida con el equipo seleccionado
     const filteredPilotos = this.pilotos.filter(piloto => piloto.equipo === teamName);
     pilotosSelect.innerHTML = filteredPilotos
       .map(p => `<option value="${p.id}">${p.nombre}</option>`)
@@ -122,7 +120,6 @@ class EditCarComponent extends HTMLElement {
 
   populateForm() {
     if (!this.carData) return;
-    // Actualizar select de equipo y pilotos
     const equipoSelect = this.shadowRoot.getElementById("equipo");
     equipoSelect.value = this.carData.equipo;
     this.updatePilotosForTeam(this.carData.equipo);
@@ -131,14 +128,12 @@ class EditCarComponent extends HTMLElement {
       option.selected = this.carData.pilotos.includes(Number(option.value));
     });
 
-    // Rellenar campos generales
     this.shadowRoot.getElementById("modelo").value = this.carData.modelo;
     this.shadowRoot.getElementById("motor").value = this.carData.motor;
     this.shadowRoot.getElementById("velocidad").value = this.carData.velocidad_maxima_kmh;
     this.shadowRoot.getElementById("aceleracion").value = this.carData.aceleracion_0_100;
     this.shadowRoot.getElementById("imagen").value = this.carData.imagen;
 
-    // Rellenar el rendimiento en cada modo
     const setRendimiento = (prefix, data) => {
       this.shadowRoot.getElementById(`${prefix}_velocidad`).value = data.velocidad_promedio_kmh;
       this.shadowRoot.getElementById(`${prefix}_comb_seco`).value = data.consumo_combustible.seco;
@@ -217,7 +212,7 @@ class EditCarComponent extends HTMLElement {
         <div class="form-group">
           <label for="vehicleSelect">Seleccione un vehículo:</label>
           <select id="vehicleSelect" class="form-control">
-            <option value="">Cargando vehículos...</option>
+            <option value="">Seleccione un vehículo</option>
           </select>
         </div>
         <form id="carForm">
