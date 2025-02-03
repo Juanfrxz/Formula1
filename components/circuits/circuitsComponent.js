@@ -4,7 +4,7 @@ class CircuitsComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.circuits = []; // Almacenar los vehículos para la búsqueda dinámica
+        this.circuits = []; // Almacenar los circuitos para la búsqueda dinámica
     }
 
     connectedCallback() {
@@ -43,14 +43,12 @@ class CircuitsComponent extends HTMLElement {
                         Ver Detalles
                     </button>
                 </div>
-
             `;
  
             // Asignar evento al botón
             card.querySelector('.buttonDetail').addEventListener('click', () => this.showCircuitDetails(circuit));
             cardWrapper.appendChild(card);
             container.appendChild(cardWrapper);
-
         });
     }
 
@@ -75,17 +73,17 @@ class CircuitsComponent extends HTMLElement {
 
         if (modalBody) {
             modalBody.innerHTML = /*html*/ `
-            <img src="${circuit.imagen_detail}" alt="${circuit.nombre}" class="card-img-top">
+                <img src="${circuit.imagen_detail}" alt="${circuit.nombre}" class="card-img-top">
                 <p><strong>Pais:</strong> ${circuit.pais}</p>
                 <p><strong>Longitud (km):</strong> ${circuit.longitud_km}</p>
                 <p><strong>Vueltas:</strong> ${circuit.vueltas}</p>
                 <p><strong>Descripción:</strong> ${circuit.descripcion}</p>
                 <h5>Record de Vueltas</h5>
-            <ul>
-                <li><strong>Tiempo:</strong> ${circuit.record_vuelta.tiempo}</li>
-                <li><strong>Piloto:</strong> ${circuit.record_vuelta.piloto}</li>
-                <li><strong>Año:</strong> ${circuit.record_vuelta.año}</li>
-            </ul>
+                <ul>
+                    <li><strong>Tiempo:</strong> ${circuit.record_vuelta.tiempo}</li>
+                    <li><strong>Piloto:</strong> ${circuit.record_vuelta.piloto}</li>
+                    <li><strong>Año:</strong> ${circuit.record_vuelta.año}</li>
+                </ul>
             `;
         } else {
             console.warn("No se encontró el elemento con la clase 'modal-body'");
@@ -117,37 +115,105 @@ class CircuitsComponent extends HTMLElement {
         const createCircuitBtn = this.shadowRoot.getElementById('create-circuit');
         if (createCircuitBtn) {
             createCircuitBtn.addEventListener('click', () => {
-                this.style.display = "none";
-                const createCircuitComponent = document.querySelector("create-circuit-component");
-                if (createCircuitComponent) {
-                    createCircuitComponent.style.display = "block";
-                }
+                const modalContainer = document.createElement('div');
+                modalContainer.classList.add('modal', 'fade');
+                modalContainer.tabIndex = -1;
+                modalContainer.setAttribute('aria-hidden', 'true');
+                modalContainer.innerHTML = /*html*/ `
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Registrar Nuevo Circuito</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- Se insertará el custom element <create-circuit-component> -->
+                      </div>
+                    </div>
+                  </div>`;
+                document.body.appendChild(modalContainer);
+
+                const modalBody = modalContainer.querySelector('.modal-body');
+                const createCircuitComponent = document.createElement('create-circuit-component');
+                modalBody.innerHTML = "";
+                modalBody.appendChild(createCircuitComponent);
+
+                const modalInstance = new bootstrap.Modal(modalContainer, { backdrop: 'static' });
+                modalInstance.show();
+
+                modalContainer.addEventListener('hidden.bs.modal', () => {
+                  modalContainer.remove();
+                });
             });
         }
 
         const editCircuitBtn = this.shadowRoot.getElementById('edit-circuit');
         if (editCircuitBtn) {
             editCircuitBtn.addEventListener('click', () => {
-                this.style.display = "none";
-                const editCircuitComponent = document.querySelector("edit-circuit-component");
-                if (editCircuitComponent) {
-                    editCircuitComponent.style.display = "block";
-                } else {
-                    console.error("❌ No se encontró el componente edit-circuit-component");
-                }
+                const modalContainer = document.createElement('div');
+                modalContainer.classList.add('modal', 'fade');
+                modalContainer.tabIndex = -1;
+                modalContainer.setAttribute('aria-hidden', 'true');
+                modalContainer.innerHTML = /*html*/ `
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Editar Circuito</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- Se insertará el custom element <edit-circuit-component> -->
+                      </div>
+                    </div>
+                  </div>`;
+                document.body.appendChild(modalContainer);
+
+                const modalBody = modalContainer.querySelector('.modal-body');
+                const editCircuitComponent = document.createElement('edit-circuit-component');
+                modalBody.innerHTML = "";
+                modalBody.appendChild(editCircuitComponent);
+
+                const modalInstance = new bootstrap.Modal(modalContainer, { backdrop: 'static' });
+                modalInstance.show();
+
+                modalContainer.addEventListener('hidden.bs.modal', () => {
+                  modalContainer.remove();
+                });
             });
         }
 
         const deleteCircuitBtn = this.shadowRoot.getElementById('delete-circuit');
         if (deleteCircuitBtn) {
             deleteCircuitBtn.addEventListener('click', () => {
-                this.style.display = "none";
-                const deleteCircuitComponent = document.querySelector("delete-circuit-component");
-                if (deleteCircuitComponent) {
-                    deleteCircuitComponent.style.display = "block";
-                } else {
-                    console.error("❌ No se encontró el componente delete-circuit-component");
-                }
+                const modalContainer = document.createElement('div');
+                modalContainer.classList.add('modal', 'fade');
+                modalContainer.tabIndex = -1;
+                modalContainer.setAttribute('aria-hidden', 'true');
+                modalContainer.innerHTML = /*html*/ `
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Eliminar Circuito</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- Se insertará el custom element <delete-circuit-component> -->
+                      </div>
+                    </div>
+                  </div>`;
+                document.body.appendChild(modalContainer);
+
+                const modalBody = modalContainer.querySelector('.modal-body');
+                const deleteCircuitComponent = document.createElement('delete-circuit-component');
+                modalBody.innerHTML = "";
+                modalBody.appendChild(deleteCircuitComponent);
+
+                const modalInstance = new bootstrap.Modal(modalContainer, { backdrop: 'static' });
+                modalInstance.show();
+
+                modalContainer.addEventListener('hidden.bs.modal', () => {
+                  modalContainer.remove();
+                });
             });
         }
     }
@@ -157,22 +223,52 @@ class CircuitsComponent extends HTMLElement {
         if (searchInput) {
             searchInput.addEventListener('input', () => {
                 const query = searchInput.value.toLowerCase();
+                // Se filtra por nombre y país
                 const filteredCircuits = this.circuits.filter(circuit =>
-                    circuit.modelo.toLowerCase().includes(query) ||
-                    circuit.equipo.toLowerCase().includes(query)
+                    circuit.nombre.toLowerCase().includes(query) ||
+                    circuit.pais.toLowerCase().includes(query)
                 );
                 this.renderCircuits(filteredCircuits);
             });
         }
     }
 
-
     render() {
         this.shadowRoot.innerHTML = /*html*/ `
             <style>
-                .container { padding: 20px; margin-top: 90%; }
-                .card { margin: 10px; }
-                .card img { width: 100%; height: auto; } /* Se muestra la imagen completa */
+                .container { 
+                    padding: 20px; 
+                    margin-top: 2rem;
+                }
+                .card { 
+                    margin: 10px; 
+                }
+                .card img { 
+                    width: 100%; 
+                    height: auto; /* Se muestra la imagen completa */
+                }
+                /* Contenedor desplazable para las cards */
+                .list-container {
+                    max-height: 70vh;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    scrollbar-width: thin;
+                    scrollbar-color: #ccc transparent;
+                }
+ 
+                .list-container::-webkit-scrollbar {
+                    width: 8px;
+                }
+                .list-container::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .list-container::-webkit-scrollbar-thumb {
+                    background-color: #ccc;
+                    border-radius: 8px;
+                }
+                .list-container::-webkit-scrollbar-thumb:hover {
+                    background-color: #bbb;
+                }
             </style>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -188,10 +284,11 @@ class CircuitsComponent extends HTMLElement {
                         <li><a class="dropdown-item" id="delete-circuit" href="#">Eliminar Circuito</a></li>
                     </ul>
                 </div>
-                <input type="text" id="search" placeholder="Buscar vehículo..." class="form-control my-3">
-                <!-- Se utiliza "row" para el grid -->
-
-                <div id="circuits-list" class="row"></div>
+                <input type="text" id="search" placeholder="Buscar circuito..." class="form-control my-3">
+                <!-- Contenedor desplazable para las cards -->
+                <div class="list-container">
+                    <div id="circuits-list" class="row"></div>
+                </div>
             </div>
         `;
     }
