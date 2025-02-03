@@ -306,52 +306,109 @@ class CarsComponent extends HTMLElement {
     render() {
         this.shadowRoot.innerHTML = /*html*/ `
             <style>
+                /* Estilos base del contenedor */
                 .container { 
+                    background-color: #2a2a2a;
+                    color: white;
                     padding: 20px; 
-                    margin-top: 90%; 
+                    margin-top: 90px; 
                 }
-            .card { 
-                margin: 10px; 
-                position: relative; 
-                overflow: hidden; 
-                transition: box-shadow 0.3s;
-                background-color: #2a2a2a;
-            }
-            .card img { width: 100%; height: auto; }
-            .card:hover::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 200%;
-                height: 100%;
-                background: linear-gradient(120deg, transparent, var(--shine-color, rgb(218, 3, 3)), transparent);
-                transform: skewX(-20deg);
-                animation: shine 0.75s forwards;
-            }
-            @keyframes shine {
-                0% { left: -100%; }
-                100% { left: 100%; }
-            }
-            /* Estilos personalizados para el botón "Ver Detalles" */
-            .buttonDetail {
-                background-color: rgb(218, 3, 3) !important;
-                color: white !important;
-                border: 1px solid transparent !important;
-            }
-            .buttonDetail:hover {
-                background-color: #2a2a2a !important;
-                color: rgb(218, 3, 3) !important;
-                border: 1px solid rgb(218, 3, 3) !important;
-            }
-            .container h2 {
-                color: white !important;
-            }
+
+                /* Estilos de las tarjetas */
+                .card { 
+                    background-color: #3a3a3a;
+                    color: white;
+                    margin: 10px; 
+                    position: relative; 
+                    overflow: hidden; 
+                    transition: box-shadow 0.3s;
+                    border-color: #444;
+                }
+
+                .card:hover {
+                    box-shadow: 0 0 15px rgba(218, 3, 3, 0.6);
+                }
+
+                .card img { 
+                    width: 100%; 
+                    height: auto; /* Se muestra la imagen completa */
+                }
+
+                /* Estilos del contenedor con scroll */
+                .list-container {
+                    max-height: 70vh;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    scrollbar-width: thin;
+                    scrollbar-color: rgb(218, 3, 3) #2a2a2a;
+                }
+
+                /* Estilos para navegadores Webkit */
+                .list-container::-webkit-scrollbar {
+                    width: 8px;
+                }
+
+                .list-container::-webkit-scrollbar-track {
+                    background: #2a2a2a;
+                }
+
+                .list-container::-webkit-scrollbar-thumb {
+                    background-color: rgb(218, 3, 3);
+                    border-radius: 8px;
+                }
+
+                .list-container::-webkit-scrollbar-thumb:hover {
+                    background-color: #ff0000;
+                }
+
+                /* Ajustes para inputs y selects */
+                .form-control, .form-select {
+                    background-color: #3a3a3a;
+                    color: white;
+                    border-color: #444;
+                }
+
+                .form-control:focus, .form-select:focus {
+                    background-color: #3a3a3a;
+                    color: white;
+                    border-color: rgb(218, 3, 3);
+                    box-shadow: 0 0 0 0.25rem rgba(218, 3, 3, 0.25);
+                }
+
+                /* Estilos del botón */
+                .buttonDetail {
+                    background-color: rgb(218, 3, 3) !important;
+                    color: white !important;
+                    border: 1px solid transparent !important;
+                }
+
+                .buttonDetail:hover {
+                    background-color: #2a2a2a !important;
+                    color: white !important;
+                    border: 1px solid rgb(218, 3, 3) !important;
+                }
+
+                /* Efecto shine en las tarjetas */
+                .card:hover::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 200%;
+                    height: 100%;
+                    background: linear-gradient(120deg, transparent, var(--shine-color, rgb(218, 3, 3)), transparent);
+                    transform: skewX(-20deg);
+                    animation: shine 0.75s forwards;
+                }
+
+                @keyframes shine {
+                    0% { left: -100%; }
+                    100% { left: 100%; }
+                }
             </style>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            
             <div class="container">
                 <h2>Gestión de Vehículos</h2>
                 <div class="dropdown">
@@ -365,8 +422,9 @@ class CarsComponent extends HTMLElement {
                     </ul>
                 </div>
                 <input type="text" id="search" placeholder="Buscar vehículo..." class="form-control my-3">
-                <!-- Se utiliza "row" para el grid -->
-                <div id="cars-list" class="row"></div>
+                <div class="list-container">
+                    <div id="cars-list" class="row"></div>
+                </div>
             </div>
         `;
     }
