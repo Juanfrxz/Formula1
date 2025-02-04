@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const backgroundAudio = document.getElementById("backgroundAudio"); // Audio de fondo
   const audioControl = document.querySelector(".audio-control"); // Barra de música
   const dropdownMenu = document.getElementById("carsDropdownMenu");
+  const btnPolePosition = document.getElementById("btnPolePosition");
+  const qualifyingComponent = document.querySelector("qualifying-component");
 
   // Define los selectores de los elementos que se inician ocultos.
   const initialHiddenSelectors = `
@@ -35,7 +37,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     teams-component, 
     circuits-component, 
     edit-car-component, 
-    delete-car-component
+    delete-car-component,
+    qualifying-component
   `;
   
   // Selecciona y oculta cada uno de ellos
@@ -68,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         // Ocultar otros componentes (incluyendo circuits-component)
-        document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+        document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
           .forEach(el => el.style.display = "none");
 
         // Mostrar el componente de Cars
@@ -131,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+    document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Cars
@@ -162,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
+    document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Pilotos
@@ -193,7 +196,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, cars-component, pilotos-component, circuits-component")
+    document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, pilotos-component, circuits-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Teams
@@ -225,7 +228,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       // Ocultar otros componentes
-      document.querySelectorAll("cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component")
+      document.querySelectorAll("qualifying-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component")
         .forEach(el => el.style.display = "none");
 
       // Mostrar el componente de Circuits
@@ -252,7 +255,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
 
     // Ocultar todos los componentes (incluyendo circuits-component)
-    document.querySelectorAll("cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+    document.querySelectorAll("qualifying-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el video de fondo
@@ -272,6 +275,40 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Quitar el scroll volviendo a ocultarlo
     document.body.style.overflow = "hidden";
+  });
+
+  // Evento para mostrar el componente de pole position
+  btnPolePosition.addEventListener("click", (e) => {
+    e.preventDefault();
+
+
+    // Pausar la música
+    if (!backgroundAudio.paused) {
+      backgroundAudio.pause();
+    }
+
+    // Ocultar otros componentes (incluyendo circuits-component)
+    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+      .forEach(el => el.style.display = "none");
+
+    // Mostrar el componente de pole position
+    qualifyingComponent.style.display = "block";
+
+
+    // Ocultar el video de fondo
+    if (videoBackground) {
+      videoBackground.style.display = "none";
+    }
+
+    // Ocultar la barra de música
+    if (audioControl) {
+      audioControl.style.display = "none";
+    }
+
+    // Permitir scroll y desplazar la vista hacia el componente de pole position
+    document.body.style.overflow = "auto";
+    qualifyingComponent.scrollIntoView({ behavior: "smooth", block: "start" });
+
   });
 
   // Ocultar la barra de música al hacer clic en cualquiera de los enlaces del navbar

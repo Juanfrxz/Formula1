@@ -4,7 +4,7 @@ import './components/circuits/createcircuitComponent.js'
 import './components/circuits/editcircuitComponent.js'
 import './components/circuits/deletecircuitComponent.js'
 import './components/drivers/driversComponent.js';
-// import './components/qualifyingComponent.js';
+import './components/qualifyingComponent.js';
 import './components/teams/teamsComponent.js';
 // import './components/teams/createteamComponent.js'
 // import './components/teams/editteamComponent.js'
