@@ -308,16 +308,14 @@ class CarsComponent extends HTMLElement {
             <style>
                 /* Estilos base del contenedor */
                 .container { 
-                    background-color: #2a2a2a;
-                    color: white;
+                    background-color: none;
                     padding: 20px; 
                     margin-top: 90px; 
                 }
 
                 /* Estilos de las tarjetas */
                 .card { 
-                    background-color: #3a3a3a;
-                    color: white;
+                    background-color: none;
                     margin: 10px; 
                     position: relative; 
                     overflow: hidden; 
@@ -340,7 +338,7 @@ class CarsComponent extends HTMLElement {
                     overflow-y: auto;
                     overflow-x: hidden;
                     scrollbar-width: thin;
-                    scrollbar-color: rgb(218, 3, 3) #2a2a2a;
+                    scrollbar-color: rgb(218, 3, 3) ;
                 }
 
                 /* Estilos para navegadores Webkit */

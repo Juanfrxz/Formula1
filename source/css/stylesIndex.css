@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #2a2a2a;
+  background: none;
   font-family: Arial, sans-serif;
 }
 
@@ -96,20 +96,6 @@ body {
   background: white;
   border-radius: 50%;
   cursor: pointer;
-}
-
-.canvas-3d {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-#canvas3D {
-  width: 80%;
-  height: 80%;
 }
 
 /* Estilos para el dropdown de Cars */
@@ -215,4 +201,40 @@ body {
 
 .all-teams .car-team {
     color: #aaa;
+}
+
+/* Contenedor para centrar los botones de roles (Admin y User) en la parte superior */
+.role-buttons {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+
+/* Diseño actualizado para los botones de roles (alargados, fondo transparente, borde efecto neon) */
+.btn-dynamic {
+  background-color: transparent;
+  border: 2px solid #da0303; /* Color base para el neon */
+  width: 140px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  border-radius: 8px; /* Ligeramente redondeado */
+  color: #da0303; /* Color del texto en estado normal */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s, border 0.3s;
+}
+
+.btn-dynamic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 8px #da0303, 0 0 16px #da0303, 0 0 24px #da0303;
+  text-shadow: 0 0 8px #da0303, 0 0 16px #da0303;
+}
+
+.btn-dynamic:focus {
+  outline: none;
 }
