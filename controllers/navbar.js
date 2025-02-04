@@ -1,6 +1,17 @@
 import { getVehiculos } from '../api/fetchApi.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Nuevo: Lógica para mostrar el navbar al hacer clic en el botón "Admin"
+  const btnAdmin = document.getElementById("btnadmin");
+  const navbar = document.querySelector("nav.navbar");
+  if (btnAdmin && navbar) {
+    btnAdmin.addEventListener("click", (e) => {
+      e.preventDefault();
+      // Remueve la clase "d-none" para hacer visible el navbar
+      navbar.classList.remove("d-none");
+    });
+  }
+
   const btnCarsDropdown = document.getElementById("btnCarsDropdown");
   const carsComponent = document.querySelector("cars-component");
   const videoBackground = document.querySelector("video");
