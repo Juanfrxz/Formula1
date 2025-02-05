@@ -62,19 +62,31 @@ export const getVehiculos = async () => {
 };
 
 export const addVehiculo = async (vehiculo) => {
+    // Verificamos si vehiculo.equipo es un objeto, y en ese caso extraemos su id.
+    const vehiculoPayload = {
+        ...vehiculo,
+        equipo: typeof vehiculo.equipo === 'object' ? vehiculo.equipo.id : vehiculo.equipo
+    };
+
     const response = await fetch(`${API_URL}/vehiculos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(vehiculo)
+        body: JSON.stringify(vehiculoPayload)
     });
     return response.json();
 };
 
 export const updateVehiculo = async (id, vehiculo) => {
+    // Aplicamos el mismo cambio para actualizar el vehículo.
+    const vehiculoPayload = {
+        ...vehiculo,
+        equipo: typeof vehiculo.equipo === 'object' ? vehiculo.equipo.id : vehiculo.equipo
+    };
+
     const response = await fetch(`${API_URL}/vehiculos/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(vehiculo)
+        body: JSON.stringify(vehiculoPayload)
     });
     return response.json();
 };

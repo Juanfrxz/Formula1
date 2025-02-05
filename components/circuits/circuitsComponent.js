@@ -37,8 +37,8 @@ class CircuitsComponent extends HTMLElement {
             card.innerHTML = /*html*/ `
                 <img src="${circuit.imagen}" alt="${circuit.nombre}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title">${circuit.nombre}</h5>
-                    <p class="card-text">${circuit.pais}</p>
+                    <h5 class="card-title">${circuit.pais}</h5>
+                    <p class="card-text">${circuit.nombre}</p>
                     <button class="btn btn-primary buttonDetail" data-id="${circuit.id}" data-name="${circuit.nombre}">
                         Ver Detalles
                     </button>
@@ -54,23 +54,24 @@ class CircuitsComponent extends HTMLElement {
 
     showCircuitDetails(circuit) {
         console.log("Se invocó showCircuitDetails para:", circuit);
-        // Busca el modal global en el documento
+        
+        // Se busca el modal global definido en index.html
         const modalElement = document.getElementById("circuitModal");
         if (!modalElement) {
             console.error("❌ No se encontró el modal con id 'circuitModal'");
             return;
         }
         
-        // Actualiza el contenido del modal
-        const modalTitle = modalElement.querySelector(".modal-title");
-        const modalBody = modalElement.querySelector(".modal-body");
-
+        // Usamos los IDs definidos en index.html para actualizar el título y cuerpo del modal
+        const modalTitle = document.getElementById("circuitModalLabel");
+        const modalBody = document.getElementById("circuitModalBody");
+        
         if (modalTitle) {
             modalTitle.textContent = circuit.nombre;
         } else {
-            console.warn("No se encontró el elemento con la clase 'modal-title'");
+            console.warn("No se encontró el elemento con id 'circuitModalLabel'");
         }
-
+        
         if (modalBody) {
             modalBody.innerHTML = /*html*/ `
                 <img src="${circuit.imagen_detail}" alt="${circuit.nombre}" class="card-img-top">
@@ -80,18 +81,18 @@ class CircuitsComponent extends HTMLElement {
                 <p><strong>Descripción:</strong> ${circuit.descripcion}</p>
                 <h5>Record de Vueltas</h5>
                 <ul>
-                    <li><strong>Tiempo:</strong> ${circuit.record_vuelta.tiempo}</li>
-                    <li><strong>Piloto:</strong> ${circuit.record_vuelta.piloto}</li>
-                    <li><strong>Año:</strong> ${circuit.record_vuelta.año}</li>
+                    <li><strong>Tiempo:</strong> ${circuit.record_vuelta?.tiempo ?? ''}</li>
+                    <li><strong>Piloto:</strong> ${circuit.record_vuelta?.piloto ?? ''}</li>
+                    <li><strong>Año:</strong> ${circuit.record_vuelta?.año ?? ''}</li>
                 </ul>
             `;
         } else {
-            console.warn("No se encontró el elemento con la clase 'modal-body'");
+            console.warn("No se encontró el elemento con id 'circuitModalBody'");
         }
         
-        // Muestra el modal usando la API de Bootstrap
-        const modal = new bootstrap.Modal(modalElement);
-        modal.show();
+        // Se muestra el modal utilizando la instancia global de Bootstrap
+        const modalInstance = new bootstrap.Modal(modalElement);
+        modalInstance.show();
     }
 
     setupDropdownEvents() {

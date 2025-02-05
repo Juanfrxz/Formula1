@@ -41,7 +41,7 @@ class EditCarComponent extends HTMLElement {
           this.vehicles
             .map(
               vehicle =>
-                `<option value="${vehicle.id}">${vehicle.modelo} - ${vehicle.equipo}</option>`
+                `<option value="${vehicle.id}">${vehicle.modelo} - ${this.getTeamName(vehicle.equipo)}</option>`
             )
             .join("");
         vehicleSelect.addEventListener("change", async (e) => {
@@ -110,9 +110,14 @@ class EditCarComponent extends HTMLElement {
     });
   }
 
-  updatePilotosForTeam(teamName) {
+  getTeamName(teamId) {
+    const team = this.equipos.find(eq => eq.id === teamId);
+    return team ? team.nombre : teamId;
+  }
+
+  updatePilotosForTeam(teamId) {
     const pilotosSelect = this.shadowRoot.getElementById("pilotos");
-    const filteredPilotos = this.pilotos.filter(piloto => piloto.equipo === teamName);
+    const filteredPilotos = this.pilotos.filter(piloto => piloto.equipo === teamId);
     pilotosSelect.innerHTML = filteredPilotos
       .map(p => `<option value="${p.id}">${p.nombre}</option>`)
       .join('');
@@ -124,8 +129,9 @@ class EditCarComponent extends HTMLElement {
     equipoSelect.value = this.carData.equipo;
     this.updatePilotosForTeam(this.carData.equipo);
     const pilotosSelect = this.shadowRoot.getElementById("pilotos");
+    const pilotos = Array.from(this.shadowRoot.querySelectorAll("#pilotos option:checked"), opt => opt.value);
     Array.from(pilotosSelect.options).forEach(option => {
-      option.selected = this.carData.pilotos.includes(Number(option.value));
+      option.selected = pilotos.includes(option.value);
     });
 
     this.shadowRoot.getElementById("modelo").value = this.carData.modelo;
@@ -157,7 +163,7 @@ class EditCarComponent extends HTMLElement {
     const motor = this.shadowRoot.getElementById("motor").value;
     const velocidad = parseInt(this.shadowRoot.getElementById("velocidad").value);
     const aceleracion = parseFloat(this.shadowRoot.getElementById("aceleracion").value);
-    const pilotos = Array.from(this.shadowRoot.querySelectorAll("#pilotos option:checked"), opt => parseInt(opt.value));
+    const pilotos = Array.from(this.shadowRoot.querySelectorAll("#pilotos option:checked"), opt => opt.value);
     const imagen = this.shadowRoot.getElementById("imagen").value;
 
     return {
@@ -232,7 +238,7 @@ class EditCarComponent extends HTMLElement {
                 <div class="accordion-body">
                   <label>Equipo:</label>
                   <select id="equipo" class="form-control">
-                    ${this.equipos.map(eq => `<option value="${eq.nombre}">${eq.nombre}</option>`).join('')}
+                    ${this.equipos.map(eq => `<option value="${eq.id}">${eq.nombre}</option>`).join('')}
                   </select>
                   <label>Pilotos:</label>
                   <select id="pilotos" class="form-control" multiple>

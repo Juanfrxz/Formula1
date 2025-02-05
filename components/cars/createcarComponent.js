@@ -58,9 +58,9 @@ class CreateCarComponent extends HTMLElement {
         });
     }
 
-    updatePilotosForTeam(teamName) {
+    updatePilotosForTeam(teamId) {
         const pilotosSelect = this.shadowRoot.getElementById("pilotos");
-        const filteredPilotos = this.pilotos.filter(piloto => piloto.equipo === teamName);
+        const filteredPilotos = this.pilotos.filter(piloto => piloto.equipo === teamId);
         pilotosSelect.innerHTML = filteredPilotos
             .map(p => `<option value="${p.id}">${p.nombre}</option>`)
             .join('');
@@ -72,7 +72,7 @@ class CreateCarComponent extends HTMLElement {
         const motor = this.shadowRoot.getElementById("motor").value;
         const velocidad = parseInt(this.shadowRoot.getElementById("velocidad").value);
         const aceleracion = parseFloat(this.shadowRoot.getElementById("aceleracion").value);
-        const pilotos = Array.from(this.shadowRoot.querySelectorAll("#pilotos option:checked"), opt => parseInt(opt.value));
+        const pilotos = Array.from(this.shadowRoot.querySelectorAll("#pilotos option:checked"), opt => opt.value);
         const imagen = this.shadowRoot.getElementById("imagen").value;
 
         return {
@@ -141,7 +141,9 @@ class CreateCarComponent extends HTMLElement {
                             <div id="generalInfo" class="accordion-collapse collapse show">
                                 <div class="accordion-body">
                                     <label>Equipo:</label>
-                                    <select id="equipo" class="form-control">${this.equipos.map(eq => `<option value="${eq.nombre}">${eq.nombre}</option>`).join('')}</select>
+                                    <select id="equipo" class="form-control">
+                                        ${this.equipos.map(eq => `<option value="${eq.id}">${eq.nombre}</option>`).join('')}
+                                    </select>
                                     <label>Pilotos:</label>
                                     <select id="pilotos" class="form-control" multiple></select>
                                     <label>Modelo:</label>

@@ -1,7 +1,7 @@
 import './createcarComponent.js';
 import './editcarComponent.js';
 import './deletecarComponent.js';
-import { getVehiculos } from '../../api/fetchApi.js';
+import { getVehiculos, getEquipos } from '../../api/fetchApi.js';
 // import * as THREE from 'three';
 
 
@@ -10,6 +10,7 @@ class CarsComponent extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.cars = []; // Almacenar los vehículos para la búsqueda dinámica
+        this.equipos = []; // Almacenar la lista de equipos
     }
 
     connectedCallback() {
@@ -21,11 +22,19 @@ class CarsComponent extends HTMLElement {
 
     async loadCars() {
         try {
+            // Se obtienen primero los vehículos y después los equipos para poder mostrar el nombre del equipo
             this.cars = await getVehiculos();
+            this.equipos = await getEquipos();
             this.renderCars(this.cars);
         } catch (error) {
             console.error('Error loading cars:', error);
         }
+    }
+
+    // Método helper para obtener el nombre del equipo basándose en el id almacenado en el objeto automóvil.
+    getTeamName(teamId) {
+        const team = this.equipos.find(eq => eq.id === teamId);
+        return team ? team.nombre : teamId;
     }
 
     renderCars(cars) {
@@ -43,7 +52,7 @@ class CarsComponent extends HTMLElement {
                 <img src="${car.imagen}" alt="${car.modelo}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">${car.modelo}</h5>
-                    <p class="card-text">Equipo: ${car.equipo}</p>
+                    <p class="card-text">Equipo: ${this.getTeamName(car.equipo)}</p>
                     <button class="btn btn-primary buttonDetail" data-id="${car.id}" data-name="${car.modelo}">
                         Ver Detalles
                     </button>
@@ -78,7 +87,7 @@ class CarsComponent extends HTMLElement {
 
         modalTitle.textContent = car.modelo;
         modalBody.innerHTML = /*html*/`
-            <p><strong>Equipo:</strong> ${car.equipo}</p>
+            <p><strong>Equipo:</strong> ${this.getTeamName(car.equipo)}</p>
             <p><strong>Motor:</strong> ${car.motor}</p>
             <p><strong>Velocidad Máxima:</strong> ${car.velocidad_maxima_kmh} km/h</p>
             <p><strong>Aceleración 0-100 km/h:</strong> ${car.aceleracion_0_100} s</p>

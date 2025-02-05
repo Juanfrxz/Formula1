@@ -1,30 +1,54 @@
-import { getVehiculos, deleteVehiculo } from '../../api/fetchApi.js';
+import { getVehiculos, deleteVehiculo, getEquipos } from '../../api/fetchApi.js';
 
 class DeleteCarComponent extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+    this.equipos = []; // Inicializamos el array de equipos
   }
 
   async connectedCallback() {
     this.render();
     // Comentamos la línea de ocultación para que se muestre en el modal
     // this.style.display = "none";
+
+    // Cargamos primero los equipos y luego los vehículos
+    await this.loadEquipos();
     await this.loadVehicleOptions();
     this.setupEvents();
+  }
+
+  async loadEquipos() {
+    try {
+      // Se asume que getEquipos retorna un array de equipos, cada uno con id y nombre
+      this.equipos = await getEquipos();
+    } catch (error) {
+      console.error("Error al cargar los equipos:", error);
+      this.equipos = [];
+    }
+  }
+
+  /**
+   * Función que dado el id del equipo devuelve el nombre del equipo
+   * Si no se encuentra, retorna el id como fallback.
+   */
+  getTeamName(teamId) {
+    const team = this.equipos.find(eq => eq.id === teamId);
+    return team ? team.nombre : teamId;
   }
 
   async loadVehicleOptions() {
     try {
       this.vehicles = await getVehiculos();
       const vehicleSelect = this.shadowRoot.getElementById("vehicleSelect");
+
       if (vehicleSelect) {
         vehicleSelect.innerHTML =
           `<option value="">Seleccione un vehículo</option>` +
           this.vehicles
             .map(
               vehicle =>
-                `<option value="${vehicle.id}">${vehicle.modelo} - ${vehicle.equipo}</option>`
+                `<option value="${vehicle.id}">${vehicle.modelo} - ${this.getTeamName(vehicle.equipo)}</option>`
             )
             .join("");
       }
