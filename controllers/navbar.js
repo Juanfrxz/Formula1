@@ -243,7 +243,7 @@ try {
       
       // Agregar hover effect
       link.addEventListener("mouseover", () => {
-        link.style.backgroundColor = "#f8f9fa";
+        link.style.backgroundColor = "";
       });
       
       link.addEventListener("mouseout", () => {
