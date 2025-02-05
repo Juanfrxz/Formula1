@@ -42,14 +42,8 @@
     <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
   </div>
 
-  <!-- Contenedor para los botones de roles (Admin y User) -->
-  <div class="role-buttons">
-    <button class="btn-dynamic" id="btnadmin">Admin</button>
-    <button class="btn-dynamic" id="btnuser">User</button>
-  </div>
-
   <!-- Navbar (oculto por defecto con d-none) -->
-  <nav class="navbar navbar-expand-lg d-none">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="source/img/f1_logo.png" alt="F1 Logo" height="25">
@@ -72,7 +66,15 @@
           </li>
           <li class="nav-item"><a id="btnCircuits" class="nav-link" href="#">Circuits</a></li>
           <li class="nav-item"><a class="nav-link" id="btnPolePosition" href="#">Pole Position</a></li>
-          <li class="nav-item"><a class="nav-link" href="source/models/page3d.html">Car 3D</a></li>
+          <li class="nav-item dropdown">
+            <a id="btnAuthenticate" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              Authenticate
+            </a>
+            <ul class="dropdown-menu">
+              <li><a id="btnAdmin" class="dropdown-item" href="#">Admin</a></li>
+              <li><a id="btnUser" class="dropdown-item" href="#">User</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>

@@ -1,17 +1,9 @@
-import { getVehiculos, getPilotos } from '../api/fetchApi.js';
+import { getVehiculos, getPilotos, getEquipos } from '../api/fetchApi.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // Nuevo: Lógica para mostrar el navbar al hacer clic en el botón "Admin"
-  const btnAdmin = document.getElementById("btnadmin");
-  const navbar = document.querySelector("nav.navbar");
-  if (btnAdmin && navbar) {
-    btnAdmin.addEventListener("click", (e) => {
-      e.preventDefault();
-      // Remueve la clase "d-none" para hacer visible el navbar
-      navbar.classList.remove("d-none");
-    });
-  }
-
+  // La funcionalidad para mostrar el navbar mediante el botón "Admin" se ha removido,
+  // de modo que el navbar se mostrará siempre.
+  
   const btnCarsDropdown = document.getElementById("btnCarsDropdown");
   const carsComponent = document.querySelector("cars-component");
   const videoBackground = document.querySelector("video");
@@ -187,85 +179,88 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
   // Desplegable para drivers (pilotos)
-try {
-  const drivers = await getPilotos();
-  const dropdownMenuDrivers = document.getElementById("driversDropdownMenu");
-  if (dropdownMenuDrivers) {
-    // Insertar opción para "Todos los Pilotos"
-    dropdownMenuDrivers.innerHTML = `
-      <li class="all-drivers">
-        <a href="#" class="dropdown-item">
-          <div class="driver-info">
-            <p class="driver-name" style="margin: 0; font-size: 16px;">All Drivers</p>
-            <p class="driver-team" style="margin: 0; font-size: 14px; color: #666;">Ver todos los pilotos</p>
-          </div>
-        </a>
-
-      </li>
-    `;
-    
-    // Evento para "Todos los Pilotos"
-    const allDriversLink = dropdownMenuDrivers.querySelector(".all-drivers a");
-    allDriversLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (!backgroundAudio.paused) {
-        backgroundAudio.pause();
-      }
-      document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
-        .forEach(el => el.style.display = "none");
-      driversComponent.style.display = "block";
-      if (videoBackground) videoBackground.style.display = "none";
-      if (audioControl) audioControl.style.display = "none";
-      document.body.style.overflow = "auto";
-      driversComponent.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-    
-    // Recorrer la lista de drivers
-    drivers.forEach(driver => {
-      const li = document.createElement("li");
-      const link = document.createElement("a");
-      link.classList.add("dropdown-item");
-      link.href = "#";
-      link.style.display = "flex";
-      link.style.alignItems = "center";
-      link.style.padding = "10px 15px";
-      
-      // Ajustado el tamaño de la imagen y mejorado el diseño
-      link.innerHTML = `
-        <img src="${driver.foto}" alt="${driver.nombre}" 
-          style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; margin-right: 15px;">
-        <div class="driver-info" style="flex-grow: 1;">
-          <p style="margin: 0; font-size: 16px; font-weight: 500;">${driver.nombre}</p>
-          <p style="margin: 0; font-size: 14px; color: #666;">${driver.equipo}</p>
-        </div>
+  try {
+    const drivers = await getPilotos();
+    const equipos = await getEquipos(); // Obtenemos la lista de equipos
+    const dropdownMenuDrivers = document.getElementById("driversDropdownMenu");
+    if (dropdownMenuDrivers) {
+      // Insertar opción para "Todos los Pilotos"
+      dropdownMenuDrivers.innerHTML = `
+        <li class="all-drivers">
+          <a href="#" class="dropdown-item">
+            <div class="driver-info">
+              <p class="driver-name" style="margin: 0; font-size: 16px;">All Drivers</p>
+              <p class="driver-team" style="margin: 0; font-size: 14px; color: #666;">Ver todos los pilotos</p>
+            </div>
+          </a>
+        </li>
       `;
       
-      link.addEventListener("click", (e) => {
+      // Evento para "Todos los Pilotos"
+      const allDriversLink = dropdownMenuDrivers.querySelector(".all-drivers a");
+      allDriversLink.addEventListener("click", (e) => {
         e.preventDefault();
-        if (driversComponent && typeof driversComponent.showDriverDetails === "function") {
-          driversComponent.showDriverDetails(driver);
-        } else {
-          driversComponent.style.display = "block";
-          driversComponent.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (!backgroundAudio.paused) {
+          backgroundAudio.pause();
         }
+        document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
+          .forEach(el => el.style.display = "none");
+        driversComponent.style.display = "block";
+        if (videoBackground) videoBackground.style.display = "none";
+        if (audioControl) audioControl.style.display = "none";
+        document.body.style.overflow = "auto";
+        driversComponent.scrollIntoView({ behavior: "smooth", block: "start" });
       });
       
-      // Agregar hover effect
-      link.addEventListener("mouseover", () => {
-        link.style.backgroundColor = "";
+      // Recorrer la lista de drivers
+      drivers.forEach(driver => {
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+        link.classList.add("dropdown-item");
+        link.href = "#";
+        link.style.display = "flex";
+        link.style.alignItems = "center";
+        link.style.padding = "10px 15px";
+        
+        // Usar el id almacenado en driver.equipo para buscar el nombre del equipo
+        const team = equipos.find(eq => eq.id === driver.equipo);
+        const teamName = team ? team.nombre : driver.equipo;
+        
+        link.innerHTML = `
+          <img src="${driver.foto}" alt="${driver.nombre}" 
+            style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; margin-right: 15px;">
+          <div class="driver-info" style="flex-grow: 1;">
+            <p style="margin: 0; font-size: 16px; font-weight: 500;">${driver.nombre}</p>
+            <p style="margin: 0; font-size: 14px; color: #666;">${teamName}</p>
+          </div>
+        `;
+        
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (driversComponent && typeof driversComponent.showDriverDetails === "function") {
+            driversComponent.showDriverDetails(driver);
+          } else {
+            driversComponent.style.display = "block";
+            driversComponent.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+        
+        // Agregar hover effect
+        link.addEventListener("mouseover", () => {
+          link.style.backgroundColor = "";
+        });
+        
+        link.addEventListener("mouseout", () => {
+          link.style.backgroundColor = "";
+        });
+        
+        li.appendChild(link);
+        dropdownMenuDrivers.appendChild(li);
       });
-      
-      link.addEventListener("mouseout", () => {
-        link.style.backgroundColor = "";
-      });
-      
-      li.appendChild(link);
-      dropdownMenuDrivers.appendChild(li);
-    });
+    }
+  } catch (error) {
+    console.error("Error fetching drivers: ", error);
   }
-} catch (error) {
-  console.error("Error fetching drivers: ", error);
-}
 
   // Evento para mostrar el componente de Teams
   btnTeams.addEventListener("click", (e) => {
