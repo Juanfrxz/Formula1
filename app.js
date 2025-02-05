@@ -16,3 +16,4 @@ import './components/cars/deletecarComponent.js'
 import './controllers/navbar.js';
 import './components/drivers/editdriverComponent.js'
 import './components/drivers/deletedriverComponent.js'
+import './components/simulation/simulationComponent.js'

@@ -181,3 +181,52 @@ export const saveConfiguracionVehiculo = async (id, config) => {
     });
     return response.json();
 };
+
+// Funciones para la configuración del vehículo (agregar y modificar)
+export const addConfiguracionVehiculo = async (configuracion) => {
+    const response = await fetch(`${API_URL}/configuracionVehiculo`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(configuracion)
+    });
+    return response.json();
+};
+
+export const updateConfiguracionVehiculo = async (id, configuracion) => {
+    const response = await fetch(`${API_URL}/configuracionVehiculo/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(configuracion)
+    });
+    return response.json();
+};
+
+// Funciones para la partida (agregar y modificar)
+export const addPartida = async (partida) => {
+    const response = await fetch(`${API_URL}/Partida`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(partida)
+    });
+    return response.json();
+};
+
+export const updatePartida = async (id, partida) => {
+    const response = await fetch(`${API_URL}/Partida/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(partida)
+    });
+    return response.json();
+};
+
+// Nueva función para obtener los datos de la partida (incluyendo el equipo seleccionado)
+export const getPartida = async (id) => {
+    const response = await fetch(`${API_URL}/Partida/${id}`);
+    return response.json();
+};
+
+export const getEquipoById = async (id) => {
+    const response = await fetch(`${API_URL}/equipos/${id}`);
+    return response.json();
+};
