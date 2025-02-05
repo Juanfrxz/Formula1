@@ -39,6 +39,12 @@ class CreateCircuitComponent extends HTMLElement {
     const descripcion = this.shadowRoot.getElementById('descripcion').value;
     const imagen = this.shadowRoot.getElementById('imagen').value;
     const imagen_detail = this.shadowRoot.getElementById('imagen_detail').value;
+
+    // Nuevos campos para el record de vuelta
+    const record_tiempo = this.shadowRoot.getElementById('record_tiempo').value;
+    const record_piloto = this.shadowRoot.getElementById('record_piloto').value;
+    const record_año = parseInt(this.shadowRoot.getElementById('record_año').value);
+
     return { 
       id: "circuit-" + Date.now(), 
       nombre, 
@@ -47,7 +53,12 @@ class CreateCircuitComponent extends HTMLElement {
       vueltas, 
       descripcion, 
       imagen, 
-      imagen_detail 
+      imagen_detail,
+      record_vuelta: {
+         tiempo: record_tiempo,
+         piloto: record_piloto,
+         año: record_año
+      }
     };
   }
 
@@ -85,6 +96,22 @@ class CreateCircuitComponent extends HTMLElement {
             <label for="imagen_detail" class="form-label">Imagen Detallada (URL):</label>
             <input type="text" id="imagen_detail" class="form-control">
           </div>
+          <!-- Sección para el Record de Vuelta -->
+          <fieldset class="mb-3">
+            <legend>Record de Vuelta</legend>
+            <div class="mb-3">
+              <label for="record_tiempo" class="form-label">Tiempo:</label>
+              <input type="text" id="record_tiempo" class="form-control" placeholder="1:30.983">
+            </div>
+            <div class="mb-3">
+              <label for="record_piloto" class="form-label">Piloto:</label>
+              <input type="text" id="record_piloto" class="form-control" placeholder="Lewis Hamilton">
+            </div>
+            <div class="mb-3">
+              <label for="record_año" class="form-label">Año:</label>
+              <input type="number" id="record_año" class="form-control" placeholder="2019">
+            </div>
+          </fieldset>
           <div class="d-flex gap-2">
             <button type="submit" class="btn btn-primary">Guardar</button>
             <button type="button" id="cancelCreateCircuit" class="btn btn-secondary">Cancelar</button>

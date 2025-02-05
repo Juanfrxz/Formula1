@@ -54,19 +54,44 @@ class EditCircuitComponent extends HTMLElement {
     this.shadowRoot.getElementById("descripcion").value = this.circuitData.descripcion;
     this.shadowRoot.getElementById("imagen").value = this.circuitData.imagen;
     this.shadowRoot.getElementById("imagen_detail").value = this.circuitData.imagen_detail;
+
+    // Populate record de vuelta if available
+    if (this.circuitData.record_vuelta) {
+      this.shadowRoot.getElementById("record_tiempo").value = this.circuitData.record_vuelta.tiempo || '';
+      this.shadowRoot.getElementById("record_piloto").value = this.circuitData.record_vuelta.piloto || '';
+      this.shadowRoot.getElementById("record_año").value = this.circuitData.record_vuelta.año || '';
+    }
   }
 
   getFormData() {
     const id = this.shadowRoot.getElementById('circuitSelect').value || (this.circuitData && this.circuitData.id);
+    const nombre = this.shadowRoot.getElementById('nombre').value;
+    const pais = this.shadowRoot.getElementById('pais').value;
+    const longitud_km = parseFloat(this.shadowRoot.getElementById('longitud_km').value);
+    const vueltas = parseInt(this.shadowRoot.getElementById('vueltas').value);
+    const descripcion = this.shadowRoot.getElementById('descripcion').value;
+    const imagen = this.shadowRoot.getElementById('imagen').value;
+    const imagen_detail = this.shadowRoot.getElementById('imagen_detail').value;
+
+    // Obtener datos del record de vuelta
+    const record_tiempo = this.shadowRoot.getElementById('record_tiempo').value;
+    const record_piloto = this.shadowRoot.getElementById('record_piloto').value;
+    const record_año = parseInt(this.shadowRoot.getElementById('record_año').value);
+
     return {
       id,
-      nombre: this.shadowRoot.getElementById('nombre').value,
-      pais: this.shadowRoot.getElementById('pais').value,
-      longitud_km: parseFloat(this.shadowRoot.getElementById('longitud_km').value),
-      vueltas: parseInt(this.shadowRoot.getElementById('vueltas').value),
-      descripcion: this.shadowRoot.getElementById('descripcion').value,
-      imagen: this.shadowRoot.getElementById('imagen').value,
-      imagen_detail: this.shadowRoot.getElementById('imagen_detail').value
+      nombre,
+      pais,
+      longitud_km,
+      vueltas,
+      descripcion,
+      imagen,
+      imagen_detail,
+      record_vuelta: {
+        tiempo: record_tiempo,
+        piloto: record_piloto,
+        año: record_año
+      }
     };
   }
 
@@ -111,6 +136,22 @@ class EditCircuitComponent extends HTMLElement {
             <label for="imagen_detail" class="form-label">Imagen Detallada (URL):</label>
             <input type="text" id="imagen_detail" class="form-control">
           </div>
+          <!-- Sección para el Record de Vuelta -->
+          <fieldset class="mb-3">
+            <legend>Record de Vuelta</legend>
+            <div class="mb-3">
+              <label for="record_tiempo" class="form-label">Tiempo:</label>
+              <input type="text" id="record_tiempo" class="form-control" placeholder="1:30.983">
+            </div>
+            <div class="mb-3">
+              <label for="record_piloto" class="form-label">Piloto:</label>
+              <input type="text" id="record_piloto" class="form-control" placeholder="Lewis Hamilton">
+            </div>
+            <div class="mb-3">
+              <label for="record_año" class="form-label">Año:</label>
+              <input type="number" id="record_año" class="form-control" placeholder="2019">
+            </div>
+          </fieldset>
           <div class="d-flex gap-2">
             <button type="submit" class="btn btn-primary">Actualizar</button>
             <button type="button" id="cancelEditCircuit" class="btn btn-secondary">Cancelar</button>
