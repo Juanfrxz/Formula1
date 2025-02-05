@@ -1,4 +1,5 @@
-import { getEquipoById } from '../../api/fetchApi.js';
+import { getEquipoById, getVehiculos } from '../../api/fetchApi.js';
+
 
 class CarTuningComponent extends HTMLElement {
   constructor() {
@@ -29,25 +30,45 @@ class CarTuningComponent extends HTMLElement {
     }
 
     try {
+      // Se obtiene la información del equipo seleccionado
       const equipoData = await getEquipoById(equipoId);
       if (!equipoData) {
         contentEl.innerHTML = `<div class="alert alert-warning">No se encontró información para el equipo seleccionado.</div>`;
         return;
       }
 
-      // Con los datos del equipo se construyen las tarjetas de rendimiento
-      const cardNormal = this.buildCard('Conducción Normal', equipoData.rendimiento.conduccion_normal);
-      const cardAgresiva = this.buildCard('Conducción Agresiva', equipoData.rendimiento.conduccion_agresiva);
-      const cardAhorro = this.buildCard('Ahorro de Combustible', equipoData.rendimiento.ahorro_combustible);
+      // Se obtienen todos los vehículos y se filtra el que corresponde al equipo (comparando la llave "equipo")
+      const vehiculos = await getVehiculos();
+      const vehiculoFiltrado = vehiculos.find(vehicle => vehicle.equipo === equipoId);
 
+      // Se extrae la URL del modelo 3D usando la misma lógica aplicada en CarsComponent.js
+      let modelo3dHTML = '';
+      if (vehiculoFiltrado && vehiculoFiltrado.model3d) {
+        let model3dUrl = vehiculoFiltrado.model3d;
+        if (vehiculoFiltrado.model3d.includes('src="')) {
+          const srcMatch = vehiculoFiltrado.model3d.match(/src="([^"]+)"/);
+          if (srcMatch && srcMatch[1]) {
+            model3dUrl = srcMatch[1];
+          }
+        }
+        modelo3dHTML = `
+          <iframe 
+            src="${model3dUrl}" 
+            style="width: 100%; height: 100%; border: none;" 
+            frameborder="0" 
+            allowfullscreen>
+          </iframe>
+        `;
+      } else {
+        modelo3dHTML = `<span class="text-muted">No se encontró el modelo 3D para este equipo.</span>`;
+      }
+
+      // Se arma la vista del componente, mostrando el modelo 3D y el nombre del equipo
       contentEl.innerHTML = `
         <div class="row mb-4">
           <div class="col-12">
             <div class="position-relative" style="height: 400px; background-color: #e9ecef;">
-              <!-- Aquí va el modelo 3D del carro -->
-              <div class="d-flex h-100 justify-content-center align-items-center">
-                <span class="text-muted">[Espacio para el modelo 3D del carro]</span>
-              </div>
+              ${modelo3dHTML}
             </div>
           </div>
         </div>
@@ -55,9 +76,7 @@ class CarTuningComponent extends HTMLElement {
           <div class="col-12">
             <h3>${equipoData.nombre} - Opciones de Rendimiento</h3>
           </div>
-          ${cardNormal}
-          ${cardAgresiva}
-          ${cardAhorro}
+          <!-- Puedes agregar aquí las tarjetas de rendimiento si así lo requieres -->
         </div>
       `;
     } catch (error) {

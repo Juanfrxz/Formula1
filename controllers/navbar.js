@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const audioControl = document.querySelector(".audio-control"); // Barra de música
   const dropdownMenu = document.getElementById("carsDropdownMenu");
   const btnPolePosition = document.getElementById("btnPolePosition");
-  const qualifyingComponent = document.querySelector("qualifying-component");
+  const qualifyingComponent = document.querySelector("simulation-component");
 
   // Define los selectores de los elementos que se inician ocultos.
   const initialHiddenSelectors = `
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     circuits-component, 
     edit-car-component, 
     delete-car-component,
-    qualifying-component
+    simulation-component
   `;
   
   // Selecciona y oculta cada uno de ellos
@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const cars = await getVehiculos();
+    const equipos = await getEquipos();
     if (dropdownMenu) {
       dropdownMenu.innerHTML = `
         <li class="all-teams">
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         // Ocultar otros componentes (incluyendo circuits-component)
-        document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+        document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
           .forEach(el => el.style.display = "none");
 
         // Mostrar el componente de Cars
@@ -90,11 +91,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         const link = document.createElement("a");
         link.classList.add("dropdown-item");
         link.href = "#";
+        // Buscar el equipo basado en el id almacenado en car.equipo
+        const team = equipos.find(eq => eq.id === car.equipo);
+        const teamName = team ? team.nombre : car.equipo;
         link.innerHTML = `
           <img src="${car.imagen}" alt="${car.modelo}" class="car-preview">
           <div class="car-info">
             <p class="car-name">${car.modelo}</p>
-            <p class="car-team">${car.equipo}</p>
+            <p class="car-team">${teamName}</p>
           </div>
         `;
         
@@ -126,7 +130,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+    document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Cars
@@ -159,7 +163,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Ocultar otros componentes
       document.querySelectorAll(
-        "qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component"
+        "simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component"
       ).forEach(el => el.style.display = "none");
 
       // Mostrar el componente de drivers (pilotos-component)
@@ -203,7 +207,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!backgroundAudio.paused) {
           backgroundAudio.pause();
         }
-        document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
+        document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
           .forEach(el => el.style.display = "none");
         driversComponent.style.display = "block";
         if (videoBackground) videoBackground.style.display = "none";
@@ -272,7 +276,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, pilotos-component, circuits-component")
+    document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, pilotos-component, circuits-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Teams
@@ -304,7 +308,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       // Ocultar otros componentes
-      document.querySelectorAll("qualifying-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component")
+      document.querySelectorAll("simulation-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component")
         .forEach(el => el.style.display = "none");
 
       // Mostrar el componente de Circuits
@@ -331,7 +335,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
 
     // Ocultar todos los componentes (incluyendo circuits-component)
-    document.querySelectorAll("qualifying-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+    document.querySelectorAll("simulation-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el video de fondo

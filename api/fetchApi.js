@@ -242,3 +242,8 @@ export const getEquipoById = async (id) => {
     const response = await fetch(`${API_URL}/equipos/${id}`);
     return response.json();
 };
+
+export const getVehiculoById = async (id) => {
+    const response = await fetch(`${API_URL}/vehiculos/${id}`);
+    return response.json();
+};
