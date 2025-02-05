@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const carsComponent = document.querySelector("cars-component");
   const videoBackground = document.querySelector("video");
   const navbarBrand = document.querySelector(".navbar-brand img");
-  const btnDrivers = document.getElementById("btnDrivers");
+  const btnDrivers = document.getElementById("btnDriversDropdown");
   const driversComponent = document.querySelector("pilotos-component");
   const btnTeams = document.getElementById("btnTeams");
   const teamsComponent = document.querySelector("teams-component");
@@ -159,20 +159,29 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (btnDrivers) {
     btnDrivers.addEventListener("click", (e) => {
       e.preventDefault();
-      if (!backgroundAudio.paused) {
+
+      // Pausar la música si está sonando
+      if (backgroundAudio && !backgroundAudio.paused) {
         backgroundAudio.pause();
       }
+
       // Ocultar otros componentes
-      document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
-        .forEach(el => el.style.display = "none");
+      document.querySelectorAll(
+        "qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component"
+      ).forEach(el => el.style.display = "none");
+
       // Mostrar el componente de drivers (pilotos-component)
       driversComponent.style.display = "block";
+
+      // Opcional: ocultar el video de fondo y la barra de música
       if (videoBackground) {
         videoBackground.style.display = "none";
       }
       if (audioControl) {
         audioControl.style.display = "none";
       }
+
+      // Permitir scroll y desplazar la vista hacia el componente de drivers
       document.body.style.overflow = "auto";
       driversComponent.scrollIntoView({ behavior: "smooth", block: "start" });
     });
