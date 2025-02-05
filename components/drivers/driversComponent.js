@@ -8,6 +8,7 @@ class PilotosComponent extends HTMLElement {
         super();
         this.pilotos = [];
         this.filteredPilotos = [];
+        this.equipos = [];
         this.attachShadow({ mode: 'open' });
         
         this.shadowRoot.innerHTML = `
@@ -107,6 +108,7 @@ class PilotosComponent extends HTMLElement {
 
     async connectedCallback() {
         await this.fetchPilotos();
+        await this.fetchEquipos();
         this.shadowRoot.querySelector('#search').addEventListener('input', (e) => this.filterPilotos(e.target.value));
         this.shadowRoot.querySelector('#btnCreateDriver').addEventListener('click', () => this.showCreateDriverPopup());
         this.shadowRoot.querySelector('#btnModifyDriver').addEventListener('click', () => this.showEditDriverPopup());
@@ -137,6 +139,15 @@ class PilotosComponent extends HTMLElement {
         }
     }
 
+    async fetchEquipos() {
+        try {
+            this.equipos = await getEquipos();
+        } catch (error) {
+            console.error("Error fetching equipos:", error);
+            this.equipos = [];
+        }
+    }
+
     filterPilotos(searchTerm) {
         this.filteredPilotos = this.pilotos.filter(piloto => 
             piloto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
@@ -155,6 +166,7 @@ class PilotosComponent extends HTMLElement {
                 <div class="card p-3 text-center" style="cursor: pointer;">
                     <img src="${piloto.foto}" alt="Foto de ${piloto.nombre}" class="img-fluid" style="height:260px; object-fit: cover;">
                     <h5 class="card-title" style="margin-top:1rem;">${piloto.nombre}</h5>
+                    <p><strong>Equipo:</strong> ${this.equipos.find(e => e.id === piloto.equipo)?.nombre || 'Equipo no encontrado'}</p>
                 </div>
             `;
             
@@ -295,7 +307,12 @@ class PilotosComponent extends HTMLElement {
             <img src="${driver.foto}" alt="Foto de ${driver.nombre}" style="width:100%; max-height:350px; object-fit:cover; border-radius:8px; margin: 10px 0;">
             <p><strong>Equipo:</strong> ${teamName}</p>
             <p><strong>Rol:</strong> ${driver.rol ? driver.rol : 'Rol no especificado'}</p>
-            <p><strong>Estadísticas:</strong> Próximamente</p>
+            <p><strong>Estadísticas acumuladas hasta 2024:</strong></p>
+            <ul style="list-style: none; padding: 0;">
+                <li><strong>Victorias:</strong> ${driver.stats.Victorias}</li>
+                <li><strong>Podios:</strong> ${driver.stats.Podios}</li>
+                <li><strong>Pole Positions:</strong> ${driver.stats.Pole_positions}</li>
+            </ul>
         `;
 
         overlay.appendChild(card);
