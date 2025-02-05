@@ -1,4 +1,4 @@
-import { getVehiculos } from '../api/fetchApi.js';
+import { getVehiculos, getPilotos } from '../api/fetchApi.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
   // Nuevo: Lógica para mostrar el navbar al hacer clic en el botón "Admin"
@@ -155,36 +155,108 @@ document.addEventListener("DOMContentLoaded", async () => {
     carsComponent.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  // Evento para mostrar el componente de Drivers
-  btnDrivers.addEventListener("click", (e) => {
-    e.preventDefault();
+  // Evento para activar el componente de Drivers al hacer clic en el botón "Drivers"
+  if (btnDrivers) {
+    btnDrivers.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (!backgroundAudio.paused) {
+        backgroundAudio.pause();
+      }
+      // Ocultar otros componentes
+      document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
+        .forEach(el => el.style.display = "none");
+      // Mostrar el componente de drivers (pilotos-component)
+      driversComponent.style.display = "block";
+      if (videoBackground) {
+        videoBackground.style.display = "none";
+      }
+      if (audioControl) {
+        audioControl.style.display = "none";
+      }
+      document.body.style.overflow = "auto";
+      driversComponent.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+  // Desplegable para drivers (pilotos)
+try {
+  const drivers = await getPilotos();
+  const dropdownMenuDrivers = document.getElementById("driversDropdownMenu");
+  if (dropdownMenuDrivers) {
+    // Insertar opción para "Todos los Pilotos"
+    dropdownMenuDrivers.innerHTML = `
+      <li class="all-drivers">
+        <a href="#" class="dropdown-item">
+          <div class="driver-info">
+            <p class="driver-name" style="margin: 0; font-size: 16px;">All Drivers</p>
+            <p class="driver-team" style="margin: 0; font-size: 14px; color: #666;">Ver todos los pilotos</p>
+          </div>
+        </a>
 
-    // Pausar la música
-    if (!backgroundAudio.paused) {
-      backgroundAudio.pause();
-    }
-
-    // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
-      .forEach(el => el.style.display = "none");
-
-    // Mostrar el componente de Pilotos
-    driversComponent.style.display = "block";
-
-    // Ocultar el video de fondo
-    if (videoBackground) {
-      videoBackground.style.display = "none";
-    }
-
-    // Ocultar la barra de música
-    if (audioControl) {
-      audioControl.style.display = "none";
-    }
-
-    // Permitir scroll y desplazar la vista
-    document.body.style.overflow = "auto";
-    carsComponent.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+      </li>
+    `;
+    
+    // Evento para "Todos los Pilotos"
+    const allDriversLink = dropdownMenuDrivers.querySelector(".all-drivers a");
+    allDriversLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (!backgroundAudio.paused) {
+        backgroundAudio.pause();
+      }
+      document.querySelectorAll("qualifying-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
+        .forEach(el => el.style.display = "none");
+      driversComponent.style.display = "block";
+      if (videoBackground) videoBackground.style.display = "none";
+      if (audioControl) audioControl.style.display = "none";
+      document.body.style.overflow = "auto";
+      driversComponent.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    
+    // Recorrer la lista de drivers
+    drivers.forEach(driver => {
+      const li = document.createElement("li");
+      const link = document.createElement("a");
+      link.classList.add("dropdown-item");
+      link.href = "#";
+      link.style.display = "flex";
+      link.style.alignItems = "center";
+      link.style.padding = "10px 15px";
+      
+      // Ajustado el tamaño de la imagen y mejorado el diseño
+      link.innerHTML = `
+        <img src="${driver.foto}" alt="${driver.nombre}" 
+          style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; margin-right: 15px;">
+        <div class="driver-info" style="flex-grow: 1;">
+          <p style="margin: 0; font-size: 16px; font-weight: 500;">${driver.nombre}</p>
+          <p style="margin: 0; font-size: 14px; color: #666;">${driver.equipo}</p>
+        </div>
+      `;
+      
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (driversComponent && typeof driversComponent.showDriverDetails === "function") {
+          driversComponent.showDriverDetails(driver);
+        } else {
+          driversComponent.style.display = "block";
+          driversComponent.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+      
+      // Agregar hover effect
+      link.addEventListener("mouseover", () => {
+        link.style.backgroundColor = "#f8f9fa";
+      });
+      
+      link.addEventListener("mouseout", () => {
+        link.style.backgroundColor = "";
+      });
+      
+      li.appendChild(link);
+      dropdownMenuDrivers.appendChild(li);
+    });
+  }
+} catch (error) {
+  console.error("Error fetching drivers: ", error);
+}
 
   // Evento para mostrar el componente de Teams
   btnTeams.addEventListener("click", (e) => {
@@ -288,7 +360,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+    document.querySelectorAll("cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de pole position

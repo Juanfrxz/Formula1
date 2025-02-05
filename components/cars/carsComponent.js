@@ -102,66 +102,6 @@ class CarsComponent extends HTMLElement {
         modal.show();
     }
 
-    initThreeDModel(canvas) {
-        // Configurar la escena, cámara y renderizador usando Three.js
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 500);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-        renderer.setSize(canvas.width, canvas.height);
-
-        // Configuración para que las texturas se rendericen correctamente
-        renderer.outputEncoding = THREE.sRGBEncoding;
-        renderer.physicallyCorrectLights = true;
-
-        // Agregar luces a la escena
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-        scene.add(ambientLight);
-    
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-        directionalLight.position.set(5, 5, 5);
-        scene.add(directionalLight);
-
-        let model = null;
-
-        // Cargar el modelo 3D desde la carpeta public (asegúrate de que la ruta sea la correcta)
-        const loader = new THREE.GLTFLoader();
-        loader.load(
-            '/redbull-3d.glb', // Ruta ajustada: generalmente se accede desde la raíz
-            (gltf) => {
-                model = gltf.scene;
-                // Reducir la escala para que el modelo sea más pequeño y se ajuste al contenedor
-                model.scale.set(0.3, 0.3, 0.3);
-                model.position.set(0, -0.5, 0);
-                scene.add(model);
-            },
-            undefined,
-            (error) => {
-                console.error('Error al cargar el modelo 3D:', error);
-            }
-        );
-
-        // Ajustar la posición de la cámara para enfocar correctamente el modelo
-        camera.position.set(0, 0, 3);
-
-        // Función de animación
-        const animate = () => {
-            requestAnimationFrame(animate);
-            if (model) {
-                // Rotación continua para mostrar el modelo en 3D
-                model.rotation.y += 0.01;
-            }
-            renderer.render(scene, camera);
-        };
-        animate();
-
-        // Opcional: actualizar tamaño en caso de redimensionamiento
-        window.addEventListener('resize', () => {
-            camera.aspect = canvas.width / canvas.height;
-            camera.updateProjectionMatrix();
-            renderer.setSize(canvas.width, canvas.height);
-        });
-    }
-
     setupDropdownEvents() {
         const dropdownBtn = this.shadowRoot.querySelector('.dropdown-toggle');
         const dropdownMenu = this.shadowRoot.querySelector('.dropdown-menu');
