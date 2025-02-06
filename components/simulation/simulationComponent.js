@@ -2,6 +2,7 @@ import './circuitselectionComponent.js';
 import './teamselectionComponent.js';
 import './driverselectionComponent.js';
 import './cartuningComponent.js';
+import './classificationStartComponent.js';
 import { addPartida, updatePartida } from '../../api/fetchApi.js';
 
 class SimulationComponent extends HTMLElement {
@@ -16,14 +17,16 @@ class SimulationComponent extends HTMLElement {
             <style>
                 :host {
                     display: block;
-                    height: 100vh;
+                    height: 90vh;
+                    width: 100vw;
                 }
                 .container {
                     display: flex;
                     height: 100%;
+                    width: 100%;
                 }
                 .sidebar {
-                    width: 250px;
+                    width: 200px;
                     background-color: #f8f9fa;
                     padding: 1rem;
                     display: flex;
@@ -34,6 +37,12 @@ class SimulationComponent extends HTMLElement {
                     flex: 1;
                     padding: 1rem;
                     overflow-y: auto;
+                }
+
+                @media (min-width: 1400px) {
+                    .container{
+                        min-width: 100%;
+                    }
                 }
             </style>
             <div class="container">
@@ -50,6 +59,9 @@ class SimulationComponent extends HTMLElement {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="carTuning" href="#">Car Tuning</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="classificationStart" href="#">Inicio de Clasificación</a>
                         </li>
                     </ul>
                 </div>
@@ -80,6 +92,11 @@ class SimulationComponent extends HTMLElement {
             .addEventListener('click', (e) => {
                 e.preventDefault();
                 this.loadCarTuning();
+            });
+        this.shadowRoot.querySelector('#classificationStart')
+            .addEventListener('click', (e) => {
+                e.preventDefault();
+                this.loadClassificationStart();
             });
         this.initializePartida();
     }
@@ -168,7 +185,20 @@ class SimulationComponent extends HTMLElement {
         }
         const carTuning = document.createElement('car-tuning');
         carTuning.setAttribute('equipo', this.selectedTeam);
+        if (this.partidaId) {
+            carTuning.setAttribute('partida', this.partidaId);
+        }
         contentArea.appendChild(carTuning);
+    }
+
+    loadClassificationStart() {
+        const contentArea = this.shadowRoot.getElementById('content-area');
+        contentArea.innerHTML = '';
+        const classificationComponent = document.createElement('classification-start-component');
+        if (this.partidaId) {
+            classificationComponent.setAttribute('partida', this.partidaId);
+        }
+        contentArea.appendChild(classificationComponent);
     }
 
     async initializePartida() {
