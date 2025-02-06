@@ -8,6 +8,7 @@ class TeamsComponent extends HTMLElement {
         super();
         this.teams = [];
         this.filteredTeams = [];
+        this.pilots = [];
         this.attachShadow({ mode: 'open' });
         
         this.shadowRoot.innerHTML = /*html*/`
@@ -83,15 +84,53 @@ class TeamsComponent extends HTMLElement {
                     gap: 20px;
                     justify-content: center;
                 }
+                /* Estilos para el dropdown manual */
+                .dropdown {
+                    position: relative;
+                }
+                .dropdown-menu {
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    display: none;
+                    background-color: #fff;
+                    border: 1px solid rgba(0,0,0,.15);
+                    border-radius: 0.25rem;
+                    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.175);
+                    list-style: none;
+                    padding: 0.5rem 0;
+                    margin: 0;
+                    z-index: 1000;
+                }
+                .dropdown-menu.show {
+                    display: block;
+                }
+                .dropdown-menu li {
+                    padding: 0;
+                }
+                .dropdown-menu li a {
+                    display: block;
+                    padding: 0.25rem 1.5rem;
+                    color: #212529;
+                    text-decoration: none;
+                }
+                .dropdown-menu li a:hover {
+                    background-color: #f8f9fa;
+                }
             </style>
             <div class="container">
                 <div class="header">
                     <div class="d-flex justify-content-between align-items-center">
                         <h2>Registered Teams</h2>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-primary" id="btnCreateTeam">Create</button>
-                            <button class="btn btn-warning" id="btnModifyTeam">Modify</button>
-                            <button class="btn btn-danger" id="btnDeleteTeam">Delete</button>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button">
+                                Options
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" id="create-team" href="#">Create Team</a></li>
+                                <li><a class="dropdown-item" id="edit-team" href="#">Modify Team</a></li>
+                                <li><a class="dropdown-item" id="delete-team" href="#">Delete Team</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="mt-3">
@@ -108,10 +147,42 @@ class TeamsComponent extends HTMLElement {
 
     async connectedCallback() {
         await this.fetchEquipos();
+        await this.fetchPilotos();
+
+        // Setup dropdown toggle para manejo manual del dropdown
+        const dropdownToggle = this.shadowRoot.querySelector('.dropdown-toggle');
+        const dropdownMenu = this.shadowRoot.querySelector('.dropdown-menu');
+        if (dropdownToggle && dropdownMenu) {
+            dropdownToggle.addEventListener('click', (event) => {
+                event.preventDefault();
+                dropdownMenu.classList.toggle('show');
+            });
+        }
+
+        // Cerrar el dropdown si se hace clic fuera del componente
+        document.addEventListener('click', (event) => {
+            if (!this.contains(event.target)) {
+                dropdownMenu && dropdownMenu.classList.remove('show');
+            }
+        });
+
+        // Setup para el input de búsqueda
         this.shadowRoot.querySelector('#search').addEventListener('input', (e) => this.filterTeams(e.target.value));
-        this.shadowRoot.querySelector('#btnCreateTeam').addEventListener('click', () => this.showCreateTeamPopup());
-        this.shadowRoot.querySelector('#btnModifyTeam').addEventListener('click', () => this.showEditTeamPopup());
-        this.shadowRoot.querySelector('#btnDeleteTeam').addEventListener('click', () => this.showDeleteTeamPopup());
+
+        // Setup de event listeners para cada opción del dropdown
+        this.shadowRoot.querySelector('#create-team').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showCreateTeamPopup();
+        });
+        this.shadowRoot.querySelector('#edit-team').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showEditTeamPopup();
+        });
+        this.shadowRoot.querySelector('#delete-team').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showDeleteTeamPopup();
+        });
+
         this.updateTeams();
 
         // Escuchar el evento general "teamChanged" para actualizar el listado de equipos
@@ -139,6 +210,15 @@ class TeamsComponent extends HTMLElement {
         }
     }
 
+    async fetchPilotos() {
+        try {
+            this.pilots = await getPilotos();
+        } catch (error) {
+            console.error('Error fetching pilotos:', error);
+            this.pilots = [];
+        }
+    }
+
     filterTeams(searchTerm) {
         this.filteredTeams = this.teams.filter(team =>
             team.nombre.toLowerCase().includes(searchTerm.toLowerCase())
@@ -160,7 +240,80 @@ class TeamsComponent extends HTMLElement {
                     <!-- Información adicional del equipo si es necesario -->
                 </div>
             `;
+            card.addEventListener('click', () => this.showTeamDetails(team));
             container.appendChild(card);
+        });
+    }
+
+    showTeamDetails(team) {
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        overlay.style.display = 'flex';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.style.zIndex = '1000';
+
+        const popup = document.createElement('div');
+        popup.style.background = '#fff';
+        popup.style.padding = '20px';
+        popup.style.borderRadius = '8px';
+        popup.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+        popup.style.maxWidth = '800px';
+        popup.style.width = '90%';
+        popup.style.maxHeight = '90vh';
+        popup.style.overflowY = 'auto';
+        
+        popup.style.opacity = '0';
+        popup.style.transform = 'scale(0.8)';
+        popup.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+
+        // Convertir los IDs de pilotos a sus nombres
+        const pilotosListHTML =
+            Array.isArray(team.pilotos) ?
+            team.pilotos
+                .map(pilotId => {
+                    // Se busca en this.pilots el piloto cuyo id coincida con pilotId.
+                    const pilot = this.pilots ? this.pilots.find(p => p.id === pilotId) : null;
+                    return `<li>${pilot ? pilot.nombre : pilotId}</li>`;
+                })
+                .join('') :
+            `<li>${team.pilotos || 'No especificado'}</li>`;
+
+        popup.innerHTML = /*html*/`
+            <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="${team.imagen}" alt="${team.nombre}" style="width: 100%; height: auto; object-fit: cover; border-radius:8px;">
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <h2>${team.nombre}</h2>
+                    <p>
+                        <strong>País:</strong> ${team.pais} 
+                        <img src="../source/img/${team.pais.toLowerCase()}.svg" alt="${team.pais} flag" style="width:24px; height:24px; vertical-align: middle;">
+                    </p>
+                    <p><strong>Motor:</strong> ${team.motor ? team.motor : 'No especificado'}</p>
+                    <p><strong>Pilotos:</strong></p>
+                    <ul>${pilotosListHTML}</ul>
+                </div>
+            </div>
+        `;
+
+        overlay.appendChild(popup);
+        document.body.appendChild(overlay);
+
+        setTimeout(() => {
+            popup.style.opacity = '1';
+            popup.style.transform = 'scale(1)';
+        }, 10);
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
         });
     }
 

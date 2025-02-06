@@ -35,7 +35,6 @@ class CreateCarComponent extends HTMLElement {
 
     setupEvents() {
         const form = this.shadowRoot.getElementById('carForm');
-        const cancelBtn = this.shadowRoot.getElementById('cancelCreateCar');
 
         const equipoSelect = this.shadowRoot.getElementById("equipo");
         this.updatePilotosForTeam(equipoSelect.value);
@@ -47,14 +46,24 @@ class CreateCarComponent extends HTMLElement {
             e.preventDefault();
             const newCar = this.getFormData();
             await addVehiculo(newCar);
-            alert("Vehicle registered successfully");
-            this.style.display = "none";
-            document.querySelector("cars-component").style.display = "block";
-        });
+            
+            // En lugar de usar alert, se actualiza el mensaje en el contenedor de confirmación
+            const confirmationMessage = this.shadowRoot.getElementById("confirmation-message");
+            confirmationMessage.textContent = "Vehicle registered successfully";
+            confirmationMessage.style.display = "block";
 
-        cancelBtn.addEventListener("click", () => {
-            this.style.display = "none";
-            document.querySelector("cars-component").style.display = "block";
+            // Opcional: se puede emitir un evento personalizado si se necesita notificar a otros componentes
+            this.dispatchEvent(new CustomEvent("vehicleCreated", {
+                bubbles: true,
+                detail: {
+                    action: "create",
+                    vehicle: newCar
+                }
+            }));
+
+            // Si no se desea ocultar el formulario (como en el componente de driver), se pueden comentar o eliminar estas líneas:
+            //this.style.display = "none";
+            //document.querySelector("cars-component").style.display = "block";
         });
     }
 
@@ -186,7 +195,6 @@ class CreateCarComponent extends HTMLElement {
                                 </button>
                             </h2>
                             <div id="performance_agresiva" class="accordion-collapse collapse">
-
                                 <div class="accordion-body">
                                     ${this.renderPerformanceInputs("agresiva", "Conducción Agresiva")}
                                 </div>
@@ -202,7 +210,6 @@ class CreateCarComponent extends HTMLElement {
                                         Performance: Fuel savings
                                 </button>
                             </h2>
-
                             <div id="performance_ahorro" class="accordion-collapse collapse">
                                 <div class="accordion-body">
                                     ${this.renderPerformanceInputs("ahorro", "Ahorro de Combustible")}
@@ -211,10 +218,10 @@ class CreateCarComponent extends HTMLElement {
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Save</button>
-                    <button type="button" class="btn btn-secondary mt-3" id="cancelCreateCar">Cancel</button>
                 </form>
+                <!-- Contenedor para el mensaje de confirmación, inicialmente oculto -->
+                <div id="confirmation-message" class="mt-3 text-success" style="display: none;"></div>
             </div>
-
         `;
     }
 
@@ -225,7 +232,6 @@ class CreateCarComponent extends HTMLElement {
             <input type="number" id="${prefix}_velocidad" class="form-control" required>
             <label>Fuel consumption:</label>
             <input type="number" id="${prefix}_comb_seco" class="form-control" placeholder="Dry" required>
-
             <input type="number" id="${prefix}_comb_lluvioso" class="form-control" placeholder="Lluvioso" required>
             <input type="number" id="${prefix}_comb_extremo" class="form-control" placeholder="Extremo" required>
             <label>Desgaste Neumáticos:</label>

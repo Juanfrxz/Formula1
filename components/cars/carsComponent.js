@@ -183,12 +183,11 @@ class CarsComponent extends HTMLElement {
                 modalContainer.classList.add('modal', 'fade');
                 modalContainer.tabIndex = -1;
                 modalContainer.setAttribute('aria-hidden', 'true');
-                modalContainer.innerHTML =/*html*/ `
+                modalContainer.innerHTML = /*html*/ `
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Register New Vehicle</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <!-- Se insertará el custom element <create-car-component> -->
@@ -202,7 +201,7 @@ class CarsComponent extends HTMLElement {
                 modalBody.innerHTML = "";
                 modalBody.appendChild(createCarComponent);
 
-                const modalInstance = new bootstrap.Modal(modalContainer, { backdrop: 'static' });
+                const modalInstance = new bootstrap.Modal(modalContainer);
                 modalInstance.show();
 
                 modalContainer.addEventListener('hidden.bs.modal', () => {
@@ -224,7 +223,6 @@ class CarsComponent extends HTMLElement {
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Edit Vehicle</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <!-- Se insertará el custom element <edit-car-component> -->
@@ -238,7 +236,7 @@ class CarsComponent extends HTMLElement {
                 modalBody.innerHTML = "";
                 modalBody.appendChild(editCarComponent);
 
-                const modalInstance = new bootstrap.Modal(modalContainer, { backdrop: 'static' });
+                const modalInstance = new bootstrap.Modal(modalContainer);
                 modalInstance.show();
 
                 modalContainer.addEventListener('hidden.bs.modal', () => {

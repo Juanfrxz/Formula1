@@ -21,29 +21,28 @@ class PilotosComponent extends HTMLElement {
                     width: 100%;
                     padding: 1rem;
                 }
-                /* Contenedor para header (título, botones y búsqueda) */
+                /* Contenedor para header (título, dropdown y búsqueda) */
                 .header {
                     margin-bottom: 1rem;
                 }
                 /* Contenedor de tarjetas usando Flex */
                 .card-container {
                     display: flex;
-                    flex-start:center;
                     flex-wrap: wrap;
                     gap: 1rem;
                     justify-content: center;
                     align-items: center;
                 }
                 .card {
-                    width: 300px; /* ancho fijo */
-                    height: 350px; /* alto fijo */
+                    width: 300px;
+                    height: 350px;
                     overflow: hidden;
                     border: 1px solid #ccc;
                     border-radius: 8px;
-                    box-shadow: 0 2px 4px rgba(174, 2, 2, 0.1); /* Sombra sutil similar a teamsComponent */
-                    transition: box-shadow 0.3s, border-color 0.3s; /* Agregamos transición */
+                    box-shadow: 0 2px 4px rgba(174, 2, 2, 0.1);
+                    transition: box-shadow 0.3s, border-color 0.3s;
+                    cursor: pointer;
                 }
-                /* Efecto hover y sombra al estilo teamsComponent */
                 .card:hover {
                     box-shadow: 0 0 15px rgba(174, 2, 2, 0.6);
                     border-color: #AE0202;
@@ -51,56 +50,83 @@ class PilotosComponent extends HTMLElement {
                 .card img {
                     width: 100%;
                     height: 200px;
-                    object-fit: cover; /* evita distorsión */
-                    border-radius: 8px; /* redondea las esquinas */
+                    object-fit: cover;
+                    border-radius: 8px;
                 }
                 .card-body {
                     padding: 0.5rem;
                 }
-
-                .col {
-                    flex: 0 0 0%;
-                }
-                /* Contenedor scrollable con scrollbars personalizados */
                 .list-container {
                     max-height: 70vh;
                     overflow-y: auto;
-                    overflow-x: hidden; /* Oculta la barra horizontal */
-                    
-                    /* Estilo para Firefox */
+                    overflow-x: hidden;
                     scrollbar-width: thin;
                     scrollbar-color: rgb(218, 3, 3) none;
                 }
-                /* Estilos para navegadores Webkit (Chrome, Safari, Opera) */
                 .list-container::-webkit-scrollbar {
-                    width: 8px; /* Ancho de la barra vertical */
+                    width: 8px;
                 }
                 .list-container::-webkit-scrollbar-track {
-                    background: transparent; /* Fondo transparente en la pista */
+                    background: transparent;
                 }
                 .list-container::-webkit-scrollbar-thumb {
-                    background-color: #ccc; /* Color más claro del pulgar */
-                    border-radius: 8px;  /* Bordes redondeados */
+                    background-color: #ccc;
+                    border-radius: 8px;
                 }
                 .list-container::-webkit-scrollbar-thumb:hover {
                     background-color: #bbb;
+                }
+                /* Estilo para el dropdown */
+                .dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+                .dropdown-menu {
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    display: none;
+                    background-color: #fff;
+                    min-width: 10rem;
+                    padding: 0.5rem 0;
+                    margin: 0;
+                    border: 1px solid rgba(0,0,0,.15);
+                    border-radius: 0.25rem;
+                    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.175);
+                    z-index: 1000;
+                }
+                .dropdown-menu.show {
+                    display: block;
+                }
+                .dropdown-item {
+                    padding: 0.25rem 1.5rem;
+                    color: #212529;
+                    text-decoration: none;
+                    display: block;
+                }
+                .dropdown-item:hover {
+                    background-color: #f8f9fa;
                 }
             </style>
             <div class="container">
                 <div class="header">
                     <div class="d-flex justify-content-between align-items-center">
                         <h2>Pilotos Registrados</h2>
-                        <div>
-                            <button class="btn btn-primary" id="btnCreateDriver">Create</button>
-                            <button class="btn btn-warning" id="btnModifyDriver">Modify</button>
-                            <button class="btn btn-danger" id="btnDeleteDriver">Delete</button>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDriverOptions" data-bs-toggle="dropdown">
+                                Options
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" id="create-driver" href="#">Create Driver</a></li>
+                                <li><a class="dropdown-item" id="edit-driver" href="#">Modify Driver</a></li>
+                                <li><a class="dropdown-item" id="delete-driver" href="#">Delete Driver</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="mt-3">
                         <input type="text" id="search" class="form-control" placeholder="Buscar piloto...">
                     </div>
                 </div>
-                <!-- Envolvemos el contenedor de tarjetas en un contenedor scrollable -->
                 <div class="list-container">
                     <div id="pilotos-container" class="card-container mt-3"></div>
                 </div>
@@ -112,9 +138,37 @@ class PilotosComponent extends HTMLElement {
         await this.fetchPilotos();
         await this.fetchEquipos();
         this.shadowRoot.querySelector('#search').addEventListener('input', (e) => this.filterPilotos(e.target.value));
-        this.shadowRoot.querySelector('#btnCreateDriver').addEventListener('click', () => this.showCreateDriverPopup());
-        this.shadowRoot.querySelector('#btnModifyDriver').addEventListener('click', () => this.showEditDriverPopup());
-        this.shadowRoot.querySelector('#btnDeleteDriver').addEventListener('click', () => this.showDeleteDriverPopup());
+
+        // Configurar toggle para el dropdown
+        const dropdownToggle = this.shadowRoot.querySelector('.dropdown-toggle');
+        const dropdownMenu = this.shadowRoot.querySelector('.dropdown-menu');
+        if (dropdownToggle && dropdownMenu) {
+            dropdownToggle.addEventListener('click', (event) => {
+                event.preventDefault();
+                const isVisible = dropdownMenu.classList.contains('show');
+                dropdownMenu.classList.toggle('show', !isVisible);
+            });
+            document.addEventListener('click', (event) => {
+                if (!this.contains(event.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        }
+
+        // Configurar eventos para cada opción del dropdown
+        this.shadowRoot.querySelector('#create-driver').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showCreateDriverPopup();
+        });
+        this.shadowRoot.querySelector('#edit-driver').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showEditDriverPopup();
+        });
+        this.shadowRoot.querySelector('#delete-driver').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showDeleteDriverPopup();
+        });
+
         this.updatePilotos();
 
         document.addEventListener("pilotoChanged", (e) => {
@@ -268,7 +322,6 @@ class PilotosComponent extends HTMLElement {
     }
 
     async showDriverDetails(driver) {
-        // Crear overlay para el popup
         const overlay = document.createElement('div');
         overlay.style.position = 'fixed';
         overlay.style.top = '0';
@@ -281,7 +334,6 @@ class PilotosComponent extends HTMLElement {
         overlay.style.justifyContent = 'center';
         overlay.style.zIndex = '1000';
 
-        // Crear la carta con estilos personalizados
         const card = document.createElement('div');
         card.style.background = '#fff';
         card.style.padding = '20px';
@@ -292,12 +344,10 @@ class PilotosComponent extends HTMLElement {
         card.style.minHeight = '500px';
         card.style.textAlign = 'center';
 
-        // Configurar estado inicial para la animación (fade in + scale)
         card.style.opacity = '0';
         card.style.transform = 'scale(0.8)';
         card.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
 
-        // Obtener el nombre del equipo usando la función getEquipos
         let teamName = '';
         try {
             const equipos = await getEquipos();
@@ -308,7 +358,6 @@ class PilotosComponent extends HTMLElement {
             teamName = 'Error obteniendo equipo';
         }
 
-        // Incluir el contenido en la carta
         card.innerHTML = /*html*/`
             <h2 style="text-align: center;">${driver.nombre}</h2>
             <img src="${driver.foto}" alt="Foto de ${driver.nombre}" style="width:100%; max-height:350px; object-fit:cover; border-radius:8px; margin: 10px 0;">
@@ -325,13 +374,11 @@ class PilotosComponent extends HTMLElement {
         overlay.appendChild(card);
         document.body.appendChild(overlay);
 
-        // Forzar el reflow y luego iniciar la animación
         setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'scale(1)';
         }, 10);
 
-        // Cerrar el popup al hacer clic fuera de la carta
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
                 document.body.removeChild(overlay);

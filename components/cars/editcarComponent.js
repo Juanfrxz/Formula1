@@ -12,15 +12,13 @@ class EditCarComponent extends HTMLElement {
     this.pilotos = await getPilotos();
     // Renderizamos el componente
     this.render();
-    // Comentamos la siguiente línea para que el componente se muestre (ahora se usará en modal)
-    // this.style.display = "none";
     // Configuramos acordeones y eventos
     this.setupAccordion();
     this.setupEvents();
     // Cargar el listado de vehículos en el select
     await this.loadVehicleOptions();
 
-    // Si se pasa el atributo "carid", se carga ese vehículo.
+    // Si se pasa el atributo "carid", se carga ese vehículo y se muestra el formulario
     const carIdAttr = this.getAttribute("carid");
     if (carIdAttr) {
       await this.loadVehicleData(carIdAttr);
@@ -28,6 +26,8 @@ class EditCarComponent extends HTMLElement {
       if (vehicleSelect) {
         vehicleSelect.value = carIdAttr;
       }
+      // Mostrar el formulario de edición
+      this.shadowRoot.getElementById("carForm").style.display = "block";
     }
   }
 
@@ -44,10 +44,14 @@ class EditCarComponent extends HTMLElement {
                 `<option value="${vehicle.id}">${vehicle.modelo} - ${this.getTeamName(vehicle.equipo)}</option>`
             )
             .join("");
+        // Al cambiar la selección se carga la información correspondiente y muestra el formulario
         vehicleSelect.addEventListener("change", async (e) => {
           const selectedId = e.target.value;
           if (selectedId) {
             await this.loadVehicleData(selectedId);
+            this.shadowRoot.getElementById("carForm").style.display = "block";
+          } else {
+            this.shadowRoot.getElementById("carForm").style.display = "none";
           }
         });
       }
@@ -99,14 +103,35 @@ class EditCarComponent extends HTMLElement {
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const updatedCar = this.getFormData();
-      await updateVehiculo(this.carData.id, updatedCar);
-      alert("Vehicle updated successfully");
-      // Aquí el modal se cerrará desde el componente que lo invoque
+
+      if (!this.carData || !this.carData.id) {
+        console.error("No se ha cargado ningún vehículo para actualizar.");
+        return;
+      }
+
+      try {
+        const updatedCar = this.getFormData();
+        console.log("Enviando actualización con:", updatedCar);
+        const response = await updateVehiculo(this.carData.id, updatedCar);
+        console.log("Respuesta de actualización:", response);
+        // Muestra el mensaje de confirmación de forma similar al de teams
+        this.showConfirmationMessage();
+        // Despacha el evento personalizado para notificar que se actualizó (similar a "teamChanged")
+        this.dispatchEvent(new CustomEvent("carChanged", {
+          bubbles: true,
+          composed: true,
+          detail: {
+            action: "update",
+            car: { id: this.carData.id, ...updatedCar }
+          }
+        }));
+      } catch (error) {
+        console.error("Error al actualizar el vehículo:", error);
+      }
     });
 
     cancelBtn.addEventListener("click", () => {
-      // Aquí puedes agregar lógica para cerrar el modal dinámico si lo requieres
+      // Lógica para cerrar el modal (si se usa uno)
     });
   }
 
@@ -201,6 +226,15 @@ class EditCarComponent extends HTMLElement {
     };
   }
 
+  // Mostramos el mensaje de confirmación de forma similar al componente editteamComponent
+  showConfirmationMessage() {
+    const message = this.shadowRoot.querySelector('#confirmation-message');
+    message.style.display = 'block';
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 3000);
+  }
+
   render() {
     this.shadowRoot.innerHTML = /*html*/ `
       <style>
@@ -221,9 +255,10 @@ class EditCarComponent extends HTMLElement {
             <option value="">Select a vehicle</option>
           </select>
         </div>
-        <form id="carForm">
+        <!-- Formulario de edición (inicialmente oculto) -->
+        <form id="carForm" style="display: none;">
           <div class="accordion" id="carAccordion">
-            <!-- General Information Section -->
+            <!-- Sección: Información General -->
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button" 
@@ -257,24 +292,24 @@ class EditCarComponent extends HTMLElement {
                 </div>
               </div>
             </div>
-            <!-- Performance Section: Normal Driving -->
+            <!-- Sección: Performance - Conducción Normal -->
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button collapsed" 
+                <button class="accordion-button" 
                         type="button" 
                         data-bs-toggle="collapse" 
                         data-bs-target="#performance_normal" 
-                        aria-expanded="false">
+                        aria-expanded="true">
                   Performance: Normal Driving
                 </button>
               </h2>
-              <div id="performance_normal" class="accordion-collapse collapse">
+              <div id="performance_normal" class="accordion-collapse collapse show">
                 <div class="accordion-body">
                   ${this.renderPerformanceInputs("normal", "Normal Driving")}
                 </div>
               </div>
             </div>
-            <!-- Performance Section: Aggressive Driving -->
+            <!-- Sección: Performance - Conducción Agresiva -->
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" 
@@ -287,11 +322,11 @@ class EditCarComponent extends HTMLElement {
               </h2>
               <div id="performance_agresiva" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                  ${this.renderPerformanceInputs("Aggressive", "Aggressive Driving")}
+                  ${this.renderPerformanceInputs("agresiva", "Aggressive Driving")}
                 </div>
               </div>
             </div>
-            <!-- Performance Section: Fuel Saving -->
+            <!-- Sección: Performance - Ahorro de Combustible -->
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" 
@@ -304,13 +339,16 @@ class EditCarComponent extends HTMLElement {
               </h2>
               <div id="performance_ahorro" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                  ${this.renderPerformanceInputs("Saving", "Fuel Saving")}
+                  ${this.renderPerformanceInputs("ahorro", "Fuel Saving")}
                 </div>
               </div>
             </div>
           </div>
           <button type="submit" class="btn btn-primary mt-3">Update</button>
           <button type="button" class="btn btn-secondary mt-3" id="cancelEditCar">Cancel</button>
+          <div id="confirmation-message" class="alert alert-success mt-3" style="display: none;">
+            Vehicle updated successfully!
+          </div>
         </form>
       </div>
     `;
