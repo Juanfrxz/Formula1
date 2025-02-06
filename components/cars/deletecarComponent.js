@@ -33,7 +33,7 @@ class DeleteCarComponent extends HTMLElement {
    * Si no se encuentra, retorna el id como fallback.
    */
   getTeamName(teamId) {
-    const team = this.equipos.find(eq => eq.id === teamId);
+    const team = this.equipos.find((eq) => eq.id === teamId);
     return team ? team.nombre : teamId;
   }
 
@@ -47,8 +47,10 @@ class DeleteCarComponent extends HTMLElement {
           `<option value="">Select a vehicle</option>` +
           this.vehicles
             .map(
-              vehicle =>
-                `<option value="${vehicle.id}">${vehicle.modelo} - ${this.getTeamName(vehicle.equipo)}</option>`
+              (vehicle) =>
+                `<option value="${vehicle.id}">${vehicle.modelo} - ${this.getTeamName(
+                  vehicle.equipo
+                )}</option>`
             )
             .join("");
       }
@@ -65,23 +67,128 @@ class DeleteCarComponent extends HTMLElement {
       const vehicleSelect = this.shadowRoot.getElementById("vehicleSelect");
       const selectedId = vehicleSelect.value;
       if (!selectedId) {
-        alert("Please select a vehicle to delete.");
+        // En lugar de alert, mostramos un popup informativo
+        await this.showInfoModal("Please select a vehicle to delete.");
         return;
       }
-      if (confirm("Are you sure you want to delete the selected vehicle?")) {
+      // Utilizamos un popup de confirmación
+      const confirmed = await this.showConfirmationModal(
+        "Are you sure you want to delete the selected vehicle?"
+      );
+      if (confirmed) {
         try {
           await deleteVehiculo(selectedId);
-          alert("Vehicle deleted successfully.");
+          await this.showInfoModal("Vehicle deleted successfully.");
           await this.loadVehicleOptions();
         } catch (error) {
           console.error("Error al eliminar el vehículo:", error);
-          alert("Error deleting the vehicle.");
+          await this.showInfoModal("Error deleting the vehicle.");
         }
       }
     });
 
     cancelBtn.addEventListener("click", () => {
-      // Puedes agregar lógica para cerrar el modal dinámico si es necesario
+      // Cierra el modal contenedor si existe (esto permite salir dando click fuera)
+      const modalContainer = this.closest(".modal");
+      if (modalContainer) {
+        const modalInstance = bootstrap.Modal.getInstance(modalContainer);
+        if (modalInstance) modalInstance.hide();
+      }
+    });
+  }
+
+  // Método para mostrar un popup de confirmación (dos botones: "Cancel" y "Confirm")
+  showConfirmationModal(message) {
+    return new Promise((resolve) => {
+      const modalTemplate = /*html*/ `
+        <div class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>${message}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmButton">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const modalWrapper = document.createElement("div");
+      modalWrapper.innerHTML = modalTemplate;
+      const modalElement = modalWrapper.firstElementChild;
+      document.body.appendChild(modalElement);
+
+      // Usamos la configuración por defecto para permitir cerrar dando click fuera
+      const bsModal = new bootstrap.Modal(modalElement);
+      bsModal.show();
+
+      modalElement.querySelector("#confirmButton").addEventListener("click", () => {
+        resolve(true);
+        bsModal.hide();
+      });
+
+      const cancelHandler = () => {
+        resolve(false);
+        bsModal.hide();
+      };
+
+      modalElement.querySelector("#cancelButton").addEventListener("click", cancelHandler);
+      modalElement.querySelector(".btn-close").addEventListener("click", cancelHandler);
+
+      modalElement.addEventListener("hidden.bs.modal", () => {
+        modalElement.remove();
+      });
+    });
+  }
+
+  // Método para mostrar un popup informativo (un botón "OK")
+  showInfoModal(message) {
+    return new Promise((resolve) => {
+      const modalTemplate = /*html*/ `
+        <div class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>${message}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="okButton">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const modalWrapper = document.createElement("div");
+      modalWrapper.innerHTML = modalTemplate;
+      const modalElement = modalWrapper.firstElementChild;
+      document.body.appendChild(modalElement);
+
+      const bsModal = new bootstrap.Modal(modalElement);
+      bsModal.show();
+
+      const handler = () => {
+        resolve();
+        bsModal.hide();
+      };
+
+      modalElement.querySelector("#okButton").addEventListener("click", handler);
+      modalElement.querySelector(".btn-close").addEventListener("click", handler);
+
+      modalElement.addEventListener("hidden.bs.modal", () => {
+        modalElement.remove();
+      });
     });
   }
 

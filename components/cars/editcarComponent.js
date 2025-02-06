@@ -93,7 +93,6 @@ class EditCarComponent extends HTMLElement {
 
   setupEvents() {
     const form = this.shadowRoot.getElementById('carForm');
-    const cancelBtn = this.shadowRoot.getElementById('cancelEditCar');
 
     const equipoSelect = this.shadowRoot.getElementById("equipo");
     this.updatePilotosForTeam(equipoSelect.value);
@@ -128,10 +127,6 @@ class EditCarComponent extends HTMLElement {
       } catch (error) {
         console.error("Error al actualizar el vehículo:", error);
       }
-    });
-
-    cancelBtn.addEventListener("click", () => {
-      // Lógica para cerrar el modal (si se usa uno)
     });
   }
 
@@ -345,7 +340,6 @@ class EditCarComponent extends HTMLElement {
             </div>
           </div>
           <button type="submit" class="btn btn-primary mt-3">Update</button>
-          <button type="button" class="btn btn-secondary mt-3" id="cancelEditCar">Cancel</button>
           <div id="confirmation-message" class="alert alert-success mt-3" style="display: none;">
             Vehicle updated successfully!
           </div>

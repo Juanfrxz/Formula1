@@ -400,4 +400,144 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   });
+
+  // ===============================
+  // NUEVA LÓGICA PARA ADMIN / USER
+  // ===============================
+
+  // Declaramos isAdmin con valor por defecto false
+  let isAdmin = false;
+
+  // Función para actualizar la visibilidad de las opciones en cada componente
+  function updateAdminOptions(isAdmin) {
+    const components = [teamsComponent, driversComponent, carsComponent, circuitsComponent];
+    components.forEach(component => {
+      if (component && component.shadowRoot) {
+        // Se asume que en el shadow DOM de cada componente existe un contenedor de opciones con la clase "dropdown"
+        const dropdown = component.shadowRoot.querySelector(".dropdown");
+        if (dropdown) {
+          if (isAdmin) {
+            dropdown.classList.remove("d-none");
+          } else {
+            dropdown.classList.add("d-none");
+          }
+        }
+      }
+    });
+  }
+
+  // Mostrar las opciones de admin (o no) al cargar la página
+  updateAdminOptions(isAdmin);
+
+  // Función para mostrar un popup de error (en lugar de un alert)
+  function showErrorPopup(message) {
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "10000";
+
+    const popup = document.createElement("div");
+    popup.style.backgroundColor = "#fff";
+    popup.style.padding = "20px";
+    popup.style.borderRadius = "8px";
+    popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.2)";
+    popup.innerHTML = `
+      <p style="margin-bottom: 20px;">${message}</p>
+      <button style="padding: 5px 10px; border: none; background-color: rgb(218, 3, 3); color: #fff; border-radius: 4px; cursor: pointer;">OK</button>
+    `;
+
+    overlay.appendChild(popup);
+
+    // Al hacer clic en el botón o sobre el overlay se quita el popup
+    popup.querySelector("button").addEventListener("click", () => {
+      document.body.removeChild(overlay);
+    });
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        document.body.removeChild(overlay);
+      }
+    });
+
+    document.body.appendChild(overlay);
+  }
+
+  // Función para mostrar un popup con un campo de contraseña en lugar de un prompt
+  function showPasswordPopup(callback) {
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "10000";
+
+    const popup = document.createElement("div");
+    popup.style.backgroundColor = "#fff";
+    popup.style.padding = "20px";
+    popup.style.borderRadius = "8px";
+    popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.2)";
+    popup.innerHTML = `
+      <h3 style="margin-top: 0; margin-bottom: 10px;">Ingrese contraseña para Admin</h3>
+      <input type="password" id="adminPasswordInput" placeholder="Contraseña" style="width: 100%; padding: 8px; margin-bottom: 15px;" />
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button id="adminCancelBtn" style="padding: 5px 10px; border: none; background-color: #ccc; border-radius: 4px; cursor: pointer;">Cancelar</button>
+        <button id="adminSubmitBtn" style="padding: 5px 10px; border: none; background-color: rgb(218, 3, 3); color: #fff; border-radius: 4px; cursor: pointer;">Aceptar</button>
+      </div>
+    `;
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+
+    const cancelBtn = popup.querySelector("#adminCancelBtn");
+    cancelBtn.addEventListener("click", () => {
+      document.body.removeChild(overlay);
+    });
+
+    const submitBtn = popup.querySelector("#adminSubmitBtn");
+    submitBtn.addEventListener("click", () => {
+      const passwordInput = popup.querySelector("#adminPasswordInput").value;
+      document.body.removeChild(overlay);
+      callback(passwordInput === "1234");
+    });
+  }
+
+  // Selección de botones de autenticación en index.html
+  const btnAdmin = document.getElementById("btnAdmin");
+  const btnUser = document.getElementById("btnUser");
+
+  // Configuración para el botón Admin: Se muestra un popup personalizado para ingresar la contraseña
+  if (btnAdmin) {
+    btnAdmin.addEventListener("click", (e) => {
+      e.preventDefault();
+      showPasswordPopup((isValid) => {
+        if (isValid) {
+          isAdmin = true;
+          updateAdminOptions(isAdmin);
+        } else {
+          showErrorPopup("Contraseña incorrecta. Acceso denegado.");
+          isAdmin = false;
+          updateAdminOptions(isAdmin);
+        }
+      });
+    });
+  }
+
+  // Configuración para el botón User: desactiva el modo Admin
+  if (btnUser) {
+    btnUser.addEventListener("click", (e) => {
+      e.preventDefault();
+      isAdmin = false;
+      updateAdminOptions(isAdmin);
+    });
+  }
 });
