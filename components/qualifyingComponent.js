@@ -53,7 +53,7 @@ class QualifyingComponent extends HTMLElement {
               execution-while-out-of-viewport
               execution-while-not-rendered
               web-share
-              src="https://sketchfab.com/models/c5b5587b06694b6aaf4d986ea6fa5769/embed?autostart=1&annotation_cycle=5">
+              src="https://sketchfab.com/models/c5b5587b06694b6aaf4d986ea6fa5769/embed?autostart=1&annotation_cycle=5"
             </iframe>
             <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
               <a href="https://sketchfab.com/3d-models/aston-martin-f1-amr23-2023-c5b5587b06694b6aaf4d986ea6fa5769?utm_medium=embed&utm_campaign=share-popup&utm_content=c5b5587b06694b6aaf4d986ea6fa5769" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">aston_martin_f1_amr23_2023</a> by 
@@ -71,6 +71,7 @@ class QualifyingComponent extends HTMLElement {
     const iframe = this.shadowRoot.querySelector("#sketchfab-iframe");
     const client = new Sketchfab("1.12.1", iframe);
     client.init("c5b5587b06694b6aaf4d986ea6fa5769", {
+      parameters: "annotation_cycle=5",
       success: (api) => {
         api.start();
         this.sketchfabApi = api;

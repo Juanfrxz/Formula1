@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const dropdownMenu = document.getElementById("carsDropdownMenu");
   const btnPolePosition = document.getElementById("btnPolePosition");
   const qualifyingComponent = document.querySelector("simulation-component");
+  const btnCar3d = document.getElementById("btnCar3d");
+  const car3dComponent = document.querySelector("qualifying-component");
 
   // Define los selectores de los elementos que se inician ocultos.
   const initialHiddenSelectors = `
@@ -30,7 +32,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     circuits-component, 
     edit-car-component, 
     delete-car-component,
-    simulation-component
+    simulation-component,
+    qualifying-component
   `;
   
   // Selecciona y oculta cada uno de ellos
@@ -64,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         // Ocultar otros componentes (incluyendo circuits-component)
-        document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+        document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component, qualifying-component")
           .forEach(el => el.style.display = "none");
 
         // Mostrar el componente de Cars
@@ -120,6 +123,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error fetching vehicles: ", error);
   }
 
+  
+
   // Evento para mostrar el componente de Cars
   btnCarsDropdown.addEventListener("click", (e) => {
     e.preventDefault();
@@ -130,7 +135,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+    document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component, qualifying-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Cars
@@ -163,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Ocultar otros componentes
       document.querySelectorAll(
-        "simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component"
+        "simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component, qualifying-component"
       ).forEach(el => el.style.display = "none");
 
       // Mostrar el componente de drivers (pilotos-component)
@@ -207,7 +212,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!backgroundAudio.paused) {
           backgroundAudio.pause();
         }
-        document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component")
+        document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, teams-component, circuits-component, qualifying-component")
           .forEach(el => el.style.display = "none");
         driversComponent.style.display = "block";
         if (videoBackground) videoBackground.style.display = "none";
@@ -276,11 +281,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, pilotos-component, circuits-component")
+    document.querySelectorAll("simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, pilotos-component, circuits-component, qualifying-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de Teams
     teamsComponent.style.display = "block";
+
+    // Ocultar el video de fondo
+    if (videoBackground) {
+      videoBackground.style.display = "none";
+    }
+
+    // Ocultar la barra de música
+    if (audioControl) {
+      audioControl.style.display = "none";
+    }
+
+    // Permitir scroll y desplazar la vista
+    document.body.style.overflow = "auto";
+    carsComponent.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+   // Evento para mostrar el componente de Car 3d
+   btnCar3d.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Pausar la música
+    if (!backgroundAudio.paused) {
+      backgroundAudio.pause();
+    }
+
+    // Ocultar otros componentes (incluyendo circuits-component)
+    document.querySelectorAll("teams-component, simulation-component, create-car-component, edit-car-component, delete-car-component, cars-component, pilotos-component, circuits-component")
+      .forEach(el => el.style.display = "none");
+
+    // Mostrar el componente de Teams
+    car3dComponent.style.display = "block";
 
     // Ocultar el video de fondo
     if (videoBackground) {
@@ -308,7 +344,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       // Ocultar otros componentes
-      document.querySelectorAll("simulation-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component")
+      document.querySelectorAll("simulation-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, qualifying-component")
         .forEach(el => el.style.display = "none");
 
       // Mostrar el componente de Circuits
@@ -335,7 +371,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
 
     // Ocultar todos los componentes (incluyendo circuits-component)
-    document.querySelectorAll("simulation-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+    document.querySelectorAll("simulation-component, cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component, qualifying-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el video de fondo
@@ -368,7 +404,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Ocultar otros componentes (incluyendo circuits-component)
-    document.querySelectorAll("cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component")
+    document.querySelectorAll("cars-component, create-car-component, edit-car-component, delete-car-component, pilotos-component, teams-component, circuits-component, qualifying-component")
       .forEach(el => el.style.display = "none");
 
     // Mostrar el componente de pole position
