@@ -20,18 +20,65 @@ class CarTuningComponent extends HTMLElement {
       aeroValue: null
     };
 
-    this.shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML =/*html*/ `
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
       <style>
+
         :host {
           display: block;
           padding: 20px;
           height: 100%;
         }
+        .popup-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          animation: fadeIn 0.3s ease-in-out;
+        }
+        .popup-content {
+          background: linear-gradient(135deg, #ffffff, #f9f9f9);
+          padding: 30px;
+          border-radius: 12px;
+          text-align: center;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+          max-width: 400px;
+          width: 90%;
+          animation: slideDown 0.3s ease-in-out;
+        }
+        .close-popup-btn {
+          background-color: #007bff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          font-size: 1rem;
+          color: #fff;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          margin-top: 10px;
+        }
+        .close-popup-btn:hover {
+          background-color: #0056b3;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideDown {
+          from { transform: translateY(-20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
       </style>
       <div class="container">
         <div id="content">Cargando información...</div>
+
       </div>
     `;
   }
@@ -54,7 +101,7 @@ class CarTuningComponent extends HTMLElement {
     console.log("Clima de pista obtenido:", climaPista);
 
     if (!equipoId) {
-      contentEl.innerHTML = `<div class="alert alert-danger">No se proporcionó el id del equipo.</div>`;
+      contentEl.innerHTML = /*html*/`<div class="alert alert-danger">No se proporcionó el id del equipo.</div>`;
       return;
     }
 
@@ -62,7 +109,7 @@ class CarTuningComponent extends HTMLElement {
       // Se obtiene la información del equipo seleccionado
       const equipoData = await getEquipoById(equipoId);
       if (!equipoData) {
-        contentEl.innerHTML = `<div class="alert alert-warning">No se encontró información para el equipo seleccionado.</div>`;
+        contentEl.innerHTML = /*html*/`<div class="alert alert-warning">No se encontró información para el equipo seleccionado.</div>`;
         return;
       }
 
@@ -80,26 +127,26 @@ class CarTuningComponent extends HTMLElement {
             model3dUrl = srcMatch[1];
           }
         }
-        modelo3dHTML = `
+        modelo3dHTML = /*html*/`
           <iframe 
             src="${model3dUrl}" 
-            style="width: 100%; height: 170%; border: none;" 
+            style="width: 100%; height: 120%; border: none;" 
             frameborder="0" 
             allowfullscreen>
           </iframe>
         `;
       } else {
-        modelo3dHTML = `<span class="text-muted">No se encontró el modelo 3D para este equipo.</span>`;
+        modelo3dHTML = /*html*/`<span class="text-muted">No se encontró el modelo 3D para este equipo.</span>`;
       }
 
       // Validar que el vehículo tenga información de rendimiento
       if (!vehiculoFiltrado || !vehiculoFiltrado.rendimiento) {
-        contentEl.innerHTML = `<div class="alert alert-danger">No se encontró información de rendimiento para el vehículo.</div>`;
+        contentEl.innerHTML = /*html*/`<div class="alert alert-danger">No se encontró información de rendimiento para el vehículo.</div>`;
         return;
       }
 
       // Componente: Se muestra una estructura de dos columnas, una con el modelo 3D y otra con las opciones.
-      contentEl.innerHTML = `
+      contentEl.innerHTML = /*html*/`
         <div class="row h-100">
           <!-- Columna izquierda: modelo 3D -->
           <div class="col-md-9 d-flex justify-content-center align-items-center">
@@ -260,7 +307,8 @@ class CarTuningComponent extends HTMLElement {
             };
             await updatePartida(partidaId, { configuracion });
             console.log('Configuración guardada:', configuracion);
-            alert('¡Configuración guardada exitosamente!');
+            // En lugar de alert, se muestra el popup con el mensaje de éxito y emoji de confirmación.
+            this.showPopup('¡Configuración guardada con éxito ✅');
           } catch (error) {
             console.error('Error al guardar la configuración:', error);
             alert('Error al guardar la configuración');
@@ -273,12 +321,12 @@ class CarTuningComponent extends HTMLElement {
 
     } catch (error) {
       console.error("Error al cargar la información del equipo:", error);
-      contentEl.innerHTML = `<div class="alert alert-danger">Error al cargar la información del equipo.</div>`;
+      contentEl.innerHTML = /*html*/`<div class="alert alert-danger">Error al cargar la información del equipo.</div>`;
     }
   }
 
   buildCard(title, data) {
-    return `
+    return/*html*/ `
       <div class="col-md-4 mb-3">
         <div class="card h-100">
           <div class="card-header text-center fw-bold">${title}</div>
@@ -300,6 +348,38 @@ class CarTuningComponent extends HTMLElement {
         </div>
       </div>
     `;
+  }
+
+  showPopup(message) {
+    const popupOverlay = document.createElement('div');
+    popupOverlay.className = 'popup-overlay';
+
+    const popupContent = document.createElement('div');
+    popupContent.className = 'popup-content';
+
+    const messagePara = document.createElement('p');
+    messagePara.textContent = message;
+    popupContent.appendChild(messagePara);
+
+    const closeButton = document.createElement('button');
+    closeButton.className = 'close-popup-btn';
+    closeButton.textContent = 'Cerrar';
+    popupContent.appendChild(closeButton);
+
+    popupOverlay.appendChild(popupContent);
+    this.shadowRoot.appendChild(popupOverlay);
+
+    // Cierra el popup al hacer click en el botón "Cerrar"
+    closeButton.addEventListener('click', () => {
+      this.shadowRoot.removeChild(popupOverlay);
+    });
+
+    // También se cierra si se hace click fuera del contenido
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        this.shadowRoot.removeChild(popupOverlay);
+      }
+    });
   }
 }
 

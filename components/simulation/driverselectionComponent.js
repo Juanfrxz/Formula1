@@ -29,7 +29,6 @@ class DriverSelectionComponent extends HTMLElement {
                 }
                 .card {
                     width: 300px;
-                    height: 350px;
                     overflow: hidden;
                     border: 1px solid #ccc;
                     border-radius: 8px;
@@ -43,8 +42,8 @@ class DriverSelectionComponent extends HTMLElement {
                 }
                 .card img {
                     width: 100%;
-                    height: 200px;
-                    object-fit: cover;
+                    height: auto;
+                    object-fit: contain;
                     border-radius: 8px;
                 }
                 .card-body {
@@ -77,6 +76,57 @@ class DriverSelectionComponent extends HTMLElement {
                     font-size: 1.2rem;
                     color: #AE0202;
                 }
+                .popup-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.7);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 9999;
+                    animation: fadeIn 0.3s ease-in-out;
+                }
+                .popup-content {
+                    background: linear-gradient(135deg, #ffffff, #f9f9f9);
+                    padding: 30px;
+                    border-radius: 12px;
+                    text-align: center;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+                    max-width: 400px;
+                    width: 90%;
+                    animation: slideDown 0.3s ease-in-out;
+                }
+                .popup-content p {
+                    font-size: 1.2rem;
+                    color: #333;
+                    margin-bottom: 20px;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }
+                .close-popup-btn {
+                    background-color: #007bff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                    color: #fff;
+                    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.4);
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                }
+                .close-popup-btn:hover {
+                    background-color: #0056b3;
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes slideDown {
+                    from { transform: translateY(-20px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
             </style>
             <div class="container">
                 <div class="header">
@@ -95,12 +145,13 @@ class DriverSelectionComponent extends HTMLElement {
     async connectedCallback() {
         const team = this.getAttribute('team');
         if (!team) {
-            const container = this.shadowRoot.querySelector('#pilotos-container');
+            const container = this.shadowRoot.getElementById('pilotos-container');
             container.innerHTML = '<p class="message">Por favor, selecciona un equipo en el menú de equipos.</p>';
             return;
         }
         await this.fetchPilotos(team);
-        this.shadowRoot.querySelector('#search').addEventListener('input', (e) => this.filterPilotos(e.target.value));
+        this.shadowRoot.getElementById('search')
+            .addEventListener('input', (e) => this.filterPilotos(e.target.value));
     }
 
     async fetchPilotos(team) {
@@ -123,7 +174,7 @@ class DriverSelectionComponent extends HTMLElement {
     }
 
     updatePilotos() {
-        const container = this.shadowRoot.querySelector('#pilotos-container');
+        const container = this.shadowRoot.getElementById('pilotos-container');
         container.innerHTML = '';
         
         if (this.filteredPilotos.length === 0) {
@@ -141,20 +192,49 @@ class DriverSelectionComponent extends HTMLElement {
                     <button class="btn btn-primary select-btn">Select</button>
                 </div>
             `;
-            // Se añade el listener solo al botón de Select para despachar el custom event
             card.querySelector('.select-btn').addEventListener('click', () => this.selectDriver(piloto));
             container.appendChild(card);
         });
     }
 
     selectDriver(pilot) {
-        // Se despacha un custom event "driverSelected" que envía como detalle el driver seleccionado.
+        this.showPopup("Driver has been successfully selected ✅");
         const driverSelectedEvent = new CustomEvent('driverSelected', {
             detail: { driver: pilot },
             bubbles: true,
             composed: true
         });
         this.dispatchEvent(driverSelectedEvent);
+    }
+
+    showPopup(message) {
+        const popupOverlay = document.createElement('div');
+        popupOverlay.className = 'popup-overlay';
+
+        const popupContent = document.createElement('div');
+        popupContent.className = 'popup-content';
+
+        const messagePara = document.createElement('p');
+        messagePara.textContent = message;
+        popupContent.appendChild(messagePara);
+
+        const closeButton = document.createElement('button');
+        closeButton.className = 'close-popup-btn';
+        closeButton.textContent = 'Close';
+        popupContent.appendChild(closeButton);
+
+        popupOverlay.appendChild(popupContent);
+        this.shadowRoot.appendChild(popupOverlay);
+
+        closeButton.addEventListener('click', () => {
+            this.shadowRoot.removeChild(popupOverlay);
+        });
+
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                this.shadowRoot.removeChild(popupOverlay);
+            }
+        });
     }
 }
 

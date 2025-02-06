@@ -7,45 +7,47 @@ class ClassificationStartComponent extends HTMLElement {
         // Array para almacenar los resultados de cada simulación
         this.results = [];
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
+        this.shadowRoot.innerHTML =/*html*/ `
             <!-- Importando Bootstrap desde CDN -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
             <style>
-                /* Se asegura que el componente ocupe toda la altura de la ventana */
                 :host {
                     display: block;
-                    height: 100%;
+                    width: 80vw;
+                    height: 100vh;
+                    margin: 0;
+                    padding: 0;
                 }
-                /* Contenedor centrado en ambos ejes */
-                .centered-container {
+                .full-screen-container {
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
                     align-items: center;
+                    justify-content: center;
+                    width: 100%;
                     height: 100%;
+                    margin: 0;
+                    padding: 0;
                 }
-                /* Estilo para la tabla con bordes redondeados */
                 table {
+                    width: auto;
+                    margin: 0 auto;
                     border-collapse: separate;
                     border-spacing: 0;
                     border-radius: 10px;
                     overflow: hidden;
                 }
-                /* Encabezado centrado */
                 thead th {
                     text-align: center;
                 }
-                /* Cuerpo de la tabla: celda en gris claro para cuando esté vacía */
                 tbody tr td {
                     text-align: center;
                     background-color: #f2f2f2;
                 }
-                /* Margen superior para separar el boton de la tabla */
                 button#start-btn {
                     margin-top: 20px;
                 }
             </style>
-            <div class="centered-container">
+            <div class="full-screen-container">
                 <table class="table table-striped table-bordered">
                     <thead class="thead-dark">
                         <tr>
@@ -60,7 +62,7 @@ class ClassificationStartComponent extends HTMLElement {
                         </tr>
                     </tbody>
                 </table>
-                <button id="start-btn" class="btn btn-primary">Start</button>
+                <button id="start-btn" class="btn btn-danger">Start</button>
             </div>
         `;
 
@@ -98,8 +100,17 @@ class ClassificationStartComponent extends HTMLElement {
         this.partidaId = partidaId;
     }
 
-    // Función de ejemplo que se ejecuta al hacer clic en el botón "Start"
+    // Método que muestra un popup de carga durante 3 segundos y luego inicia las acciones
     async startActions() {
+        // Mostrar popup de carga
+        this.showLoadingPopup();
+
+        // Esperar 3 segundos (3000 ms)
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        // Ocultar popup de carga
+        this.hideLoadingPopup();
+
         console.log("Iniciando acciones con la partida ID:", this.partidaId);
         const datos = await obtenerDatosPartidaYLongitud(this.partidaId);
         if (!datos) {
@@ -174,6 +185,37 @@ class ClassificationStartComponent extends HTMLElement {
                 ${rowsHtml}
             </tbody>
         `;
+    }
+
+    // Muestra un popup de carga en el componente
+    showLoadingPopup() {
+        let overlay = this.shadowRoot.getElementById('loading-popup');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'loading-popup';
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.background = 'rgba(0, 0, 0, 0.5)';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.zIndex = '1000';
+            overlay.innerHTML = `<div style="background: #fff; padding: 20px; border-radius: 8px;">Cargando...</div>`;
+            this.shadowRoot.appendChild(overlay);
+        } else {
+            overlay.style.display = 'flex';
+        }
+    }
+
+    // Oculta el popup de carga
+    hideLoadingPopup() {
+        const overlay = this.shadowRoot.getElementById('loading-popup');
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
     }
 }
 
