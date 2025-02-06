@@ -47,7 +47,7 @@ class CreateCarComponent extends HTMLElement {
             e.preventDefault();
             const newCar = this.getFormData();
             await addVehiculo(newCar);
-            alert("Vehículo registrado con éxito");
+            alert("Vehicle registered successfully");
             this.style.display = "none";
             document.querySelector("cars-component").style.display = "block";
         });
@@ -125,7 +125,7 @@ class CreateCarComponent extends HTMLElement {
                 }
             </style>
             <div class="container">
-                <h2>Registrar Nuevo Vehículo</h2>
+                <h2>Register New Vehicle</h2>
                 <form id="carForm">
                     <div class="accordion" id="carAccordion">
                         <div class="accordion-item">
@@ -135,26 +135,26 @@ class CreateCarComponent extends HTMLElement {
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#generalInfo" 
                                         aria-expanded="true">
-                                    Información General
+                                        General Information
                                 </button>
                             </h2>
                             <div id="generalInfo" class="accordion-collapse collapse show">
                                 <div class="accordion-body">
-                                    <label>Equipo:</label>
+                                    <label>Team:</label>
                                     <select id="equipo" class="form-control">
                                         ${this.equipos.map(eq => `<option value="${eq.id}">${eq.nombre}</option>`).join('')}
                                     </select>
-                                    <label>Pilotos:</label>
+                                    <label>Pilots:</label>
                                     <select id="pilotos" class="form-control" multiple></select>
-                                    <label>Modelo:</label>
+                                    <label>Model:</label>
                                     <input type="text" id="modelo" class="form-control" required>
-                                    <label>Motor:</label>
+                                    <label>Engine:</label>
                                     <input type="text" id="motor" class="form-control" required>
-                                    <label>Velocidad Máxima (km/h):</label>
+                                    <label>Maximum speed (km/h):</label>
                                     <input type="number" id="velocidad" class="form-control" required>
-                                    <label>Aceleración 0-100 (s):</label>
+                                    <label>Acceleration 0-100 (s):</label>
                                     <input type="number" step="0.1" id="aceleracion" class="form-control" required>
-                                    <label>Imagen (URL):</label>
+                                    <label>Image (URL):</label>
                                     <input type="text" id="imagen" class="form-control">
                                 </div>
                             </div>
@@ -166,7 +166,7 @@ class CreateCarComponent extends HTMLElement {
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#performance_normal" 
                                         aria-expanded="false">
-                                    Rendimiento: Conducción normal
+                                        Performance: Normal driving
                                 </button>
                             </h2>
                             <div id="performance_normal" class="accordion-collapse collapse">
@@ -182,10 +182,11 @@ class CreateCarComponent extends HTMLElement {
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#performance_agresiva" 
                                         aria-expanded="false">
-                                    Rendimiento: Conducción agresiva
+                                        Performance: Aggressive driving
                                 </button>
                             </h2>
                             <div id="performance_agresiva" class="accordion-collapse collapse">
+
                                 <div class="accordion-body">
                                     ${this.renderPerformanceInputs("agresiva", "Conducción Agresiva")}
                                 </div>
@@ -198,9 +199,10 @@ class CreateCarComponent extends HTMLElement {
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#performance_ahorro" 
                                         aria-expanded="false">
-                                    Rendimiento: Ahorro de combustible
+                                        Performance: Fuel savings
                                 </button>
                             </h2>
+
                             <div id="performance_ahorro" class="accordion-collapse collapse">
                                 <div class="accordion-body">
                                     ${this.renderPerformanceInputs("ahorro", "Ahorro de Combustible")}
@@ -208,20 +210,22 @@ class CreateCarComponent extends HTMLElement {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Guardar</button>
-                    <button type="button" class="btn btn-secondary mt-3" id="cancelCreateCar">Cancelar</button>
+                    <button type="submit" class="btn btn-primary mt-3">Save</button>
+                    <button type="button" class="btn btn-secondary mt-3" id="cancelCreateCar">Cancel</button>
                 </form>
             </div>
+
         `;
     }
 
     renderPerformanceInputs(prefix, label) {
         return /*html*/`
             <h4>${label}</h4>
-            <label>Velocidad Promedio (km/h):</label>
+            <label>Average speed (km/h):</label>
             <input type="number" id="${prefix}_velocidad" class="form-control" required>
-            <label>Consumo Combustible:</label>
-            <input type="number" id="${prefix}_comb_seco" class="form-control" placeholder="Seco" required>
+            <label>Fuel consumption:</label>
+            <input type="number" id="${prefix}_comb_seco" class="form-control" placeholder="Dry" required>
+
             <input type="number" id="${prefix}_comb_lluvioso" class="form-control" placeholder="Lluvioso" required>
             <input type="number" id="${prefix}_comb_extremo" class="form-control" placeholder="Extremo" required>
             <label>Desgaste Neumáticos:</label>

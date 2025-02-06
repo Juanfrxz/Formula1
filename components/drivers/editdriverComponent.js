@@ -4,30 +4,30 @@ class RacerEditComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
+        this.shadowRoot.innerHTML = /*html*/`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
             <div class="container p-3">
-                <h2>Editar Piloto de F1</h2>
+                <h2>Edit F1 Pilot</h2>
                 <div class="mb-3">
-                    <label class="form-label">Nombre</label>
+                    <label class="form-label">Name</label>
                     <select id="name" class="form-select"></select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Equipo</label>
+                    <label class="form-label">Team</label>
                     <select id="team" class="form-select"></select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Rol</label>
+                    <label class="form-label">Role</label>
                     <select id="role" class="form-select">
-                        <option value="Lider">Líder</option>
-                        <option value="Escudero">Escudero</option>
+                        <option value="Lider">Leader</option>
+                        <option value="Escudero">Second Driver</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Imagen del Piloto</label>
-                    <input type="text" id="foto" class="form-control" placeholder="Ingresa URL de la imagen" />
+                    <label class="form-label">Pilot Image</label>
+                    <input type="text" id="foto" class="form-control" placeholder="Enter image URL" />
                 </div>
-                <button id="update-racer" class="btn btn-primary">Actualizar Piloto</button>
+                <button id="update-racer" class="btn btn-primary">Update Pilot</button>
                 <div id="confirmation-message" class="mt-3 text-success" style="display: none;"></div>
             </div>
         `;
@@ -109,7 +109,7 @@ class RacerEditComponent extends HTMLElement {
             await updateEquipo(team.id, { pilotos: team.pilotos });
         }
 
-        confirmationMessage.textContent = `Piloto ${name} actualizado correctamente.`;
+        confirmationMessage.textContent = `Pilot ${name} updated successfully.`;
         confirmationMessage.style.display = 'block';
         
         // Emitir evento general indicando que se actualizó un piloto

@@ -52,9 +52,9 @@ class CarsComponent extends HTMLElement {
                 <img src="${car.imagen}" alt="${car.modelo}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">${car.modelo}</h5>
-                    <p class="card-text">Equipo: ${this.getTeamName(car.equipo)}</p>
+                    <p class="card-text">Team: ${this.getTeamName(car.equipo)}</p>
                     <button class="btn btn-primary buttonDetail" data-id="${car.id}" data-name="${car.modelo}">
-                        Ver Detalles
+                    See Details
                     </button>
                 </div>
             `;
@@ -76,7 +76,7 @@ class CarsComponent extends HTMLElement {
             return;
         }
 
-        // Extraer la URL del modelo 3D si viene como un string con el iframe completo
+        // Extraer la URL del modelo 3D en caso de que esté embebida en un iframe
         let model3dUrl = car.model3d;
         if (car.model3d.includes('src="')) {
             const srcMatch = car.model3d.match(/src="([^"]+)"/);
@@ -86,27 +86,73 @@ class CarsComponent extends HTMLElement {
         }
 
         modalTitle.textContent = car.modelo;
-        modalBody.innerHTML = /*html*/`
-            <p><strong>Equipo:</strong> ${this.getTeamName(car.equipo)}</p>
-            <p><strong>Motor:</strong> ${car.motor}</p>
-            <p><strong>Velocidad Máxima:</strong> ${car.velocidad_maxima_kmh} km/h</p>
-            <p><strong>Aceleración 0-100 km/h:</strong> ${car.aceleracion_0_100} s</p>
-            <h5>Rendimiento</h5>
-            <ul>
-                <li><strong>Conducción Normal:</strong> Velocidad Promedio: ${car.rendimiento.conduccion_normal.velocidad_promedio_kmh} km/h</li>
-                <li><strong>Conducción Agresiva:</strong> Velocidad Promedio: ${car.rendimiento.conduccion_agresiva.velocidad_promedio_kmh} km/h</li>
-                <li><strong>Ahorro de Combustible:</strong> Velocidad Promedio: ${car.rendimiento.ahorro_combustible.velocidad_promedio_kmh} km/h</li>
-            </ul>
-            <div class="mt-3">
-                <iframe 
-                    src="${model3dUrl}"
-                    style="width: 100%; height: 400px; border: none;"
-                    frameborder="0"
-                    allowfullscreen>
-                </iframe>
+
+        // Construir el HTML del modal
+        modalBody.innerHTML = `
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Columna izquierda (8/12): Modelo 3D con overlay de carga -->
+                    <div class="col-md-8" style="position: relative;">
+                        <iframe 
+                            src="${model3dUrl}" 
+                            style="width:100%; height:600px; border:none;" 
+                            frameborder="0" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <!-- Columna derecha (4/12): Información del vehículo -->
+                    <div class="col-md-4">
+                        <h3>Vehicle Details</h3>
+                        <p><strong>Team:</strong> ${this.getTeamName(car.equipo)}</p>
+                        <p><strong>Engine:</strong> ${car.motor}</p>
+                        <p><strong>Maximum speed:</strong> ${car.velocidad_maxima_kmh} km/h</p>
+                        <p><strong>Acceleration 0-100 km/h:</strong> ${car.aceleracion_0_100} s</p>
+                        <h5>Performance</h5>
+                        <ul>
+                            <li><strong>Normal Driving:</strong> Average Speed: ${car.rendimiento.conduccion_normal.velocidad_promedio_kmh} km/h</li>
+                            <li><strong>Aggressive Driving:</strong> Average Speed: ${car.rendimiento.conduccion_agresiva.velocidad_promedio_kmh} km/h</li>
+                            <li><strong>Fuel Savings:</strong> Average Speed: ${car.rendimiento.ahorro_combustible.velocidad_promedio_kmh} km/h</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         `;
 
+        // Agregar un overlay de carga en la columna izquierda donde se muestra el modelo 3D
+        const leftColumn = modalBody.querySelector('.col-md-8');
+        if (leftColumn) {
+            // Crear el overlay con spinner (utilizando la clase spinner-border de Bootstrap)
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.style.position = 'absolute';
+            loadingOverlay.style.top = '0';
+            loadingOverlay.style.left = '0';
+            loadingOverlay.style.width = '100%';
+            loadingOverlay.style.height = '100%';
+            loadingOverlay.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+            loadingOverlay.style.display = 'flex';
+            loadingOverlay.style.justifyContent = 'center';
+            loadingOverlay.style.alignItems = 'center';
+            loadingOverlay.innerHTML = `<div class="spinner-border text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`;
+            leftColumn.appendChild(loadingOverlay);
+
+            // Una vez que el iframe cargue, se oculta el overlay
+            const iframe = leftColumn.querySelector('iframe');
+            if (iframe) {
+                iframe.onload = function() {
+                    loadingOverlay.style.display = 'none';
+                }
+            }
+        }
+
+        // Asegurarse de que el modal sea extra grande (opcional)
+        const modalDialog = modalElement.querySelector('.modal-dialog');
+        if (modalDialog) {
+            modalDialog.classList.add('modal-xl');
+        }
+
+        // Mostrar el modal
         const modal = new bootstrap.Modal(modalElement);
         modal.show();
     }
@@ -137,11 +183,11 @@ class CarsComponent extends HTMLElement {
                 modalContainer.classList.add('modal', 'fade');
                 modalContainer.tabIndex = -1;
                 modalContainer.setAttribute('aria-hidden', 'true');
-                modalContainer.innerHTML = `
+                modalContainer.innerHTML =/*html*/ `
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Registrar Nuevo Vehículo</h5>
+                                <h5 class="modal-title">Register New Vehicle</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -173,11 +219,11 @@ class CarsComponent extends HTMLElement {
                 modalContainer.classList.add('modal', 'fade');
                 modalContainer.tabIndex = -1;
                 modalContainer.setAttribute('aria-hidden', 'true');
-                modalContainer.innerHTML = `
+                modalContainer.innerHTML = /*html*/`
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Editar Vehículo</h5>
+                                <h5 class="modal-title">Edit Vehicle</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -213,7 +259,7 @@ class CarsComponent extends HTMLElement {
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Eliminar Vehículo</h5>
+                                <h5 class="modal-title">Delete Vehicle</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -261,7 +307,16 @@ class CarsComponent extends HTMLElement {
                     padding: 20px; 
                     margin-top: 90px; 
                 }
-
+                /* Contenedor para el header con título y dropdown */
+                .header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .header h2 {
+                    margin: 0;
+                }
                 /* Estilos de las tarjetas */
                 .card { 
                     background-color: none;
@@ -271,71 +326,55 @@ class CarsComponent extends HTMLElement {
                     transition: box-shadow 0.3s;
                     border-color: #444;
                 }
-
                 .card:hover {
                     box-shadow: 0 0 15px rgba(218, 3, 3, 0.6);
                 }
-
                 .card img { 
                     width: 100%; 
-                    height: auto; /* Se muestra la imagen completa */
+                    height: auto;
                 }
-
                 /* Estilos del contenedor con scroll */
                 .list-container {
                     max-height: 70vh;
                     overflow-y: auto;
                     overflow-x: hidden;
                     scrollbar-width: thin;
-                    scrollbar-color: rgb(218, 3, 3) ;
+                    scrollbar-color: rgb(218, 3, 3);
                 }
-
-                /* Estilos para navegadores Webkit */
                 .list-container::-webkit-scrollbar {
                     width: 8px;
                 }
-
                 .list-container::-webkit-scrollbar-track {
-                    background: #2a2a2a;
+                    background: rgb(221, 56, 56);
                 }
-
                 .list-container::-webkit-scrollbar-thumb {
                     background-color: rgb(218, 3, 3);
                     border-radius: 8px;
                 }
-
                 .list-container::-webkit-scrollbar-thumb:hover {
                     background-color: #ff0000;
                 }
-
-                /* Ajustes para inputs y selects */
                 .form-control, .form-select {
                     background-color: #3a3a3a;
                     color: white;
                     border-color: #444;
                 }
-
                 .form-control:focus, .form-select:focus {
                     background-color: #3a3a3a;
                     color: white;
                     border-color: rgb(218, 3, 3);
                     box-shadow: 0 0 0 0.25rem rgba(218, 3, 3, 0.25);
                 }
-
-                /* Estilos del botón */
                 .buttonDetail {
                     background-color: rgb(218, 3, 3) !important;
                     color: white !important;
                     border: 1px solid transparent !important;
                 }
-
                 .buttonDetail:hover {
                     background-color: #2a2a2a !important;
                     color: white !important;
                     border: 1px solid rgb(218, 3, 3) !important;
                 }
-
-                /* Efecto shine en las tarjetas */
                 .card:hover::before {
                     content: "";
                     position: absolute;
@@ -343,11 +382,10 @@ class CarsComponent extends HTMLElement {
                     left: -100%;
                     width: 200%;
                     height: 100%;
-                    background: linear-gradient(120deg, transparent, var(--shine-color, rgb(218, 3, 3)), transparent);
+                    background: linear-gradient(120deg, transparent, var(--shine-color, rgb(202, 50, 50)), transparent);
                     transform: skewX(-20deg);
                     animation: shine 0.75s forwards;
                 }
-
                 @keyframes shine {
                     0% { left: -100%; }
                     100% { left: 100%; }
@@ -357,18 +395,20 @@ class CarsComponent extends HTMLElement {
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
             
             <div class="container">
-                <h2>Gestión de Vehículos</h2>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Opciones
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" id="create-car" href="#">Crear Vehículo</a></li>
-                        <li><a class="dropdown-item" id="edit-car" href="#">Editar Vehículo</a></li>
-                        <li><a class="dropdown-item" id="delete-car" href="#">Eliminar Vehículo</a></li>
-                    </ul>
+                <div class="header">
+                    <h2>Vehicle Management</h2>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Options
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="create-car" href="#">Create Vehicle</a></li>
+                            <li><a class="dropdown-item" id="edit-car" href="#">Edit Vehicle</a></li>
+                            <li><a class="dropdown-item" id="delete-car" href="#">Delete Vehicle</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <input type="text" id="search" placeholder="Buscar vehículo..." class="form-control my-3">
+                <input type="text" id="search" placeholder="Search vehicle..." class="form-control my-3">
                 <div class="list-container">
                     <div id="cars-list" class="row"></div>
                 </div>

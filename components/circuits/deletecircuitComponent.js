@@ -20,18 +20,18 @@ class DeleteCircuitComponent extends HTMLElement {
       const circuitSelect = this.shadowRoot.getElementById("circuitSelect");
       const selectedId = circuitSelect.value;
       if (!selectedId) {
-        alert("Por favor, seleccione un circuito para eliminar.");
+        alert("Please select a circuit to delete.");
         return;
       }
-      if (confirm("¿Está seguro de eliminar el circuito seleccionado?")) {
+      if (confirm("Are you sure you want to delete the selected circuit?")) {
         try {
           await deleteCircuito(selectedId);
-          alert("Circuito eliminado con éxito.");
+          alert("Circuit deleted successfully.");
           this.circuits = await getCircuitos();
           this.populateSelect();
         } catch (error) {
-          console.error("Error al eliminar el circuito:", error);
-          alert("Error al eliminar el circuito.");
+          console.error("Error deleting the circuit:", error);
+          alert("Error deleting the circuit.");
         }
       }
     });
@@ -44,7 +44,7 @@ class DeleteCircuitComponent extends HTMLElement {
   populateSelect() {
     const circuitSelect = this.shadowRoot.getElementById("circuitSelect");
     circuitSelect.innerHTML =
-      `<option value="">Seleccione un circuito</option>` +
+      `<option value="">Select a circuit</option>` +
       this.circuits.map(circuit => `<option value="${circuit.id}">${circuit.nombre}</option>`).join('');
   }
 
@@ -52,16 +52,16 @@ class DeleteCircuitComponent extends HTMLElement {
     this.shadowRoot.innerHTML = /*html*/ `
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
       <div class="container">
-        <h2 class="mb-4">Eliminar Circuito</h2>
+        <h2 class="mb-4">Delete Circuit</h2>
         <div class="mb-3">
-          <label for="circuitSelect" class="form-label">Seleccione un circuito:</label>
+          <label for="circuitSelect" class="form-label">Select a circuit:</label>
           <select id="circuitSelect" class="form-select">
-            <option value="">Cargando circuitos...</option>
+            <option value="">Loading circuits...</option>
           </select>
         </div>
         <div class="d-flex gap-2">
-          <button id="deleteBtn" class="btn btn-danger">Eliminar</button>
-          <button id="cancelDeleteCircuit" class="btn btn-secondary">Cancelar</button>
+          <button id="deleteBtn" class="btn btn-danger">Delete</button>
+          <button id="cancelDeleteCircuit" class="btn btn-secondary">Cancel</button>
         </div>
       </div>
     `;

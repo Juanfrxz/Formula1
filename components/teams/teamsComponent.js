@@ -10,7 +10,7 @@ class TeamsComponent extends HTMLElement {
         this.filteredTeams = [];
         this.attachShadow({ mode: 'open' });
         
-        this.shadowRoot.innerHTML = `
+        this.shadowRoot.innerHTML = /*html*/`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
             <style>
                 :host {
@@ -58,22 +58,23 @@ class TeamsComponent extends HTMLElement {
                     max-height: 70vh;
                     overflow-y: auto; 
                     overflow-x: hidden;
-                    /* Estilos para la barra de scroll en Firefox */
+                    /* Aplicamos la personalización únicamente en Firefox */
                     scrollbar-width: thin;
-                    scrollbar-color: rgb(218, 3, 3) #2a2a2a;
+                    scrollbar-color: rgb(218, 3, 3) auto;
                 }
                 .list-container::-webkit-scrollbar {
                     width: 8px;
                 }
-                .list-container::-webkit-scrollbar-track {
+                /* Se elimina la personalización de la pista para que se use la apariencia por defecto */
+                /* .list-container::-webkit-scrollbar-track {
                     background: transparent;
-                }
+                } */
                 .list-container::-webkit-scrollbar-thumb {
-                    background-color: #ccc;
+                    background-color: rgb(218, 3, 3);
                     border-radius: 15px;
                 }
                 .list-container::-webkit-scrollbar-thumb:hover {
-                    background-color: #bbb;
+                    background-color: rgb(180, 0, 0);
                 }
                 /* Nuevo estilo para que las tarjetas realicen wrap */
                 #teams-container {
@@ -86,13 +87,15 @@ class TeamsComponent extends HTMLElement {
             <div class="container">
                 <div class="header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h2>Equipos Registrados</h2>
-                        <input type="text" id="search" class="form-control w-50" placeholder="Buscar equipo...">
+                        <h2>Registered Teams</h2>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary" id="btnCreateTeam">Create</button>
+                            <button class="btn btn-warning" id="btnModifyTeam">Modify</button>
+                            <button class="btn btn-danger" id="btnDeleteTeam">Delete</button>
+                        </div>
                     </div>
                     <div class="mt-3">
-                        <button class="btn btn-primary" id="btnCreateTeam">Create</button>
-                        <button class="btn btn-warning" id="btnModifyTeam">Modify</button>
-                        <button class="btn btn-danger" id="btnDeleteTeam">Delete</button>
+                        <input type="text" id="search" class="form-control w-100" placeholder="Search team...">
                     </div>
                 </div>
                 <div class="list-container">
@@ -150,9 +153,9 @@ class TeamsComponent extends HTMLElement {
         this.filteredTeams.forEach(team => {
             const card = document.createElement('div');
             card.className = 'card';
-            card.innerHTML = `
+            card.innerHTML = /*html*/`
                 <h5 class="card-title my-3">${team.nombre}</h5>
-                <img src="${team.imagen}" alt="Imagen de ${team.nombre}">
+                <img src="${team.imagen}" alt="Image of ${team.nombre}">
                 <div class="card-body">
                     <!-- Información adicional del equipo si es necesario -->
                 </div>

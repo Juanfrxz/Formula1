@@ -11,28 +11,28 @@ class EditTeamComponent extends HTMLElement {
             @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
         </style>
         <div class="container mt-4">
-            <h3 class="mb-3">Editar Equipo</h3>
+            <h3 class="mb-3">Edit Team</h3>
             <select class="form-select mb-3" id="team-select"></select>
             <form class="border p-3" id="edit-form" style="display: none;">
                 <div class="mb-3">
-                    <label class="form-label">Nombre</label>
+                    <label class="form-label">Name</label>
                     <input class="form-control" type="text" id="nombre" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">País</label>
+                    <label class="form-label">Country</label>
                     <input class="form-control" type="text" id="pais" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Motor</label>
+                    <label class="form-label">Engine</label>
                     <input class="form-control" type="text" id="motor" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Imagen URL</label>
+                    <label class="form-label">Image URL</label>
                     <input class="form-control" type="url" id="imagen" required>
                 </div>
-                <button class="btn btn-primary" type="submit">Actualizar</button>
+                <button class="btn btn-primary" type="submit">Update</button>
                 <div id="confirmation-message" class="alert alert-success mt-3" style="display: none;">
-                    ¡Equipo actualizado correctamente!
+                    Team updated successfully!
                 </div>
             </form>
         </div>
@@ -84,7 +84,7 @@ class EditTeamComponent extends HTMLElement {
 
     updateDropdown() {
         const select = this.shadowRoot.querySelector('#team-select');
-        select.innerHTML = '<option value="">Seleccione un equipo</option>' +
+        select.innerHTML = '<option value="">Select a team</option>' +
             this.equipos.map(e => `<option value="${e.id}">${e.nombre}</option>`).join('');
     }
 

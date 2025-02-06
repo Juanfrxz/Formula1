@@ -7,27 +7,27 @@ class RacerCreateComponent extends HTMLElement {
         this.shadowRoot.innerHTML = /*html*/`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
             <div class="container p-3">
-                <h2>Crear Piloto de F1</h2>
+                <h2>Create F1 Driver</h2>
                 <div class="mb-3">
-                    <label class="form-label">Nombre</label>
+                    <label class="form-label">Name</label>
                     <input type="text" id="name" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Equipo</label>
+                    <label class="form-label">Team</label>
                     <select id="team" class="form-select"></select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Rol</label>
+                    <label class="form-label">Role</label>
                     <select id="role" class="form-select">
-                        <option value="Lider">Líder</option>
-                        <option value="Escudero">Escudero</option>
+                        <option value="Lider">Leader</option>
+                        <option value="Escudero">Second Driver</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Imagen del Piloto</label>
-                    <input type="text" id="foto" class="form-control" placeholder="Ingresa URL de la imagen" />
+                    <label class="form-label">Driver Image</label>
+                    <input type="text" id="foto" class="form-control" placeholder="Enter image URL" />
                 </div>
-                <button id="create-racer" class="btn btn-primary">Crear Piloto</button>
+                <button id="create-racer" class="btn btn-primary">Create Driver</button>
                 <div id="confirmation-message" class="mt-3 text-success" style="display: none;"></div>
             </div>
         `;
@@ -68,10 +68,10 @@ class RacerCreateComponent extends HTMLElement {
         team.pilotos = team.pilotos ? [...team.pilotos, newId] : [newId];
         await updateEquipo(teamId, { pilotos: team.pilotos });
 
-        confirmationMessage.textContent = `Piloto ${name} agregado correctamente al equipo.`;
+        confirmationMessage.textContent = `Driver ${name} has been successfully added to the team.`;
         confirmationMessage.style.display = 'block';
 
-        // Emitir evento general indicando que se creó un piloto
+        // Emit a general event indicating a driver was created
         this.dispatchEvent(new CustomEvent("pilotoChanged", {
             bubbles: true,
             detail: {

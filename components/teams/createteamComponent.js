@@ -11,29 +11,29 @@ class CreateTeamComponent extends HTMLElement {
         <div class="container mt-4">
             <div class="card">
                 <div class="card-header text-center">
-                    <h3>Crear Equipo</h3>
+                    <h3>Create Team</h3>
                 </div>
                 <div class="card-body">
                     <form id="team-form">
                         <div class="mb-3">
-                            <label class="form-label">Nombre</label>
-                            <input type="text" id="nombre" class="form-control" placeholder="Ingrese el nombre del equipo" required>
+                            <label class="form-label">Name</label>
+                            <input type="text" id="nombre" class="form-control" placeholder="Enter the team name" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">País</label>
-                            <input type="text" id="pais" class="form-control" placeholder="Ingrese el país del equipo" required>
+                            <label class="form-label">Country</label>
+                            <input type="text" id="pais" class="form-control" placeholder="Enter the team country" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Motor</label>
-                            <input type="text" id="motor" class="form-control" placeholder="Ingrese el motor del equipo" required>
+                            <label class="form-label">Engine</label>
+                            <input type="text" id="motor" class="form-control" placeholder="Enter the team engine" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Imagen URL</label>
-                            <input type="url" id="imagen" class="form-control" placeholder="Ingrese la URL de la imagen" required>
+                            <label class="form-label">Image URL</label>
+                            <input type="url" id="imagen" class="form-control" placeholder="Enter the image URL" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Crear Equipo</button>
+                        <button type="submit" class="btn btn-primary w-100">Create Team</button>
                         <div id="confirmation-message" class="alert alert-success mt-3" style="display: none;">
-                            ¡Equipo creado con éxito!
+                            Team successfully created!
                         </div>
                     </form>
                 </div>
@@ -69,7 +69,7 @@ class CreateTeamComponent extends HTMLElement {
         this.showConfirmationMessage();
         this.shadowRoot.querySelector('#team-form').reset();
 
-        // Despachar evento general indicando que se creó un equipo
+        // Dispatch a general event indicating that a team was created.
         this.dispatchEvent(new CustomEvent("teamChanged", {
             bubbles: true,
             detail: {

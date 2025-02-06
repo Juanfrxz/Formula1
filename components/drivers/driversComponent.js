@@ -11,7 +11,7 @@ class PilotosComponent extends HTMLElement {
         this.equipos = [];
         this.attachShadow({ mode: 'open' });
         
-        this.shadowRoot.innerHTML = `
+        this.shadowRoot.innerHTML = /*html*/`
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
             <style>
                 :host {
@@ -21,7 +21,7 @@ class PilotosComponent extends HTMLElement {
                     width: 100%;
                     padding: 1rem;
                 }
-                /* Contenedor para header (título, búsqueda y botones) */
+                /* Contenedor para header (título, botones y búsqueda) */
                 .header {
                     margin-bottom: 1rem;
                 }
@@ -69,7 +69,7 @@ class PilotosComponent extends HTMLElement {
                     
                     /* Estilo para Firefox */
                     scrollbar-width: thin;
-                    scrollbar-color: rgb(218, 3, 3) #2a2a2a;
+                    scrollbar-color: rgb(218, 3, 3) none;
                 }
                 /* Estilos para navegadores Webkit (Chrome, Safari, Opera) */
                 .list-container::-webkit-scrollbar {
@@ -90,12 +90,14 @@ class PilotosComponent extends HTMLElement {
                 <div class="header">
                     <div class="d-flex justify-content-between align-items-center">
                         <h2>Pilotos Registrados</h2>
-                        <input type="text" id="search" class="form-control w-50" placeholder="Buscar piloto...">
+                        <div>
+                            <button class="btn btn-primary" id="btnCreateDriver">Create</button>
+                            <button class="btn btn-warning" id="btnModifyDriver">Modify</button>
+                            <button class="btn btn-danger" id="btnDeleteDriver">Delete</button>
+                        </div>
                     </div>
                     <div class="mt-3">
-                        <button class="btn btn-primary" id="btnCreateDriver">Create</button>
-                        <button class="btn btn-warning" id="btnModifyDriver">Modify</button>
-                        <button class="btn btn-danger" id="btnDeleteDriver">Delete</button>
+                        <input type="text" id="search" class="form-control" placeholder="Buscar piloto...">
                     </div>
                 </div>
                 <!-- Envolvemos el contenedor de tarjetas en un contenedor scrollable -->
@@ -162,7 +164,7 @@ class PilotosComponent extends HTMLElement {
         this.filteredPilotos.forEach(piloto => {
             const card = document.createElement('div');
             card.className = 'col';
-            card.innerHTML = `
+            card.innerHTML = /*html*/`
                 <div class="card p-3 text-center" style="cursor: pointer;">
                     <img src="${piloto.foto}" alt="Foto de ${piloto.nombre}" class="img-fluid" style="height:260px; object-fit: cover;">
                     <h5 class="card-title" style="margin-top:1rem;">${piloto.nombre}</h5>
@@ -287,8 +289,13 @@ class PilotosComponent extends HTMLElement {
         card.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
         card.style.maxWidth = '400px';
         card.style.width = '90%';
-        card.style.minHeight = '500px';  // Altura mínima aumentada
+        card.style.minHeight = '500px';
         card.style.textAlign = 'center';
+
+        // Configurar estado inicial para la animación (fade in + scale)
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.8)';
+        card.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
 
         // Obtener el nombre del equipo usando la función getEquipos
         let teamName = '';
@@ -302,7 +309,7 @@ class PilotosComponent extends HTMLElement {
         }
 
         // Incluir el contenido en la carta
-        card.innerHTML = `
+        card.innerHTML = /*html*/`
             <h2 style="text-align: center;">${driver.nombre}</h2>
             <img src="${driver.foto}" alt="Foto de ${driver.nombre}" style="width:100%; max-height:350px; object-fit:cover; border-radius:8px; margin: 10px 0;">
             <p><strong>Equipo:</strong> ${teamName}</p>
@@ -317,6 +324,12 @@ class PilotosComponent extends HTMLElement {
 
         overlay.appendChild(card);
         document.body.appendChild(overlay);
+
+        // Forzar el reflow y luego iniciar la animación
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+        }, 10);
 
         // Cerrar el popup al hacer clic fuera de la carta
         overlay.addEventListener('click', (e) => {

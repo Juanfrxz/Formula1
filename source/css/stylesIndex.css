@@ -242,3 +242,42 @@ body {
 .btn-dynamic:focus {
   outline: none;
 }
+
+/* Estilos para la pantalla de carga */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff; /* Puedes modificar el color de fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Por encima de todos los elementos */
+  opacity: 1;
+  transition: opacity 0.5s ease; /* Duración y tipo de transición */
+}
+
+#loader.fade-out {
+  opacity: 0;
+}
+
+/* Nuevo estilo para el auto de F1 */
+#loader-car {
+  width: 100px; /* Ajusta el tamaño según convenga */
+  animation: cardrive 1.5s infinite linear;
+}
+
+/* Ejemplo de animación: movimiento lateral para darle dinamismo */
+@keyframes cardrive {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

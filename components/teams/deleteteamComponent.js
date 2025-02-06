@@ -12,31 +12,31 @@ class DeleteTeamComponent extends HTMLElement {
             @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
         </style>
         <div class="container mt-4">
-            <h3 class="mb-3">Eliminar Equipo</h3>
+            <h3 class="mb-3">Delete Team</h3>
             <select class="form-select mb-3" id="team-select"></select>
-            <button class="btn btn-danger" id="delete-button" disabled>Eliminar</button>
+            <button class="btn btn-danger" id="delete-button" disabled>Delete</button>
             <div id="confirmation-message" class="alert alert-success mt-3" style="display: none;">
-                ¡Equipo eliminado correctamente!
+                Team successfully deleted!
             </div>
         </div>
         `;
 
-        // Agregar el modal al DOM principal (fuera del shadowRoot)
+        // Add the modal to the main DOM (outside the shadowRoot)
         if (!document.querySelector("#confirmModal")) {
             document.body.insertAdjacentHTML("beforeend",/*html*/ `
                 <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="confirmModalLabel">Confirmar eliminación</h5>
+                                <h5 class="modal-title" id="confirmModalLabel">Confirm Deletion</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                ¿Estás seguro de que deseas eliminar este equipo?
+                                Are you sure you want to delete this team?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-danger" id="confirm-delete">Eliminar</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ class DeleteTeamComponent extends HTMLElement {
         if (!this.selectedEquipo) return;
         await deleteEquipo(this.selectedEquipo);
         
-        // Despachar evento general indicando que se eliminó un equipo
+        // Dispatch event indicating a team was deleted
         this.dispatchEvent(new CustomEvent("teamChanged", {
             bubbles: true,
             detail: {
@@ -92,7 +92,7 @@ class DeleteTeamComponent extends HTMLElement {
 
     updateDropdown() {
         const select = this.shadowRoot.querySelector('#team-select');
-        select.innerHTML = '<option value="">Seleccione un equipo</option>' +
+        select.innerHTML = '<option value="">Select a team</option>' +
             this.equipos.map(e => `<option value="${e.id}">${e.nombre}</option>`).join('');
         this.shadowRoot.querySelector('#delete-button').disabled = true;
     }

@@ -28,9 +28,9 @@ class CircuitsComponent extends HTMLElement {
         container.innerHTML = '';
         
         circuits.forEach(circuit => {
-            // Cada tarjeta se envuelve en una columna de 6 (2 por fila en pantallas medianas en adelante)
+            // Cada tarjeta se envuelve en una columna de 3 (4 por fila en pantallas medianas en adelante)
             const cardWrapper = document.createElement('div');
-            cardWrapper.classList.add('col-md-6', 'mb-3');
+            cardWrapper.classList.add('col-md-3', 'mb-3');
  
             const card = document.createElement('div');
             card.classList.add('card');
@@ -39,8 +39,8 @@ class CircuitsComponent extends HTMLElement {
                 <div class="card-body">
                     <h5 class="card-title">${circuit.pais}</h5>
                     <p class="card-text">${circuit.nombre}</p>
-                    <button class="btn btn-primary buttonDetail" data-id="${circuit.id}" data-name="${circuit.nombre}">
-                        Ver Detalles
+                    <button class="btn btn-danger buttonDetail" data-id="${circuit.id}" data-name="${circuit.nombre}">
+                        View Details
                     </button>
                 </div>
             `;
@@ -74,20 +74,32 @@ class CircuitsComponent extends HTMLElement {
         
         if (modalBody) {
             modalBody.innerHTML = /*html*/ `
-                <img src="${circuit.imagen_detail}" alt="${circuit.nombre}" class="card-img-top">
-                <p><strong>Pais:</strong> ${circuit.pais}</p>
-                <p><strong>Longitud (km):</strong> ${circuit.longitud_km}</p>
-                <p><strong>Vueltas:</strong> ${circuit.vueltas}</p>
-                <p><strong>Descripción:</strong> ${circuit.descripcion}</p>
-                <h5>Record de Vueltas</h5>
-                <ul>
-                    <li><strong>Tiempo:</strong> ${circuit.record_vuelta?.tiempo ?? ''}</li>
-                    <li><strong>Piloto:</strong> ${circuit.record_vuelta?.piloto ?? ''}</li>
-                    <li><strong>Año:</strong> ${circuit.record_vuelta?.año ?? ''}</li>
-                </ul>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="${circuit.imagen_detail}" alt="${circuit.nombre}" class="img-fluid" style="max-height:500px; object-fit:cover;">
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Country:</strong> ${circuit.pais}</p>
+                        <p><strong>Length (km):</strong> ${circuit.longitud_km}</p>
+                        <p><strong>Laps:</strong> ${circuit.vueltas}</p>
+                        <p><strong>Description:</strong> ${circuit.descripcion}</p>
+                        <h5>Lap Record</h5>
+                        <ul>
+                            <li><strong>Time:</strong> ${circuit.record_vuelta?.tiempo ?? ''}</li>
+                            <li><strong>Driver:</strong> ${circuit.record_vuelta?.piloto ?? ''}</li>
+                            <li><strong>Year:</strong> ${circuit.record_vuelta?.año ?? ''}</li>
+                        </ul>
+                    </div>
+                </div>
             `;
         } else {
             console.warn("No se encontró el elemento con id 'circuitModalBody'");
+        }
+        
+        // Hacer la ventana del modal más grande agregando la clase modal-xl al modal-dialog
+        const modalDialog = modalElement.querySelector('.modal-dialog');
+        if (modalDialog) {
+            modalDialog.classList.add('modal-xl');
         }
         
         // Se muestra el modal utilizando la instancia global de Bootstrap
@@ -124,7 +136,7 @@ class CircuitsComponent extends HTMLElement {
                   <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Registrar Nuevo Circuito</h5>
+                        <h5 class="modal-title">Register New Circuit</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
@@ -159,7 +171,7 @@ class CircuitsComponent extends HTMLElement {
                   <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Editar Circuito</h5>
+                        <h5 class="modal-title">Edit Circuit</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
@@ -194,7 +206,7 @@ class CircuitsComponent extends HTMLElement {
                   <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Eliminar Circuito</h5>
+                        <h5 class="modal-title">Delete Circuit</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
@@ -241,12 +253,26 @@ class CircuitsComponent extends HTMLElement {
                     padding: 20px; 
                     margin-top: 2rem;
                 }
+                /* Contenedor del encabezado */
+                .header-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    margin-bottom: 15px;
+                }
+                /* Tarjetas más pequeñas y con efecto hover */
                 .card { 
-                    margin: 10px; 
+                    margin: 10px;
+                    max-width: 250px;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+                .card:hover {
+                    transform: translateY(-5px) scale(1.02);
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
                 }
                 .card img { 
                     width: 100%; 
-                    height: auto; /* Se muestra la imagen completa */
+                    height: auto;
                 }
                 /* Contenedor desplazable para las cards */
                 .list-container {
@@ -256,7 +282,6 @@ class CircuitsComponent extends HTMLElement {
                     scrollbar-width: thin;
                     scrollbar-color: #ccc transparent;
                 }
- 
                 .list-container::-webkit-scrollbar {
                     width: 8px;
                 }
@@ -274,18 +299,20 @@ class CircuitsComponent extends HTMLElement {
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
             <div class="container">
-                <h2>Gestión de Circuitos</h2>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Opciones
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" id="create-circuit" href="#">Crear Circuito</a></li>
-                        <li><a class="dropdown-item" id="edit-circuit" href="#">Editar Circuito</a></li>
-                        <li><a class="dropdown-item" id="delete-circuit" href="#">Eliminar Circuito</a></li>
-                    </ul>
+                <div class="header-container">
+                    <h2>Circuit Management</h2>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            Options
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="create-circuit" href="#">Create Circuit</a></li>
+                            <li><a class="dropdown-item" id="edit-circuit" href="#">Edit Circuit</a></li>
+                            <li><a class="dropdown-item" id="delete-circuit" href="#">Delete Circuit</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <input type="text" id="search" placeholder="Buscar circuito..." class="form-control my-3">
+                <input type="text" id="search" placeholder="Search circuit..." class="form-control my-">
                 <!-- Contenedor desplazable para las cards -->
                 <div class="list-container">
                     <div id="circuits-list" class="row"></div>

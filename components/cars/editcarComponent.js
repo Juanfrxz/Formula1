@@ -37,7 +37,7 @@ class EditCarComponent extends HTMLElement {
       const vehicleSelect = this.shadowRoot.getElementById("vehicleSelect");
       if (vehicleSelect) {
         vehicleSelect.innerHTML =
-          `<option value="">Seleccione un vehículo</option>` +
+          `<option value="">Select a vehicle</option>` +
           this.vehicles
             .map(
               vehicle =>
@@ -101,7 +101,7 @@ class EditCarComponent extends HTMLElement {
       e.preventDefault();
       const updatedCar = this.getFormData();
       await updateVehiculo(this.carData.id, updatedCar);
-      alert("Vehículo actualizado con éxito");
+      alert("Vehicle updated successfully");
       // Aquí el modal se cerrará desde el componente que lo invoque
     });
 
@@ -213,17 +213,17 @@ class EditCarComponent extends HTMLElement {
         }
       </style>
       <div class="container">
-        <h2>Editar Vehículo</h2>
-        <!-- Select para listar los vehículos registrados -->
+        <h2>Edit Vehicle</h2>
+        <!-- Select to list registered vehicles -->
         <div class="form-group">
-          <label for="vehicleSelect">Seleccione un vehículo:</label>
+          <label for="vehicleSelect">Select a vehicle:</label>
           <select id="vehicleSelect" class="form-control">
-            <option value="">Seleccione un vehículo</option>
+            <option value="">Select a vehicle</option>
           </select>
         </div>
         <form id="carForm">
           <div class="accordion" id="carAccordion">
-            <!-- Sección Información General -->
+            <!-- General Information Section -->
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button" 
@@ -231,33 +231,33 @@ class EditCarComponent extends HTMLElement {
                         data-bs-toggle="collapse" 
                         data-bs-target="#generalInfo" 
                         aria-expanded="true">
-                  Información General
+                  General Information
                 </button>
               </h2>
               <div id="generalInfo" class="accordion-collapse collapse show">
                 <div class="accordion-body">
-                  <label>Equipo:</label>
+                  <label>Team:</label>
                   <select id="equipo" class="form-control">
                     ${this.equipos.map(eq => `<option value="${eq.id}">${eq.nombre}</option>`).join('')}
                   </select>
-                  <label>Pilotos:</label>
+                  <label>Drivers:</label>
                   <select id="pilotos" class="form-control" multiple>
                     ${this.pilotos.map(p => `<option value="${p.id}">${p.nombre}</option>`).join('')}
                   </select>
-                  <label>Modelo:</label>
+                  <label>Model:</label>
                   <input type="text" id="modelo" class="form-control" required>
-                  <label>Motor:</label>
+                  <label>Engine:</label>
                   <input type="text" id="motor" class="form-control" required>
-                  <label>Velocidad Máxima (km/h):</label>
+                  <label>Max Speed (km/h):</label>
                   <input type="number" id="velocidad" class="form-control" required>
-                  <label>Aceleración 0-100 (s):</label>
+                  <label>0-100 Acceleration (s):</label>
                   <input type="number" step="0.1" id="aceleracion" class="form-control" required>
-                  <label>Imagen (URL):</label>
+                  <label>Image (URL):</label>
                   <input type="text" id="imagen" class="form-control">
                 </div>
               </div>
             </div>
-            <!-- Sección Rendimiento: Conducción normal -->
+            <!-- Performance Section: Normal Driving -->
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" 
@@ -265,16 +265,16 @@ class EditCarComponent extends HTMLElement {
                         data-bs-toggle="collapse" 
                         data-bs-target="#performance_normal" 
                         aria-expanded="false">
-                  Rendimiento: Conducción normal
+                  Performance: Normal Driving
                 </button>
               </h2>
               <div id="performance_normal" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                  ${this.renderPerformanceInputs("normal", "Conducción Normal")}
+                  ${this.renderPerformanceInputs("normal", "Normal Driving")}
                 </div>
               </div>
             </div>
-            <!-- Sección Rendimiento: Conducción agresiva -->
+            <!-- Performance Section: Aggressive Driving -->
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" 
@@ -282,16 +282,16 @@ class EditCarComponent extends HTMLElement {
                         data-bs-toggle="collapse" 
                         data-bs-target="#performance_agresiva" 
                         aria-expanded="false">
-                  Rendimiento: Conducción agresiva
+                  Performance: Aggressive Driving
                 </button>
               </h2>
               <div id="performance_agresiva" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                  ${this.renderPerformanceInputs("agresiva", "Conducción Agresiva")}
+                  ${this.renderPerformanceInputs("Aggressive", "Aggressive Driving")}
                 </div>
               </div>
             </div>
-            <!-- Sección Rendimiento: Ahorro de Combustible -->
+            <!-- Performance Section: Fuel Saving -->
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" 
@@ -299,18 +299,18 @@ class EditCarComponent extends HTMLElement {
                         data-bs-toggle="collapse" 
                         data-bs-target="#performance_ahorro" 
                         aria-expanded="false">
-                  Rendimiento: Ahorro de Combustible
+                  Performance: Fuel Saving
                 </button>
               </h2>
               <div id="performance_ahorro" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                  ${this.renderPerformanceInputs("ahorro", "Ahorro de Combustible")}
+                  ${this.renderPerformanceInputs("Saving", "Fuel Saving")}
                 </div>
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
-          <button type="button" class="btn btn-secondary mt-3" id="cancelEditCar">Cancelar</button>
+          <button type="submit" class="btn btn-primary mt-3">Update</button>
+          <button type="button" class="btn btn-secondary mt-3" id="cancelEditCar">Cancel</button>
         </form>
       </div>
     `;
@@ -319,16 +319,16 @@ class EditCarComponent extends HTMLElement {
   renderPerformanceInputs(prefix, label) {
     return /*html*/ `
       <h4>${label}</h4>
-      <label>Velocidad Promedio (km/h):</label>
+      <label>Average Speed (km/h):</label>
       <input type="number" id="${prefix}_velocidad" class="form-control" required>
-      <label>Consumo Combustible:</label>
-      <input type="number" id="${prefix}_comb_seco" class="form-control" placeholder="Seco" required>
-      <input type="number" id="${prefix}_comb_lluvioso" class="form-control" placeholder="Lluvioso" required>
-      <input type="number" id="${prefix}_comb_extremo" class="form-control" placeholder="Extremo" required>
-      <label>Desgaste Neumáticos:</label>
-      <input type="number" id="${prefix}_desg_seco" class="form-control" placeholder="Seco" required>
-      <input type="number" id="${prefix}_desg_lluvioso" class="form-control" placeholder="Lluvioso" required>
-      <input type="number" id="${prefix}_desg_extremo" class="form-control" placeholder="Extremo" required>
+      <label>Fuel Consumption:</label>
+      <input type="number" id="${prefix}_comb_seco" class="form-control" placeholder="Dry" required>
+      <input type="number" id="${prefix}_comb_lluvioso" class="form-control" placeholder="Wet" required>
+      <input type="number" id="${prefix}_comb_extremo" class="form-control" placeholder="Extreme" required>
+      <label>Tire Wear:</label>
+      <input type="number" id="${prefix}_desg_seco" class="form-control" placeholder="Dry" required>
+      <input type="number" id="${prefix}_desg_lluvioso" class="form-control" placeholder="Wet" required>
+      <input type="number" id="${prefix}_desg_extremo" class="form-control" placeholder="Extreme" required>
     `;
   }
 }

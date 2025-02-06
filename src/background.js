@@ -18,3 +18,16 @@ button.addEventListener("click", () => {
 volumeControl.addEventListener("input", (event) => {
   audio.volume = event.target.value;
 });
+
+// Carga de la página
+window.addEventListener('load', function() {
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    // Agrega la clase para iniciar la transición de opacidad
+    loader.classList.add('fade-out');
+    // Espera a que la transición termine antes de ocultar el loader
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 500); // 500 ms = duración de la transición
+  }, 3000); // Espera 3 segundos antes de iniciar la animación
+});

@@ -44,7 +44,7 @@ class DeleteCarComponent extends HTMLElement {
 
       if (vehicleSelect) {
         vehicleSelect.innerHTML =
-          `<option value="">Seleccione un vehículo</option>` +
+          `<option value="">Select a vehicle</option>` +
           this.vehicles
             .map(
               vehicle =>
@@ -65,17 +65,17 @@ class DeleteCarComponent extends HTMLElement {
       const vehicleSelect = this.shadowRoot.getElementById("vehicleSelect");
       const selectedId = vehicleSelect.value;
       if (!selectedId) {
-        alert("Por favor, seleccione un vehículo para eliminar.");
+        alert("Please select a vehicle to delete.");
         return;
       }
-      if (confirm("¿Está seguro de eliminar el vehículo seleccionado?")) {
+      if (confirm("Are you sure you want to delete the selected vehicle?")) {
         try {
           await deleteVehiculo(selectedId);
-          alert("Vehículo eliminado con éxito.");
+          alert("Vehicle deleted successfully.");
           await this.loadVehicleOptions();
         } catch (error) {
           console.error("Error al eliminar el vehículo:", error);
-          alert("Error al eliminar el vehículo.");
+          alert("Error deleting the vehicle.");
         }
       }
     });
@@ -94,15 +94,15 @@ class DeleteCarComponent extends HTMLElement {
         }
       </style>
       <div class="container">
-        <h2>Eliminar Vehículo</h2>
+        <h2>Delete Vehicle</h2>
         <div class="form-group">
-          <label for="vehicleSelect">Seleccione el vehículo a eliminar:</label>
+          <label for="vehicleSelect">Select the vehicle to delete:</label>
           <select id="vehicleSelect" class="form-control">
-            <option value="">Cargando vehículos...</option>
+            <option value="">Loading vehicles...</option>
           </select>
         </div>
-        <button id="deleteBtn" class="btn btn-danger mt-3">Eliminar</button>
-        <button id="cancelDeleteCar" class="btn btn-secondary mt-3">Cancelar</button>
+        <button id="deleteBtn" class="btn btn-danger mt-3">Delete</button>
+        <button id="cancelDeleteCar" class="btn btn-secondary mt-3">Cancel</button>
       </div>
     `;
   }
