@@ -151,7 +151,7 @@ class TeamSelectionComponent extends HTMLElement {
         <img src="${team.imagen}" alt="Imagen de ${team.nombre}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">${team.nombre}</h5>
-          <button class="btn btn-primary select-button">Select</button>
+          <button class="btn btn-danger select-button">Select</button>
         </div>
       `;
       card.querySelector('.select-button').addEventListener('click', () => this.selectTeam(team));

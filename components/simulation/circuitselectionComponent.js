@@ -150,11 +150,10 @@ class CircuitSelectionComponent extends HTMLElement {
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${circuit.nombre}</h5>
                     <p class="card-text">${circuit.pais}</p>
-                    <button class="btn btn-primary mt-auto select-button">Select</button>
+                    <button class="btn btn-danger mt-auto select-button">Select</button>
                 </div>
             `;
 
-            // Add click event on the select button
             const selectButton = card.querySelector('.select-button');
             selectButton.addEventListener('click', () => this.selectCircuit(circuit));
 

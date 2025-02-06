@@ -191,7 +191,7 @@ class CarTuningComponent extends HTMLElement {
                 </select>
               </div>
               <div class="mb-3">
-                <button id="saveConfigBtn" class="btn btn-success">Guardar Configuración</button>
+                <button id="saveConfigBtn" class="btn btn-danger">Guardar Configuración</button>
               </div>
             </div>
           </div>

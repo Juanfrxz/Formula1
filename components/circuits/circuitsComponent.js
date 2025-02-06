@@ -260,19 +260,31 @@ class CircuitsComponent extends HTMLElement {
                     align-items: flex-end;
                     margin-bottom: 15px;
                 }
-                /* Tarjetas más pequeñas y con efecto hover */
+                /* Tarjetas con tamaño fijo y efecto hover */
                 .card { 
                     margin: 10px;
-                    max-width: 250px;
+                    width: 250px;
+                    height: 350px;
                     transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    display: flex;
+                    flex-direction: column;
                 }
                 .card:hover {
                     transform: translateY(-5px) scale(1.02);
                     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
                 }
-                .card img { 
-                    width: 100%; 
-                    height: auto;
+                /* Estilo para la imagen de la tarjeta */
+                .card-img-top {
+                    width: 100%;
+                    height: 150px;
+                    object-fit: cover;
+                }
+                /* Aseguramos que el cuerpo de la tarjeta ocupe el espacio restante */
+                .card-body {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
                 }
                 /* Contenedor desplazable para las cards */
                 .list-container {

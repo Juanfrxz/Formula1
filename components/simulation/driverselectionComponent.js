@@ -189,7 +189,7 @@ class DriverSelectionComponent extends HTMLElement {
                 <img src="${piloto.foto}" alt="Foto de ${piloto.nombre}">
                 <div class="card-body">
                     <h5 class="card-title">${piloto.nombre}</h5>
-                    <button class="btn btn-primary select-btn">Select</button>
+                    <button class="btn btn-danger select-btn">Select</button>
                 </div>
             `;
             card.querySelector('.select-btn').addEventListener('click', () => this.selectDriver(piloto));
