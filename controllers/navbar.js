@@ -487,12 +487,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     popup.style.padding = "20px";
     popup.style.borderRadius = "8px";
     popup.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.2)";
-    popup.innerHTML = `
-      <h3 style="margin-top: 0; margin-bottom: 10px;">Ingrese contraseña para Admin</h3>
-      <input type="password" id="adminPasswordInput" placeholder="Contraseña" style="width: 100%; padding: 8px; margin-bottom: 15px;" />
+    popup.innerHTML = /*html*/ `
+      <h3 style="margin-top: 0; margin-bottom: 10px;">Enter password</h3>
+      <input type="password" id="adminPasswordInput" placeholder="Password" style="width: 100%; padding: 8px; margin-bottom: 15px;" />
       <div style="display: flex; justify-content: flex-end; gap: 10px;">
-        <button id="adminCancelBtn" style="padding: 5px 10px; border: none; background-color: #ccc; border-radius: 4px; cursor: pointer;">Cancelar</button>
-        <button id="adminSubmitBtn" style="padding: 5px 10px; border: none; background-color: rgb(218, 3, 3); color: #fff; border-radius: 4px; cursor: pointer;">Aceptar</button>
+        <button id="adminCancelBtn" style="padding: 5px 10px; border: none; background-color: #ccc; border-radius: 4px; cursor: pointer;">Cancel</button>
+        <button id="adminSubmitBtn" style="padding: 5px 10px; border: none; background-color: rgb(218, 3, 3); color: #fff; border-radius: 4px; cursor: pointer;">Login</button>
       </div>
     `;
     overlay.appendChild(popup);

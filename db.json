@@ -2,335 +2,392 @@
   "pilotos": [
     {
       "id": "1",
-      "nombre": "Max Verstappen",
-      "equipo": "Red Bull Racing",
-      "rol": "Líder"
+      "nombre": "Pierre Gasly",
+      "equipo": "E194D1C1A9B5",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/gasly",
+      "stats": {
+        "Victorias": 1,
+        "Podios": 5,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "2",
-      "nombre": "Sergio Pérez",
-      "equipo": "Red Bull Racing",
-      "rol": "Escudero"
+      "nombre": "Jack Doohan",
+      "equipo": "E194D1C1A9B5",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/fom-website/drivers/2024Drivers/doohan",
+      "stats": {
+        "Victorias": 0,
+        "Podios": 0,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "3",
-      "nombre": "Lewis Hamilton",
-      "equipo": "Mercedes-AMG Petronas",
-      "rol": "Líder"
+      "nombre": "Lance Stroll",
+      "equipo": "E194D1C6C206",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2024Drivers/stroll",
+      "stats": {
+        "Victorias": 0,
+        "Podios": 3,
+        "Pole_positions": 1
+      }
     },
     {
       "id": "4",
-      "nombre": "George Russell",
-      "equipo": "Mercedes-AMG Petronas",
-      "rol": "Escudero"
+      "nombre": "Fernando Alonso",
+      "equipo": "E194D1C6C206",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/alonso",
+      "stats": {
+        "Victorias": 32,
+        "Podios": 106,
+        "Pole_positions": 22
+      }
     },
     {
       "id": "5",
       "nombre": "Charles Leclerc",
-      "equipo": "Ferrari",
-      "rol": "Líder"
+      "equipo": "E194D1C811C9",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/leclerc",
+      "stats": {
+        "Victorias": 5,
+        "Podios": 11,
+        "Pole_positions": 22
+      }
     },
     {
       "id": "6",
-      "nombre": "Carlos Sainz",
-      "equipo": "Ferrari",
-      "rol": "Escudero"
+      "nombre": "Lewis Hamilton",
+      "equipo": "E194D1C811C9",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/hamilton",
+      "stats": {
+        "Victorias": 105,
+        "Podios": 202,
+        "Pole_positions": 104
+      }
     },
     {
       "id": "7",
-      "nombre": "Lando Norris",
-      "equipo": "McLaren",
-      "rol": "Líder"
+      "nombre": "Esteban Ocon",
+      "equipo": "E194D1C968C5",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/ocon",
+      "stats": {
+        "Victorias": 1,
+        "Podios": 4,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "8",
-      "nombre": "Oscar Piastri",
-      "equipo": "McLaren",
-      "rol": "Escudero"
+      "nombre": "Oliver Bearman",
+      "equipo": "E194D1C968C5",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2024Drivers/bearman",
+      "stats": {
+        "Victorias": 0,
+        "Podios": 0,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "9",
-      "nombre": "Fernando Alonso",
-      "equipo": "Aston Martin",
-      "rol": "Líder"
+      "nombre": "Nico Hulkenberg",
+      "equipo": "E194D1CB2626",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/hulkenberg",
+      "stats": {
+        "Victorias": 0,
+        "Podios": 0,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "10",
-      "nombre": "Lance Stroll",
-      "equipo": "Aston Martin",
-      "rol": "Escudero"
+      "nombre": "Gabriel Bortoleto",
+      "equipo": "E194D1CB2626",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/bortoleto",
+      "stats": {
+        "Victorias": 2,
+        "Podios": 6,
+        "Pole_positions": 1
+      }
     },
     {
       "id": "11",
-      "nombre": "Esteban Ocon",
-      "equipo": "Alpine",
-      "rol": "Líder"
+      "nombre": "Oscar Piastri",
+      "equipo": "E194D1CC93C4",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/piastri",
+      "stats": {
+        "Victorias": 2,
+        "Podios": 10,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "12",
-      "nombre": "Pierre Gasly",
-      "equipo": "Alpine",
-      "rol": "Escudero"
+      "nombre": "Lando Norris",
+      "equipo": "E194D1CC93C4",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/norris",
+      "stats": {
+        "Victorias": 4,
+        "Podios": 26,
+        "Pole_positions": 1
+      }
     },
     {
       "id": "13",
-      "nombre": "Valtteri Bottas",
-      "equipo": "Alfa Romeo",
-      "rol": "Líder"
+      "nombre": "George Russell",
+      "equipo": "E194D2A33DFB",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/russell",
+      "stats": {
+        "Victorias": 3,
+        "Podios": 15,
+        "Pole_positions": 1
+      }
     },
     {
       "id": "14",
-      "nombre": "Zhou Guanyu",
-      "equipo": "Alfa Romeo",
-      "rol": "Escudero"
+      "nombre": "Andrea Kimi Antonelli",
+      "equipo": "E194D2A33DFB",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/antonelli",
+      "stats": {
+        "Victorias": 2,
+        "Podios": 3,
+        "Pole_positions": 1
+      }
     },
     {
       "id": "15",
-      "nombre": "Kevin Magnussen",
-      "equipo": "Haas",
-      "rol": "Líder"
+      "nombre": "Isack Hadjar",
+      "equipo": "E194D2A4C0A3",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/hadjar",
+      "stats": {
+        "Victorias": 16,
+        "Podios": 43,
+        "Pole_positions": 6
+      }
     },
     {
       "id": "16",
-      "nombre": "Nico Hülkenberg",
-      "equipo": "Haas",
-      "rol": "Escudero"
+      "nombre": "Yuki Tsunoda",
+      "equipo": "E194D2A4C0A3",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/tsunoda",
+      "stats": {
+        "Victorias": 0,
+        "Podios": 0,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "17",
-      "nombre": "Yuki Tsunoda",
-      "equipo": "AlphaTauri",
-      "rol": "Líder"
+      "nombre": "Max Verstappen",
+      "equipo": "E194D2A5D8ED",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/verstappen",
+      "stats": {
+        "Victorias": 63,
+        "Podios": 127,
+        "Pole_positions": 21
+      }
     },
     {
       "id": "18",
-      "nombre": "Daniel Ricciardo",
-      "equipo": "AlphaTauri",
-      "rol": "Escudero"
+      "nombre": "Liam Lawson",
+      "equipo": "E194D2A5D8ED",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/lawson",
+      "stats": {
+        "Victorias": 0,
+        "Podios": 0,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "19",
       "nombre": "Alexander Albon",
-      "equipo": "Williams",
-      "rol": "Líder"
+      "equipo": "E194D2A6F71F",
+      "rol": "Lider",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/drivers/2024Drivers/albon",
+      "stats": {
+        "Victorias": 0,
+        "Podios": 0,
+        "Pole_positions": 0
+      }
     },
     {
       "id": "20",
-      "nombre": "Logan Sargeant",
-      "equipo": "Williams",
-      "rol": "Escudero"
+      "nombre": "Carlos Sainz",
+      "equipo": "E194D2A6F71F",
+      "rol": "Escudero",
+      "foto": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/sainz",
+      "stats": {
+        "Victorias": 4,
+        "Podios": 12,
+        "Pole_positions": 2
+      }
     }
   ],
   "equipos": [
     {
-      "nombre": "Red Bull Racing",
-      "pais": "Austria",
-      "motor": "Honda",
-      "pilotos": [
-        1,
-        2
-      ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Red_Bull_Racing_Logo.svg",
-      "id": "0451"
+      "id": "E194D1C1A9B5",
+      "nombre": "Alpine",
+      "pais": "United Kingdom",
+      "motor": "Renault",
+      "pilotos": ["1", "2"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/alpine"
     },
     {
-      "nombre": "Mercedes-AMG Petronas",
-      "pais": "Alemania",
+      "id": "E194D1C6C206",
+      "nombre": "Aston Martin",
+      "pais": "United Kingdom",
       "motor": "Mercedes",
-      "pilotos": [
-        3,
-        4
-      ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes_AMG_Petronas_F1_Team_logo.svg",
-      "id": "1ff4"
+      "pilotos": ["3", "4"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/aston%20martin%202024"
     },
     {
+      "id": "E194D1C811C9",
       "nombre": "Ferrari",
-      "pais": "Italia",
+      "pais": "Italy",
       "motor": "Ferrari",
-      "pilotos": [
-        5,
-        6
-      ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/en/d/d4/Scuderia_Ferrari_Logo.svg",
-      "id": "0b28"
+      "pilotos": ["5", "6"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/ferrari"
+    },
+    {
+      "id": "E194D1C968C5",
+      "nombre": "Haas",
+      "pais": "United States",
+      "motor": "Ferrari",
+      "pilotos": ["7", "8"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/haas"
+    },
+    {
+      "id": "E194D1CB2626",
+      "nombre": "Kick Sauber",
+      "pais": "Switzerland",
+      "motor": "Ferrari",
+      "pilotos": ["9", "10"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/kick%20sauber"
+    },
+    {
+      "id": "E194D1CC93C4",
+      "nombre": "McLaren",
+      "pais": "United Kingdom",
+      "motor": "Mercedes",
+      "pilotos": ["11", "12"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/mclaren"
+    },
+    {
+      "id": "E194D2A33DFB",
+      "nombre": "Mercedes",
+      "pais": "United Kingdom",
+      "motor": "Mercedes",
+      "pilotos": ["13", "14"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/mercedes"
+    },
+    {
+      "id": "E194D2A4C0A3",
+      "nombre": "Racing Bulls",
+      "pais": "Italy",
+      "motor": "Honda RBPT",
+      "pilotos": ["15", "16"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/rb"
+    },
+    {
+      "id": "E194D2A5D8ED",
+      "nombre": "Red Bull Racing",
+      "pais": "United Kingdom",
+      "motor": "Honda RBPT",
+      "pilotos": ["17", "18"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/red%20bull"
+    },
+    {
+      "id": "E194D2A6F71F",
+      "nombre": "Williams",
+      "pais": "United Kingdom",
+      "motor": "Mercedes",
+      "pilotos": ["19", "20"],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,q_75,w_1320/content/dam/fom-website/2018-redesign-assets/team%20logos/williams"
     }
   ],
   "circuitos": [
     {
-      "nombre": "Circuito de Mónaco",
-      "pais": "Mónaco",
-      "longitud_km": 3.34,
-      "vueltas": 78,
-      "descripcion": "Uno de los circuitos más prestigiosos y difíciles del calendario, conocido por sus calles angostas y la falta de zonas de adelantamiento.",
+      "nombre": "Circuito de Albert Park Circuit",
+      "pais": "Australia",
+      "longitud_km": 5.278,
+      "vueltas": 58,
+      "descripcion": "Un circuito semiurbano que rodea el pintoresco lago Albert Park en Melbourne. Combina secciones rápidas con curvas técnicas y es conocido por su superficie relativamente suave y su diseño que facilita el aprendizaje para los pilotos.",
       "record_vuelta": {
-        "tiempo": "1:10.166",
-        "piloto": "Lewis Hamilton",
-        "año": 2019
+        "tiempo": "1:19.813",
+        "piloto": "Charles Leclerc",
+        "año": 2024
       },
       "ganadores": [
         {
-          "temporada": 2021,
-          "piloto": 1
-        },
-        {
           "temporada": 2022,
-          "piloto": 2
+          "piloto": "Charles Leclerc"
         },
         {
           "temporada": 2023,
-          "piloto": 1
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Charles Leclerc"
         }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Monte_Carlo_Formula_1_track_map.svg",
-      "id": "bd91"
+      "imagen": "https://images.daznservices.com/di/library/DAZN_News/dc/79/circuito-albert-park-melbourne-gp-australia-f1_192zg8rihn0nv1ewzoa01ijqww.jpg?t=-16377409",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_771/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Australia_Circuit",
+      "id": "aus01"
     },
     {
-      "nombre": "Silverstone",
-      "pais": "Reino Unido",
-      "longitud_km": 5.89,
-      "vueltas": 52,
-      "descripcion": "Uno de los circuitos más rápidos del calendario, con curvas de alta velocidad como Maggotts y Becketts.",
+      "nombre": "Circuito Internacional de Shanghái",
+      "pais": "China",
+      "longitud_km": 5.451,
+      "vueltas": 56,
+      "descripcion": "Inaugurado en 2004, este circuito moderno está diseñado con la forma del carácter chino '上' que significa 'arriba' o 'ascendente'. Cuenta con una combinación de curvas cerradas y una de las rectas más largas del calendario de Fórmula 1, lo que ofrece oportunidades emocionantes para adelantamientos.",
       "record_vuelta": {
-        "tiempo": "1:27.097",
-        "piloto": "Max Verstappen",
-        "año": 2020
-      },
-      "ganadores": [
-        {
-          "temporada": 2021,
-          "piloto": 3
-        },
-        {
-          "temporada": 2022,
-          "piloto": 5
-        },
-        {
-          "temporada": 2023,
-          "piloto": 1
-        }
-      ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Silverstone_Circuit_2020_layout.png",
-      "id": "2c5d"
-    },
-    {
-      "nombre": "Circuito de Spa-Francorchamps",
-      "pais": "Bélgica",
-      "longitud_km": 7,
-      "vueltas": 44,
-      "descripcion": "Famoso por la curva Eau Rouge y la larga recta de Kemmel, un circuito donde la potencia del motor es clave.",
-      "record_vuelta": {
-        "tiempo": "1:46.286",
-        "piloto": "Valtteri Bottas",
-        "año": 2018
-      },
-      "ganadores": [
-        {
-          "temporada": 2021,
-          "piloto": 1
-        },
-        {
-          "temporada": 2022,
-          "piloto": 1
-        },
-        {
-          "temporada": 2023,
-          "piloto": 1
-        }
-      ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Circuit_Spa_2018.png",
-      "id": "0097"
-    },
-    {
-      "nombre": "Circuito de Monza",
-      "pais": "Italia",
-      "longitud_km": 5.79,
-      "vueltas": 53,
-      "descripcion": "Conocido como 'El Templo de la Velocidad', Monza es el circuito más rápido del calendario con largas rectas y chicanes icónicas.",
-      "record_vuelta": {
-        "tiempo": "1:21.046",
-        "piloto": "Rubens Barrichello",
+        "tiempo": "1:32.238",
+        "piloto": "Michael Schumacher",
         "año": 2004
       },
       "ganadores": [
         {
-          "temporada": 2021,
-          "piloto": 2
-        },
-        {
           "temporada": 2022,
-          "piloto": 1
+          "piloto": "Max Verstappen"
         },
         {
           "temporada": 2023,
-          "piloto": 1
+          "piloto": "Lewis Hamilton"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Charles Leclerc"
         }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Monza_track_map.svg",
-      "id": "9ef4"
-    },
-    {
-      "nombre": "Interlagos",
-      "pais": "Brasil",
-      "longitud_km": 4.31,
-      "vueltas": 71,
-      "descripcion": "Interlagos es un circuito legendario con cambios de elevación y un trazado técnico que ha sido sede de algunas de las carreras más emocionantes de la historia.",
-      "record_vuelta": {
-        "tiempo": "1:10.540",
-        "piloto": "Valtteri Bottas",
-        "año": 2018
-      },
-      "ganadores": [
-        {
-          "temporada": 2021,
-          "piloto": 3
-        },
-        {
-          "temporada": 2022,
-          "piloto": 1
-        },
-        {
-          "temporada": 2023,
-          "piloto": 1
-        }
-      ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/2/23/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28Interlagos%29.svg",
-      "id": "1253"
-    },
-    {
-      "nombre": "Circuito de Yas Marina",
-      "pais": "Emiratos Árabes Unidos",
-      "longitud_km": 5.28,
-      "vueltas": 58,
-      "descripcion": "Ubicado en Abu Dhabi, es famoso por ser el circuito donde se definen muchos campeonatos, con un diseño moderno y una espectacular carrera nocturna.",
-      "record_vuelta": {
-        "tiempo": "1:39.283",
-        "piloto": "Lewis Hamilton",
-        "año": 2019
-      },
-      "ganadores": [
-        {
-          "temporada": 2021,
-          "piloto": 1
-        },
-        {
-          "temporada": 2022,
-          "piloto": 1
-        },
-        {
-          "temporada": 2023,
-          "piloto": 3
-        }
-      ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Yas_Marina_Circuit_2021_layout.svg",
-      "id": "bedc"
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/China%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/China_Circuit",
+      "id": "chn01"
     },
     {
       "nombre": "Circuito de Suzuka",
       "pais": "Japón",
-      "longitud_km": 5.81,
+      "longitud_km": 5.807,
       "vueltas": 53,
-      "descripcion": "Un circuito desafiante con un diseño en forma de ocho, famoso por sus curvas de alta velocidad como 130R y la 'S' de Senna.",
+      "descripcion": "Inaugurado en 1962 como pista de pruebas para Honda, el Circuito de Suzuka es uno de los trazados más desafiantes y emblemáticos de la Fórmula 1. Con su distintivo diseño en forma de '8', es el único circuito del calendario que se cruza sobre sí mismo, ofreciendo una combinación única de curvas rápidas y técnicas que ponen a prueba la destreza de los pilotos.",
       "record_vuelta": {
         "tiempo": "1:30.983",
         "piloto": "Lewis Hamilton",
@@ -338,87 +395,944 @@
       },
       "ganadores": [
         {
-          "temporada": 2021,
-          "piloto": 1
-        },
-        {
           "temporada": 2022,
-          "piloto": 1
+          "piloto": "Max Verstappen"
         },
         {
           "temporada": 2023,
-          "piloto": 1
+          "piloto": "Lewis Hamilton"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Charles Leclerc"
         }
       ],
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Suzuka_circuit_map--2005.svg",
-      "id": "4efb"
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Japan%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Japan_Circuit",
+      "id": "jpn01"
+    },
+    {
+      "nombre": "Circuito Internacional de Baréin",
+      "pais": "Baréin",
+      "longitud_km": 5.412,
+      "vueltas": 57,
+      "descripcion": "Inaugurado en 2004, el Circuito Internacional de Baréin, ubicado en Sakhir, es conocido por su diseño técnico que combina rectas largas y una variedad de curvas desafiantes. Desde 2014, las carreras se celebran bajo las luces, añadiendo un elemento espectacular a la competición nocturna.",
+      "record_vuelta": {
+        "tiempo": "1:31.447",
+        "piloto": "Pedro de la Rosa",
+        "año": 2005
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Charles Leclerc"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Lewis Hamilton"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Bahrain%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Bahrain_Circuit",
+      "id": "bhr01"
+    },
+    {
+      "nombre": "Circuito de la Corniche de Yeda",
+      "pais": "Arabia Saudita",
+      "longitud_km": 6.174,
+      "vueltas": 50,
+      "descripcion": "Inaugurado en 2021, el Circuito de la Corniche de Yeda es un trazado urbano temporal ubicado a lo largo de la costa de Yeda. Diseñado por la empresa Tilke en colaboración con el equipo de Motorsports de la Fórmula 1, es conocido por ser el circuito urbano más rápido del calendario, con una velocidad media de alrededor de 250 km/h. Cuenta con 27 curvas, muchas de ellas rápidas y sinuosas, que desafían la destreza de los pilotos.",
+      "record_vuelta": {
+        "tiempo": "1:30.734",
+        "piloto": "Lewis Hamilton",
+        "año": 2021
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Sergio Pérez"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Charles Leclerc"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Saudi%20Arabia%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Saudi_Arabia_Circuit",
+      "id": "sau01"
+    },
+    {
+      "nombre": "Circuito Internacional de Miami",
+      "pais": "Estados Unidos",
+      "longitud_km": 5.412,
+      "vueltas": 57,
+      "descripcion": "Inaugurado en 2022, el Circuito Internacional de Miami es un trazado urbano temporal situado en el complejo del Hard Rock Stadium en Miami Gardens, Florida. Consta de 19 curvas, tres rectas y tres zonas de DRS, ofreciendo una combinación de secciones rápidas y técnicas que desafían tanto a pilotos como a ingenieros.",
+      "record_vuelta": {
+        "tiempo": "1:29.708",
+        "piloto": "Max Verstappen",
+        "año": 2023
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Lando Norris"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Miami%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Miami_Circuit",
+      "id": "usa02"
+    },
+    {
+      "nombre": "Autódromo Internacional Enzo e Dino Ferrari",
+      "pais": "Italia",
+      "longitud_km": 4.909,
+      "vueltas": 63,
+      "descripcion": "Inaugurado en 1953, el Circuito de Imola es una pista emblemática en la historia de la Fórmula 1. Conocido por su diseño técnico y desafiante, el trazado cuenta con curvas icónicas como Acque Minerali y Piratella. Es uno de los pocos circuitos en sentido antihorario y ofrece una experiencia de conducción única para los pilotos.",
+      "record_vuelta": {
+        "tiempo": "1:15.484",
+        "piloto": "Lewis Hamilton",
+        "año": 2020
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Charles Leclerc"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Carlos Sainz"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Emilia%20Romagna%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Emilia_Romagna_Circuit",
+      "id": "ita02"
+    },
+    {
+      "nombre": "Circuit de Monaco",
+      "pais": "Mónaco",
+      "longitud_km": 3.337,
+      "vueltas": 78,
+      "descripcion": "El Circuito de Mónaco es uno de los más emblemáticos y desafiantes de la Fórmula 1, conocido por sus calles estrechas y curvas cerradas. Se corre en las calles de Montecarlo, proporcionando una experiencia única tanto para los pilotos como para los aficionados.",
+      "record_vuelta": {
+        "tiempo": "1:12.909",
+        "piloto": "Lewis Hamilton",
+        "año": 2021
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Sergio Pérez"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Charles Leclerc"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1200,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Monte%20Carlo%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Monaco_Circuit",
+      "id": "monaco25"
+    },
+    {
+      "nombre": "Circuit de Barcelona-Catalunya",
+      "pais": "España",
+      "longitud_km": 4.657,
+      "vueltas": 66,
+      "descripcion": "El Circuito de Barcelona-Catalunya, inaugurado en 1991, es conocido por su combinación de curvas de alta y baja velocidad, lo que lo convierte en un desafío tanto para los pilotos como para los equipos. Es uno de los circuitos más populares en el calendario de la Fórmula 1.",
+      "record_vuelta": {
+        "tiempo": "1:16.330",
+        "piloto": "Max Verstappen",
+        "año": 2023
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Charles Leclerc"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Sergio Pérez"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Spain%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Spain_Circuit",
+      "id": "esp25"
+    },
+    {
+      "nombre": "Circuit Gilles-Villeneuve",
+      "pais": "Canadá",
+      "longitud_km": 4.361,
+      "vueltas": 70,
+      "descripcion": "El Circuit Gilles-Villeneuve es un circuito urbano de alta velocidad en Montreal, conocido por su mezcla de chicanes y la famosa 'Wall of Champions'. Es un circuito que favorece los adelantamientos y ofrece un desafío único para los pilotos, especialmente con sus frenadas fuertes y curvas técnicas.",
+      "record_vuelta": {
+        "tiempo": "1:13.078",
+        "piloto": "Valtteri Bottas",
+        "año": 2019
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Fernando Alonso"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Sergio Pérez"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Canada%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Canada_Circuit",
+      "id": "canada25"
+    },
+    {
+      "nombre": "Red Bull Ring",
+      "pais": "Austria",
+      "longitud_km": 4.318,
+      "vueltas": 71,
+      "descripcion": "El Red Bull Ring, situado en Spielberg, es conocido por su paisaje montañoso impresionante y su diseño desafiante. El circuito tiene una combinación de rectas rápidas y curvas cerradas, lo que lo convierte en un lugar emocionante para los pilotos y espectadores.",
+      "record_vuelta": {
+        "tiempo": "1:05.619",
+        "piloto": "Carlos Sainz",
+        "año": 2020
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Charles Leclerc"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Sergio Pérez"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Austria%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Austria_Circuit",
+      "id": "aut25"
+    },
+    {
+      "nombre": "Silverstone Circuit",
+      "pais": "Gran Bretaña",
+      "longitud_km": 5.891,
+      "vueltas": 52,
+      "descripcion": "El Circuito de Silverstone, inaugurado en 1947, es uno de los más antiguos y famosos del calendario de F1. Es conocido por su velocidad y desafíos técnicos, con curvas históricas como Maggotts, Becketts y Abbey.",
+      "record_vuelta": {
+        "tiempo": "1:27.097",
+        "piloto": "Max Verstappen",
+        "año": 2020
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Lewis Hamilton"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Sergio Pérez"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Great%20Britain%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Great_Britain_Circuit",
+      "id": "gbr25"
+    },
+    {
+      "nombre": "Circuit de Spa-Francorchamps",
+      "pais": "Bélgica",
+      "longitud_km": 7.004,
+      "vueltas": 44,
+      "descripcion": "El Circuito de Spa-Francorchamps, uno de los más emblemáticos de la F1, es conocido por su longitud, sus desafiantes curvas como Eau Rouge y su cambiante clima. Ha sido sede de numerosas competiciones desde 1921, y su mezcla de largas rectas y curvas rápidas lo convierten en uno de los circuitos más apreciados por los pilotos.",
+      "record_vuelta": {
+        "tiempo": "1:44.701",
+        "piloto": "Sergio Pérez",
+        "año": 2024
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Lewis Hamilton"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Sergio Pérez"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Belgium%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Belgium_Circuit",
+      "id": "bel25"
+    },
+    {
+      "nombre": "Hungaroring",
+      "pais": "Hungría",
+      "longitud_km": 4.381,
+      "vueltas": 70,
+      "descripcion": "El Hungaroring es un circuito desafiante con varias curvas y falta de largas rectas, lo que lo convierte en un lugar ideal para una alta carga aerodinámica, similar a un circuito de karting. Es conocido por su ambiente caluroso en agosto y su cercanía a Budapest, uno de los destinos más interesantes de Europa.",
+      "record_vuelta": {
+        "tiempo": "1:16.627",
+        "piloto": "Lewis Hamilton",
+        "año": 2020
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Lewis Hamilton"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Sergio Pérez"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Hungar%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Hungary_Circuit",
+      "id": "hun25"
+    },
+    {
+      "nombre": "Circuit Zandvoort",
+      "pais": "Países Bajos",
+      "longitud_km": 4.259,
+      "vueltas": 72,
+      "descripcion": "Zandvoort es un circuito emblemático con un trazado rápido y desafiante que serpentea a través de las dunas de arena. Desde su regreso en 2020, ha sido un lugar especial para los aficionados, especialmente con la presencia de Max Verstappen. Es conocido por su atmósfera electrizante y sus famosas curvas como Tarzan y Hugenholtzbocht.",
+      "record_vuelta": {
+        "tiempo": "1:11.097",
+        "piloto": "Lewis Hamilton",
+        "año": 2021
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Max Verstappen"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Netherlands%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Netherlands_Circuit",
+      "id": "ned25"
+    },
+    {
+      "nombre": "Autodromo Nazionale Monza",
+      "pais": "Italia",
+      "longitud_km": 5.793,
+      "vueltas": 53,
+      "descripcion": "Monza, conocida como 'La Pista Magica', es famosa por sus altas velocidades y su ambiente único. El circuito, situado cerca de Milán, se caracteriza por su longitud de rectas y frenadas intensas. Es uno de los circuitos más históricos de la F1, con un fuerte vínculo con los aficionados italianos y la Ferrari.",
+      "record_vuelta": {
+        "tiempo": "1:21.046",
+        "piloto": "Rubens Barrichello",
+        "año": 2004
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Daniel Ricciardo"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Charles Leclerc"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Max Verstappen"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Italy%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Italy_Circuit",
+      "id": "ita25"
+    },
+    {
+      "nombre": "Baku City Circuit",
+      "pais": "Azerbaiyán",
+      "longitud_km": 6.003,
+      "vueltas": 51,
+      "descripcion": "El Baku City Circuit es un circuito urbano moderno que combina largas rectas con secciones estrechas y desafiantes en el casco antiguo de la ciudad. Conocido por su alta velocidad, es uno de los circuitos más emocionantes de la temporada, y ofrece una experiencia única tanto para los pilotos como para los espectadores.",
+      "record_vuelta": {
+        "tiempo": "1:43.009",
+        "piloto": "Charles Leclerc",
+        "año": 2019
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Sergio Pérez"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Max Verstappen"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Azerbaijan%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Baku_Circuit",
+      "id": "aze25"
+    },
+    {
+      "nombre": "Marina Bay Street Circuit",
+      "pais": "Singapur",
+      "longitud_km": 4.94,
+      "vueltas": 62,
+      "descripcion": "El circuito urbano de Marina Bay es uno de los más exigentes físicamente en el calendario, con condiciones calurosas y una superficie irregular. Desde su debut en 2008, es conocido por ser la primera carrera nocturna en la F1 y por su espectacular ambiente con el skyline de Singapur. La pista sigue siendo un desafío para los pilotos, que pueden perder hasta 3 kg durante la carrera.",
+      "record_vuelta": {
+        "tiempo": "1:34.486",
+        "piloto": "Daniel Ricciardo",
+        "año": 2024
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Sergio Pérez"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Lewis Hamilton"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Max Verstappen"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Singapore%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Singapore_Circuit",
+      "id": "sgp25"
+    },
+    {
+      "nombre": "Circuit of The Americas",
+      "pais": "Estados Unidos",
+      "longitud_km": 5.513,
+      "vueltas": 56,
+      "descripcion": "El Circuit of The Americas (COTA), inaugurado en 2012, es un circuito moderno que mezcla secciones de alta velocidad con curvas desafiantes. Es reconocido por sus imponentes rectas y la curva 1, que ofrece grandes oportunidades para los adelantamientos. Con una gran atmósfera en Austin, Texas, la carrera ha sido un evento destacado del calendario de F1.",
+      "record_vuelta": {
+        "tiempo": "1:36.169",
+        "piloto": "Charles Leclerc",
+        "año": 2019
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Lewis Hamilton"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/USA%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/USA_Circuit",
+      "id": "usa25"
+    },
+    {
+      "nombre": "Autódromo Hermanos Rodríguez",
+      "pais": "México",
+      "longitud_km": 4.304,
+      "vueltas": 71,
+      "descripcion": "El Autódromo Hermanos Rodríguez es conocido por su ubicación a gran altitud, más de 2,000 metros sobre el nivel del mar, lo que hace que el circuito sea una experiencia desafiante para los pilotos. Desde su apertura en 1959, ha sido sede de grandes momentos de la F1, incluyendo su regreso al calendario en 2015. La carrera en el estadio Peralta ofrece una vista única y un ambiente inconfundible.",
+      "record_vuelta": {
+        "tiempo": "1:17.774",
+        "piloto": "Valtteri Bottas",
+        "año": 2021
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Lewis Hamilton"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Mexico%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Mexico_Circuit",
+      "id": "mex25"
+    },
+    {
+      "nombre": "Autódromo José Carlos Pace",
+      "pais": "Brasil",
+      "longitud_km": 4.309,
+      "vueltas": 71,
+      "descripcion": "El Autódromo José Carlos Pace, conocido como Interlagos, es famoso por su disposición desafiante que combina tramos en subida y bajada, junto a algunas de las curvas más icónicas de la F1. Inaugurado en 1940, ha sido sede de emocionantes finales de temporada y es un lugar donde los pilotos deben aprovechar al máximo sus habilidades para conquistar el circuito.",
+      "record_vuelta": {
+        "tiempo": "1:10.540",
+        "piloto": "Valtteri Bottas",
+        "año": 2018
+      },
+      "ganadores": [
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2024,
+          "piloto": "Lewis Hamilton"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Brazil%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Brazil_Circuit",
+      "id": "bra25"
+    },
+    {
+      "nombre": "Las Vegas Strip Circuit",
+      "pais": "Estados Unidos",
+      "longitud_km": 6.201,
+      "vueltas": 50,
+      "descripcion": "Iniciado en 2023, el circuito de Las Vegas ha sido diseñado en las famosas calles de la ciudad, pasando por lugares emblemáticos como el Caesars Palace y el Bellagio. Con 6.2 km y 17 curvas, ofrece una experiencia emocionante bajo las luces brillantes de la ciudad. La alta velocidad y el ambiente único lo convierten en uno de los eventos más esperados de la temporada.",
+      "record_vuelta": {
+        "tiempo": "1:34.876",
+        "piloto": "Lando Norris",
+        "año": 2024
+      },
+      "ganadores": [
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Las%20Vegas%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Las_Vegas_Circuit",
+      "id": "usa25"
+    },
+    {
+      "nombre": "Lusail International Circuit",
+      "pais": "Qatar",
+      "longitud_km": 5.419,
+      "vueltas": 57,
+      "descripcion": "El Lusail International Circuit, inaugurado en 2021, es un circuito de alta velocidad y fluidez, diseñado para competiciones de motociclismo. Con predominancia de curvas de media y alta velocidad, su longitud de 5.4 km ofrece amplias oportunidades de adelantamiento en su recta principal. El circuito se encuentra en las afueras de Doha y es sede de emocionantes carreras bajo las altas temperaturas del desierto.",
+      "record_vuelta": {
+        "tiempo": "1:22.384",
+        "piloto": "Lando Norris",
+        "año": 2024
+      },
+      "ganadores": [
+        {
+          "temporada": 2021,
+          "piloto": "Lewis Hamilton"
+        },
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Qatar%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Qatar_Circuit",
+      "id": "qat25"
+    },
+    {
+      "nombre": "Yas Marina Circuit",
+      "pais": "Emiratos Árabes Unidos",
+      "longitud_km": 5.281,
+      "vueltas": 58,
+      "descripcion": "El Yas Marina Circuit, inaugurado en 2009, se encuentra en la isla Yas en Abu Dabi. Es conocido por su iluminación única que permite carreras nocturnas, y su desafiante diseño, que incluye una recta de 1.2 km para adelantamientos. El trazado tiene una combinación de curvas rápidas y técnicas, proporcionando oportunidades emocionantes para los pilotos.",
+      "record_vuelta": {
+        "tiempo": "1:25.637",
+        "piloto": "Kevin Magnussen",
+        "año": 2024
+      },
+      "ganadores": [
+        {
+          "temporada": 2021,
+          "piloto": "Lewis Hamilton"
+        },
+        {
+          "temporada": 2022,
+          "piloto": "Max Verstappen"
+        },
+        {
+          "temporada": 2023,
+          "piloto": "Max Verstappen"
+        }
+      ],
+      "imagen": "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Abu%20Dhab%20carbon",
+      "imagen_detail": "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Abu_Dhabi_Circuit",
+      "id": "uae25"
     }
   ],
   "vehiculos": [
     {
-      "equipo": "Red Bull Racing",
-      "modelo": "RB20",
-      "motor": "Honda",
-      "velocidad_maxima_kmh": 360,
-      "aceleracion_0_100": 2.5,
-      "pilotos": [
-        1,
-        2
-      ],
+      "equipo": "E194D1C1A9B5",
+      "modelo": "A525",
+      "motor": "Renault",
+      "velocidad_maxima_kmh": 345,
+      "aceleracion_0_100": 2.8,
+      "pilotos": ["1","2"],
       "rendimiento": {
         "conduccion_normal": {
-          "velocidad_promedio_kmh": 320,
+          "velocidad_promedio_kmh": 305,
+          "consumo_combustible": {
+            "seco": 2.4,
+            "lluvioso": 2.6,
+            "extremo": 2.9
+          },
+          "desgaste_neumaticos": {
+            "seco": 2,
+            "lluvioso": 1.3,
+            "extremo": 3
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 325,
+          "consumo_combustible": {
+            "seco": 3,
+            "lluvioso": 3.2,
+            "extremo": 3.6
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.7,
+            "lluvioso": 1.8,
+            "extremo": 4.2
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 285,
+          "consumo_combustible": {
+            "seco": 2.1,
+            "lluvioso": 2.3,
+            "extremo": 2.6
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.5,
+            "lluvioso": 1,
+            "extremo": 2.3
+          }
+        }
+      },
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/alpine.png",
+      "id": "AL999",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 Alpine A-542 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/7331c4bcbf6d4063b48ab851a893253d/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-alpine-a-542-2024-7331c4bcbf6d4063b48ab851a893253d\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 Alpine A-542 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=7331c4bcbf6d4063b48ab851a893253d\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=7331c4bcbf6d4063b48ab851a893253d\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
+    },
+    {
+      "equipo": "E194D1C6C206",
+      "modelo": "TBC",
+      "motor": "Mercedes",
+      "velocidad_maxima_kmh": 348,
+      "aceleracion_0_100": 2.75,
+      "pilotos": ["3","4"],
+      "rendimiento": {
+        "conduccion_normal": {
+          "velocidad_promedio_kmh": 308,
+          "consumo_combustible": {
+            "seco": 2.3,
+            "lluvioso": 2.5,
+            "extremo": 2.8
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.9,
+            "lluvioso": 1.2,
+            "extremo": 2.9
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 328,
+          "consumo_combustible": {
+            "seco": 2.9,
+            "lluvioso": 3.1,
+            "extremo": 3.5
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.6,
+            "lluvioso": 1.7,
+            "extremo": 4.1
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 288,
+          "consumo_combustible": {
+            "seco": 2,
+            "lluvioso": 2.2,
+            "extremo": 2.5
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.4,
+            "lluvioso": 0.9,
+            "extremo": 2.2
+          }
+        }
+      },
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/aston-martin.png",
+      "id": "AM300",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 Aston Martin AMR-24 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/1152c136adb84bf28e388dd9de1ef5bf/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-aston-martin-amr-24-2024-1152c136adb84bf28e388dd9de1ef5bf?utm_medium=embed&utm_campaign=share-popup&utm_content=1152c136adb84bf28e388dd9de1ef5bf\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 Aston Martin AMR-24 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=1152c136adb84bf28e388dd9de1ef5bf\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=1152c136adb84bf28e388dd9de1ef5bf\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
+    },
+    {
+      "equipo": "E194D1C811C9",
+      "modelo": "SF-25",
+      "motor": "Ferrari",
+      "velocidad_maxima_kmh": 350,
+      "aceleracion_0_100": 2.7,
+      "pilotos": ["5","6"],
+      "rendimiento": {
+        "conduccion_normal": {
+          "velocidad_promedio_kmh": 310,
+          "consumo_combustible": {
+            "seco": 2.1,
+            "lluvioso": 2.3,
+            "extremo": 2.6
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.7,
+            "lluvioso": 1,
+            "extremo": 2.7
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 330,
+          "consumo_combustible": {
+            "seco": 2.7,
+            "lluvioso": 2.9,
+            "extremo": 3.3
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.4,
+            "lluvioso": 1.5,
+            "extremo": 3.9
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 290,
+          "consumo_combustible": {
+            "seco": 1.8,
+            "lluvioso": 2,
+            "extremo": 2.3
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.2,
+            "lluvioso": 0.7,
+            "extremo": 2
+          }
+        }
+      },
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/ferrari.png",
+      "id": "F101",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 Ferrari SF-24 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/1f6c17dda59a49e78de6a8b788566ea7/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-ferrari-sf-24-2024-1f6c17dda59a49e78de6a8b788566ea7?utm_medium=embed&utm_campaign=share-popup&utm_content=1f6c17dda59a49e78de6a8b788566ea7\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 Ferrari SF-24 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=1f6c17dda59a49e78de6a8b788566ea7\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=1f6c17dda59a49e78de6a8b788566ea7\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
+    },
+    {
+      "equipo": "E194D1C968C5",
+      "modelo": "TBC",
+      "motor": "Ferrari",
+      "velocidad_maxima_kmh": 345,
+      "aceleracion_0_100": 2.8,
+      "pilotos": ["7","8"],
+      "rendimiento": {
+        "conduccion_normal": {
+          "velocidad_promedio_kmh": 308,
+          "consumo_combustible": {
+            "seco": 2.2,
+            "lluvioso": 2.4,
+            "extremo": 2.7
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.8,
+            "lluvioso": 1.1,
+            "extremo": 2.8
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 328,
+          "consumo_combustible": {
+            "seco": 2.8,
+            "lluvioso": 3,
+            "extremo": 3.4
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.5,
+            "lluvioso": 1.6,
+            "extremo": 4
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 292,
           "consumo_combustible": {
             "seco": 1.9,
             "lluvioso": 2.1,
             "extremo": 2.4
           },
           "desgaste_neumaticos": {
-            "seco": 1.5,
+            "seco": 1.3,
             "lluvioso": 0.8,
-            "extremo": 2.5
-          }
-        },
-        "conduccion_agresiva": {
-          "velocidad_promedio_kmh": 340,
-          "consumo_combustible": {
-            "seco": 2.4,
-            "lluvioso": 2.6,
-            "extremo": 3
-          },
-          "desgaste_neumaticos": {
-            "seco": 2.2,
-            "lluvioso": 1.2,
-            "extremo": 3.5
-          }
-        },
-        "ahorro_combustible": {
-          "velocidad_promedio_kmh": 300,
-          "consumo_combustible": {
-            "seco": 1.6,
-            "lluvioso": 1.8,
             "extremo": 2.1
-          },
-          "desgaste_neumaticos": {
-            "seco": 1,
-            "lluvioso": 0.5,
-            "extremo": 1.8
           }
         }
       },
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/89/Max_Verstappen_2023_Austria_FP2_%28cropped%29.jpg",
-      "id": "e3e2"
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/haas.png",
+      "id": "H100",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 HAAS VF-24 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/90fb9bf749804fbcaf240f6815758e67/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-haas-vf-24-2024-90fb9bf749804fbcaf240f6815758e67?utm_medium=embed&utm_campaign=share-popup&utm_content=90fb9bf749804fbcaf240f6815758e67\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 HAAS VF-24 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=90fb9bf749804fbcaf240f6815758e67\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=90fb9bf749804fbcaf240f6815758e67\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
     },
     {
-      "equipo": "Mercedes-AMG Petronas",
-      "modelo": "W15",
+      "equipo": "E194D1CB2626",
+      "modelo": "TBC",
+      "motor": "Alfa Romeo",
+      "velocidad_maxima_kmh": 340,
+      "aceleracion_0_100": 2.75,
+      "pilotos": ["9","10"],
+      "rendimiento": {
+        "conduccion_normal": {
+          "velocidad_promedio_kmh": 310,
+          "consumo_combustible": {
+            "seco": 2,
+            "lluvioso": 2.2,
+            "extremo": 2.5
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.7,
+            "lluvioso": 1,
+            "extremo": 2.6
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 330,
+          "consumo_combustible": {
+            "seco": 2.6,
+            "lluvioso": 2.8,
+            "extremo": 3.2
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.3,
+            "lluvioso": 1.4,
+            "extremo": 3.8
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 290,
+          "consumo_combustible": {
+            "seco": 1.7,
+            "lluvioso": 1.9,
+            "extremo": 2.2
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.1,
+            "lluvioso": 0.6,
+            "extremo": 1.9
+          }
+        }
+      },
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/kick-sauber.png",
+      "id": "KS001",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 Sauber C-44 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/f037d1e692984180a73137e12e733a35/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-sauber-c-44-2024-f037d1e692984180a73137e12e733a35?utm_medium=embed&utm_campaign=share-popup&utm_content=f037d1e692984180a73137e12e733a35\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 Sauber C-44 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=f037d1e692984180a73137e12e733a35\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=f037d1e692984180a73137e12e733a35\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
+    },
+    {
+      "equipo": "E194D1CC93C4",
+      "modelo": "TBC",
+      "motor": "Mercedes",
+      "velocidad_maxima_kmh": 352,
+      "aceleracion_0_100": 2.65,
+      "pilotos": ["11","12"],
+      "rendimiento": {
+        "conduccion_normal": {
+          "velocidad_promedio_kmh": 312,
+          "consumo_combustible": {
+            "seco": 2.2,
+            "lluvioso": 2.4,
+            "extremo": 2.7
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.8,
+            "lluvioso": 1.1,
+            "extremo": 2.8
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 332,
+          "consumo_combustible": {
+            "seco": 2.8,
+            "lluvioso": 3,
+            "extremo": 3.4
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.5,
+            "lluvioso": 1.6,
+            "extremo": 4
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 292,
+          "consumo_combustible": {
+            "seco": 1.9,
+            "lluvioso": 2.1,
+            "extremo": 2.4
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.3,
+            "lluvioso": 0.8,
+            "extremo": 2.1
+          }
+        }
+      },
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/mclaren.png",
+      "id": "M720",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 McLaren MCL-38 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/a7bf8c65daae4815b2948e82a6295704/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-mclaren-mcl-38-2024-a7bf8c65daae4815b2948e82a6295704?utm_medium=embed&utm_campaign=share-popup&utm_content=a7bf8c65daae4815b2948e82a6295704\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 McLaren MCL-38 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=a7bf8c65daae4815b2948e82a6295704\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=a7bf8c65daae4815b2948e82a6295704\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
+    },
+    {
+      "equipo": "E194D2A33DFB",
+      "modelo": "W16",
       "motor": "Mercedes",
       "velocidad_maxima_kmh": 355,
       "aceleracion_0_100": 2.6,
-      "pilotos": [
-        3,
-        4
-      ],
+      "pilotos": ["13","14"],
       "rendimiento": {
         "conduccion_normal": {
           "velocidad_promedio_kmh": 315,
@@ -460,8 +1374,167 @@
           }
         }
       },
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/87/Lewis_Hamilton_2022_Imola.jpg",
-      "id": "0621"
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/mercedes.png",
+      "id": "0621",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 Mercedes W-15 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/1abb9746438f45cf8829fe56dfc3374a/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-mercedes-w-15-2024-1abb9746438f45cf8829fe56dfc3374a?utm_medium=embed&utm_campaign=share-popup&utm_content=1abb9746438f45cf8829fe56dfc3374a\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 Mercedes W-15 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=1abb9746438f45cf8829fe56dfc3374a\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=1abb9746438f45cf8829fe56dfc3374a\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
+    },
+    {
+      "equipo": "E194D2A4C0A3",
+      "modelo": "TBC",
+      "motor": "Honda",
+      "velocidad_maxima_kmh": 365,
+      "aceleracion_0_100": 2.45,
+      "pilotos": ["15","16"],
+      "rendimiento": {
+        "conduccion_normal": {
+          "velocidad_promedio_kmh": 322,
+          "consumo_combustible": {
+            "seco": 1.9,
+            "lluvioso": 2.1,
+            "extremo": 2.4
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.5,
+            "lluvioso": 0.8,
+            "extremo": 2.5
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 342,
+          "consumo_combustible": {
+            "seco": 2.5,
+            "lluvioso": 2.7,
+            "extremo": 3.1
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.2,
+            "lluvioso": 1.3,
+            "extremo": 3.7
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 302,
+          "consumo_combustible": {
+            "seco": 1.7,
+            "lluvioso": 1.9,
+            "extremo": 2.2
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.1,
+            "lluvioso": 0.6,
+            "extremo": 1.9
+          }
+        }
+      },
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/racing-bulls.png",
+      "id": "RBBS",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 VCARB_01 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/426c63bab14e47c19748c4158e5822a3/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-vcarb-01-2024-426c63bab14e47c19748c4158e5822a3?utm_medium=embed&utm_campaign=share-popup&utm_content=426c63bab14e47c19748c4158e5822a3\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 VCARB_01 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=426c63bab14e47c19748c4158e5822a3\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=426c63bab14e47c19748c4158e5822a3\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
+    },
+    {
+      "equipo": "E194D2A5D8ED",
+      "modelo": "RB21",
+      "motor": "Honda",
+      "velocidad_maxima_kmh": 360,
+      "aceleracion_0_100": 2.5,
+      "pilotos": ["17","18"],
+      "rendimiento": {
+        "conduccion_normal": {
+          "velocidad_promedio_kmh": 320,
+          "consumo_combustible": {
+            "seco": 1.9,
+            "lluvioso": 2.1,
+            "extremo": 2.4
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.5,
+            "lluvioso": 0.8,
+            "extremo": 2.5
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 340,
+          "consumo_combustible": {
+            "seco": 2.4,
+            "lluvioso": 2.6,
+            "extremo": 3
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.2,
+            "lluvioso": 1.2,
+            "extremo": 3.5
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 300,
+          "consumo_combustible": {
+            "seco": 1.6,
+            "lluvioso": 1.8,
+            "extremo": 2.1
+          },
+          "desgaste_neumaticos": {
+            "seco": 1,
+            "lluvioso": 0.5,
+            "extremo": 1.8
+          }
+        }
+      },
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/red-bull-racing.png",
+      "id": "e3e2",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 RedBull RB-20 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/0c9e188ef67b49f1bafd4b9e290a410c/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-redbull-rb-20-2024-0c9e188ef67b49f1bafd4b9e290a410c?utm_medium=embed&utm_campaign=share-popup&utm_content=0c9e188ef67b49f1bafd4b9e290a410c\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 RedBull RB-20 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=0c9e188ef67b49f1bafd4b9e290a410c\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=0c9e188ef67b49f1bafd4b9e290a410c\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
+    },
+    {
+      "equipo": "E194D2A6F71F",
+      "modelo": "FW47",
+      "motor": "Mercedes",
+      "velocidad_maxima_kmh": 350,
+      "aceleracion_0_100": 2.7,
+      "pilotos": ["19","20"],
+      "rendimiento": {
+        "conduccion_normal": {
+          "velocidad_promedio_kmh": 315,
+          "consumo_combustible": {
+            "seco": 2.2,
+            "lluvioso": 2.4,
+            "extremo": 2.7
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.6,
+            "lluvioso": 0.9,
+            "extremo": 2.6
+          }
+        },
+        "conduccion_agresiva": {
+          "velocidad_promedio_kmh": 335,
+          "consumo_combustible": {
+            "seco": 2.8,
+            "lluvioso": 3,
+            "extremo": 3.4
+          },
+          "desgaste_neumaticos": {
+            "seco": 2.5,
+            "lluvioso": 1.6,
+            "extremo": 4
+          }
+        },
+        "ahorro_combustible": {
+          "velocidad_promedio_kmh": 295,
+          "consumo_combustible": {
+            "seco": 1.8,
+            "lluvioso": 2,
+            "extremo": 2.3
+          },
+          "desgaste_neumaticos": {
+            "seco": 1.2,
+            "lluvioso": 0.7,
+            "extremo": 2
+          }
+        }
+      },
+      "imagen": "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/williams.png",
+      "id": "W001",
+      "model3d": "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"F1 WILLIAMS FW-46 2024\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/1d57169333b34c92a39b2155327ddca7/embed?autospin=1&autostart=1\"> </iframe> <p style=\"font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;\"> <a href=\"https://sketchfab.com/3d-models/f1-williams-fw-46-2024-1d57169333b34c92a39b2155327ddca7?utm_medium=embed&utm_campaign=share-popup&utm_content=1d57169333b34c92a39b2155327ddca7\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> F1 WILLIAMS FW-46 2024 </a> by <a href=\"https://sketchfab.com/sarvesh903?utm_medium=embed&utm_campaign=share-popup&utm_content=1d57169333b34c92a39b2155327ddca7\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\"> sarvesh777 </a> on <a href=\"https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=1d57169333b34c92a39b2155327ddca7\" target=\"_blank\" rel=\"nofollow\" style=\"font-weight: bold; color: #1CAAD9;\">Sketchfab</a></p></div>"
     }
-  ]
+  ],
+  "configuracionVehiculo": [],
+  "partida": []
 }

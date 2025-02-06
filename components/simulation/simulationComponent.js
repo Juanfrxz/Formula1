@@ -105,7 +105,7 @@ class SimulationComponent extends HTMLElement {
                         <li class="nav-item">
                             <a class="nav-link" id="classificationStart" href="#">
                                 <i class="fas fa-flag-checkered"></i>
-                                Inicio de Clasificación
+                                Classification Start
                             </a>
                         </li>
                     </ul>

@@ -157,41 +157,42 @@ class CarTuningComponent extends HTMLElement {
           <!-- Columna derecha: sidebar de opciones -->
           <div class="col-md-3">
             <div class="p-3">
-              <h3>${equipoData.nombre} - Opciones de Rendimiento</h3>
+              <h3>${equipoData.nombre} - Performance Options</h3>
               <div class="mb-3">
-                <label for="drivingModeSelect" class="form-label">Modo de Conducción</label>
+                <label for="drivingModeSelect" class="form-label">Driving Mode</label>
                 <select id="drivingModeSelect" class="form-select">
-                  <option value="conduccion_normal">Conducción Normal</option>
-                  <option value="conduccion_agresiva">Conducción Agresiva</option>
-                  <option value="ahorro_combustible">Ahorro de Combustible</option>
+                  <option value="conduccion_normal">Normal Driving</option>
+                  <option value="conduccion_agresiva">Aggressive Driving</option>
+                  <option value="ahorro_combustible">Fuel Savings</option>
                 </select>
               </div>
               <div class="mb-3">
-                <label for="fuelStrategySelect" class="form-label">Estrategia de Combustible</label>
+                <label for="fuelStrategySelect" class="form-label">Fuel Strategy</label>
                 <select id="fuelStrategySelect" class="form-select">
-                  <option value="rendimiento">Rendimiento</option>
-                  <option value="agresivo">Agresivo</option>
-                  <option value="ahorro_combustible">Ahorro de Combustible</option>
+                  <option value="rendimiento">Performance</option>
+                  <option value="agresivo">Aggressive</option>
+                  <option value="ahorro_combustible">Fuel Savings</option>
                 </select>
               </div>
               <div class="mb-3">
-                <label for="tirePressureSelect" class="form-label">Presión de Neumáticos</label>
+                <label for="tirePressureSelect" class="form-label">Tire Pressure</label>
                 <select id="tirePressureSelect" class="form-select">
-                  <option value="baja">Baja</option>
-                  <option value="estandar">Estándar</option>
-                  <option value="alta">Alta</option>
+                  <option value="baja">Low</option>
+                  <option value="estandar">Standard</option>
+                  <option value="alta">High</option>
                 </select>
               </div>
+
               <div class="mb-3">
-                <label for="aeroLoadSelect" class="form-label">Carga Aerodinámica</label>
+                <label for="aeroLoadSelect" class="form-label">Aerodynamic Load</label>
                 <select id="aeroLoadSelect" class="form-select">
-                  <option value="baja">Baja</option>
-                  <option value="media">Media</option>
-                  <option value="alta">Alta</option>
+                  <option value="baja">Low</option>
+                  <option value="media">Medium</option>
+                  <option value="alta">High</option>
                 </select>
               </div>
               <div class="mb-3">
-                <button id="saveConfigBtn" class="btn btn-danger">Guardar Configuración</button>
+                <button id="saveConfigBtn" class="btn btn-danger">Save Settings</button>
               </div>
             </div>
           </div>

@@ -52,8 +52,8 @@ class ClassificationStartComponent extends HTMLElement {
                     <thead class="thead-dark">
                         <tr>
                             <th>Driver</th>
-                            <th>Equipo</th>
-                            <th>Tiempo (s)</th>
+                            <th>Team</th>
+                            <th>Time (s)</th>
                         </tr>
                     </thead>
                     <tbody>

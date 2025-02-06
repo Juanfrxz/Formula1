@@ -180,7 +180,7 @@ class CreateCarComponent extends HTMLElement {
                             </h2>
                             <div id="performance_normal" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    ${this.renderPerformanceInputs("normal", "Conducción Normal")}
+                                    ${this.renderPerformanceInputs("normal", "Normal Driving")}
                                 </div>
                             </div>
                         </div>
@@ -196,7 +196,7 @@ class CreateCarComponent extends HTMLElement {
                             </h2>
                             <div id="performance_agresiva" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    ${this.renderPerformanceInputs("agresiva", "Conducción Agresiva")}
+                                    ${this.renderPerformanceInputs("agresiva", "Aggressive Driving")}
                                 </div>
                             </div>
                         </div>
@@ -212,7 +212,7 @@ class CreateCarComponent extends HTMLElement {
                             </h2>
                             <div id="performance_ahorro" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    ${this.renderPerformanceInputs("ahorro", "Ahorro de Combustible")}
+                                    ${this.renderPerformanceInputs("ahorro", "Fuel Savings")}
                                 </div>
                             </div>
                         </div>

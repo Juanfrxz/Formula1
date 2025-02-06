@@ -292,11 +292,11 @@ class TeamsComponent extends HTMLElement {
                 <div style="flex: 1; min-width: 300px;">
                     <h2>${team.nombre}</h2>
                     <p>
-                        <strong>País:</strong> ${team.pais} 
+                        <strong>Country:</strong> ${team.pais} 
                         <img src="../source/img/${team.pais.toLowerCase()}.svg" alt="${team.pais} flag" style="width:24px; height:24px; vertical-align: middle;">
                     </p>
-                    <p><strong>Motor:</strong> ${team.motor ? team.motor : 'No especificado'}</p>
-                    <p><strong>Pilotos:</strong></p>
+                    <p><strong>Engine:</strong> ${team.motor ? team.motor : 'No especificado'}</p>
+                    <p><strong>Driver:</strong></p>
                     <ul>${pilotosListHTML}</ul>
                 </div>
             </div>
